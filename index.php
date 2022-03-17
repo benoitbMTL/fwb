@@ -11,6 +11,7 @@
 <li><a href="/dvwa">dvwa</a></li>
 <li><a href="/badsite.html">badsite</a></li>
 <li><a href="/wso.php">webshell</a></li>
+<li><a href="/dvwa/hackable/uploads/">uploads</a></li>
 </ul>
 
     <p>--------------------------------------------------</p>
