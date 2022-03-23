@@ -7,6 +7,8 @@
   <body>
     <?php print "<h1>You are on ". $_SERVER['SERVER_NAME'] . "</h1>" ?>
     
+    <p><b>Hostname: </b><?php echo gethostname(); ?></p>
+    <p><b>Address: </b><?php echo $_SERVER['SERVER_ADDR']; ?></p>
 <ul>
 <li><a href="/dvwa">dvwa</a></li>
 <li><a href="/badsite.html">badsite</a></li>
