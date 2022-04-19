@@ -18,6 +18,7 @@
     <li><a href="/badsite.html">badsite</a></li>
     <li><a href="/wso.php">webshell</a></li>
     <li><a href="/dvwa/hackable/uploads/">uploads</a></li>
+    <li><a href="/pci.html">pci</a></li>
     </ul>
 
     <p>--------------------------------------------------</p>
