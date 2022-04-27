@@ -1,3 +1,5 @@
+echo "id : 1"
+
 curl -X 'POST' \
   --silent --insecure \
   'https://petstore.swagger.io/v2/user' \
@@ -10,12 +12,31 @@ curl -X 'POST' \
   "lastName": "a",
   "email": "a@a.ca",
   "password": "a",
-  "phone": 1,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 9999999999"
+
+curl -X 'POST' \
+  --silent --insecure \
+  'https://petstore.swagger.io/v2/user' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": 9999999999,
+  "username": "aaaaaaaaaa",
+  "firstName": "aaaaaaaaaa",
+  "lastName": "aaaaaaaaaa",
+  "email": "aaaaaaaaaaa@aaaaaaaaaaa.ca",
+  "password": "aaaaaaaaaa",
+  "phone": 5146042906,
+  "userStatus": 1
+}'
+
+sleep 1
+echo "id : 11"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -29,12 +50,12 @@ curl -X 'POST' \
   "lastName": "aa",
   "email": "aa@aa.ca",
   "password": "aa",
-  "phone": 11,
+  "phone": 5146042906,
   "userStatus": 0
 }'
 
 sleep 1
-echo ""
+echo "id : 111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -48,12 +69,12 @@ curl -X 'POST' \
   "lastName": "aaa",
   "email": "aaa@aaa.ca",
   "password": "aaa",
-  "phone": 111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 1111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -67,12 +88,12 @@ curl -X 'POST' \
   "lastName": "aaaa",
   "email": "aaaa@aaaa.ca",
   "password": "aaaa",
-  "phone": 1111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 11111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -86,12 +107,12 @@ curl -X 'POST' \
   "lastName": "aaaaa",
   "email": "aaaaa@aaaaa.ca",
   "password": "aaaaa",
-  "phone": 11111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -105,12 +126,12 @@ curl -X 'POST' \
   "lastName": "aaaaaa",
   "email": "aaaaaa@aaaaaa.ca",
   "password": "aaaaaa",
-  "phone": 111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 1111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -124,12 +145,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaa",
   "email": "aaaaaaa@aaaaaaa.ca",
   "password": "aaaaaaa",
-  "phone": 1111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 11111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -143,12 +164,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaaa",
   "email": "aaaaaaaa@aaaaaaaa.ca",
   "password": "aaaaaaaa",
-  "phone": 11111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -162,12 +183,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaa",
   "email": "aaaaaaaaa@aaaaaaaaa.ca",
   "password": "aaaaaaaaa",
-  "phone": 111111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 1111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -181,12 +202,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaa",
   "email": "aaaaaaaaaa@aaaaaaaaaa.ca",
   "password": "aaaaaaaaaa",
-  "phone": 1111111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 11111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -200,12 +221,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaa",
   "email": "aaaaaaaaaaa@aaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaa",
-  "phone": 11111111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -219,12 +240,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaaa",
   "email": "aaaaaaaaaaaa@aaaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaaa",
-  "phone": 111111111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -238,12 +259,12 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaaaa",
   "email": "aaaaaaaaaaaaa@aaaaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaaaa",
-  "phone": 1111111111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
 sleep 1
-echo ""
+echo "id : 111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -257,7 +278,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaaaaa",
   "email": "aaaaaaaaaaaaaa@aaaaaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaaaaa",
-  "phone": 11111111111111,
+  "phone": 5146042906,
   "userStatus": 1
 }'
 
