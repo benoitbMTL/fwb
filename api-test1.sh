@@ -38,7 +38,7 @@ curl -X 'POST' \
 
 sleep 1
 echo ""
-echo "creating id : 111111111111111111111111"
+echo "creating id : 1111111111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -46,7 +46,7 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "id": 111111111111111111111111,
+  "id": 1111111111111111111,
   "username": "aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   "firstName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   "lastName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
