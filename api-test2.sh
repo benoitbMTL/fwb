@@ -56,7 +56,6 @@ curl -X 'POST' \
   "userStatus": 0
 }'
 
-sleep 1
 echo ""
 echo "creating id : 111 -- size 3"
 
@@ -76,7 +75,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 1111 -- size 4"
 
@@ -96,7 +94,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 11111 -- size 5"
 
@@ -116,7 +113,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 111111 -- size 6"
 
@@ -136,7 +132,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 1111111 -- size 7"
 
@@ -156,7 +151,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 11111111 -- size 8"
 
@@ -176,7 +170,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 111111111 -- size 9"
 
@@ -196,7 +189,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 1111111111 -- size 10"
 
@@ -216,7 +208,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 11111111111 -- size 11"
 
@@ -236,7 +227,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 111111111111 -- size 12"
 
@@ -256,7 +246,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 111111111111 -- size 13"
 
@@ -276,7 +265,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 111111111111 -- size 14"
 
@@ -295,8 +283,3 @@ curl -X 'POST' \
   "phone": "5146042906",
   "userStatus": 1
 }'
-
-
-
-
-
