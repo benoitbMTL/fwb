@@ -300,8 +300,3 @@ curl -X 'POST' \
   "phone": "5146042906",
   "userStatus": 1
 }'
-
-
-
-
-
