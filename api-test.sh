@@ -47,12 +47,12 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
   -d '{
   "id": 9999999999,
-  "username": "aaaaaaaaaa",
-  "firstName": "aaaaaaaaaa",
-  "lastName": "aaaaaaaaaa",
-  "email": "aaaaaaaaaaa@aaaaaaaaaaa.ca",
-  "password": "aaaaaaaaaa",
-  "phone": 5149876544,
+  "username": "aaaaaaaaaaaaaaaaaaaa",
+  "firstName": "aaaaaaaaaaaaaaaaaaaa",
+  "lastName": "aaaaaaaaaaaaaaaaaaaa",
+  "email": "aaaaaaaaaaaaaaaaaaaa@aaaaaaaaaaaaaaaaaaaa.ca",
+  "password": "aaaaaaaaaaaaaaaaaaaa",
+  "phone": "5149876544",
   "userStatus": 1
 }'
 
@@ -72,7 +72,7 @@ curl -X 'POST' \
   "lastName": "aa",
   "email": "aa@aa.ca",
   "password": "aa",
-  "phone": 5144563579,
+  "phone": "5144563579",
   "userStatus": 0
 }'
 
@@ -92,7 +92,7 @@ curl -X 'POST' \
   "lastName": "aaa",
   "email": "aaa@aaa.ca",
   "password": "aaa",
-  "phone": 5141597537,
+  "phone": "5141597537",
   "userStatus": 1
 }'
 
@@ -192,7 +192,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaa",
   "email": "aaaaaaaa@aaaaaaaa.ca",
   "password": "aaaaaaaa",
-  "phone": 4386042906,
+  "phone": "4386042906",
   "userStatus": 1
 }'
 
@@ -212,7 +212,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaa",
   "email": "aaaaaaaaa@aaaaaaaaa.ca",
   "password": "aaaaaaaaa",
-  "phone": 8886042906,
+  "phone": "8886042906",
   "userStatus": 1
 }'
 
@@ -232,7 +232,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaa",
   "email": "aaaaaaaaaa@aaaaaaaaaa.ca",
   "password": "aaaaaaaaaa",
-  "phone": 9116042906,
+  "phone": "9116042906",
   "userStatus": 1
 }'
 
@@ -292,7 +292,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaaaa",
   "email": "aaaaaaaaaaaaa@aaaaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaaaa",
-  "phone": 5146042906,
+  "phone": "5146042906",
   "userStatus": 1
 }'
 
@@ -312,7 +312,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaaaaa",
   "email": "aaaaaaaaaaaaaa@aaaaaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaaaaa",
-  "phone": 5146042906,
+  "phone": "5146042906",
   "userStatus": 1
 }'
 
