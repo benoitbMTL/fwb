@@ -1,3 +1,43 @@
+echo "creating id : 0 -- size 1"
+
+curl -X 'POST' \
+  --silent --insecure \
+  'https://petstore.swagger.io/v2/user' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": 0,
+  "username": "a",
+  "firstName": "a",
+  "lastName": "a",
+  "email": "a@a.ca",
+  "password": "a",
+  "phone": "5146042906",
+  "userStatus": 1
+}'
+
+sleep 1
+echo ""
+echo "creating id : 0 -- size 1"
+
+curl -X 'POST' \
+  --silent --insecure \
+  'https://petstore.swagger.io/v2/user' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": 0,
+  "username": "a",
+  "firstName": "a",
+  "lastName": "a",
+  "email": "a@a.ca",
+  "password": "a",
+  "phone": "5146042906",
+  "userStatus": 1
+}'
+
+sleep 1
+echo ""
 echo "creating id : 1 -- size 1"
 
 curl -X 'POST' \
@@ -12,28 +52,8 @@ curl -X 'POST' \
   "lastName": "a",
   "email": "a@a.ca",
   "password": "a",
-  "phone": "5146042906",
-  "userStatus": 1
-}'
-
-sleep 1
-echo ""
-echo "creating id : 2 -- size 2"
-
-curl -X 'POST' \
-  --silent --insecure \
-  'https://petstore.swagger.io/v2/user' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "id": 2,
-  "username": "a",
-  "firstName": "a",
-  "lastName": "a",
-  "email": "a@a.ca",
-  "password": "a",
-  "phone": "5141324564",
-  "userStatus": 1
+  "phone": "5144563579",
+  "userStatus": 0
 }'
 
 sleep 1
@@ -295,5 +315,8 @@ curl -X 'POST' \
   "phone": "5146042906",
   "userStatus": 1
 }'
+
+
+
 
 
