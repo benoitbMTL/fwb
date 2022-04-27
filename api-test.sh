@@ -15,6 +15,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -33,6 +34,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -51,6 +53,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -69,6 +72,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -87,6 +91,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -105,6 +110,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -123,6 +129,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -141,6 +148,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -159,6 +167,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -177,6 +186,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -195,6 +205,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -213,6 +224,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
@@ -231,6 +243,7 @@ curl -X 'POST' \
 }'
 
 sleep 1
+echo ""
 
 curl -X 'POST' \
   --silent --insecure \
