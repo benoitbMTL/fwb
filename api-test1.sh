@@ -38,7 +38,7 @@ curl -X 'POST' \
 
 sleep 1
 echo ""
-echo "creating id : 1111111111111111111"
+echo "creating id : 1111111111111111111 (19)"
 
 curl -X 'POST' \
   --silent --insecure \
