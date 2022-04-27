@@ -152,7 +152,7 @@ curl -X 'POST' \
   "lastName": "aaaaaa",
   "email": "aaaaaa@aaaaaa.ca",
   "password": "aaaaaa",
-  "phone": "+1 514 604 2906,
+  "phone": "+1 514 604 2906",
   "userStatus": 1
 }'
 
