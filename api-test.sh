@@ -1,4 +1,4 @@
-echo "id : 1"
+echo "creating id : 1"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -17,7 +17,28 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 9999999999"
+echo ""
+echo "creating id : 2"
+
+curl -X 'POST' \
+  --silent --insecure \
+  'https://petstore.swagger.io/v2/user' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": 2,
+  "username": "a",
+  "firstName": "a",
+  "lastName": "a",
+  "email": "a@a.ca",
+  "password": "a",
+  "phone": 5146042906,
+  "userStatus": 1
+}'
+
+sleep 1
+echo ""
+echo "creating id : 9999999999"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -36,7 +57,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 11"
+echo ""
+echo "creating id : 11"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -55,7 +77,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 111"
+echo ""
+echo "creating id : 111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -74,7 +97,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 1111"
+echo ""
+echo "creating id : 1111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -93,7 +117,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 11111"
+echo ""
+echo "creating id : 11111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -112,7 +137,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 111111"
+echo ""
+echo "creating id : 111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -131,7 +157,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 1111111"
+echo ""
+echo "creating id : 1111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -150,7 +177,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 11111111"
+echo ""
+echo "creating id : 11111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -169,7 +197,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 111111111"
+echo ""
+echo "creating id : 111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -188,7 +217,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 1111111111"
+echo ""
+echo "creating id : 1111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -207,7 +237,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 11111111111"
+echo ""
+echo "creating id : 11111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -226,7 +257,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 111111111111"
+echo ""
+echo "creating id : 111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -245,7 +277,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 111111111111"
+echo ""
+echo "creating id : 111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
@@ -264,7 +297,8 @@ curl -X 'POST' \
 }'
 
 sleep 1
-echo "id : 111111111111"
+echo ""
+echo "creating id : 111111111111"
 
 curl -X 'POST' \
   --silent --insecure \
