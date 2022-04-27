@@ -16,7 +16,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 1 -- size 1"
 
@@ -36,7 +35,6 @@ curl -X 'POST' \
   "userStatus": 1
 }'
 
-sleep 1
 echo ""
 echo "creating id : 11 -- size 2"
 
