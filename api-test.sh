@@ -32,7 +32,7 @@ curl -X 'POST' \
   "lastName": "a",
   "email": "a@a.ca",
   "password": "a",
-  "phone": 5146042906,
+  "phone": 5141324564,
   "userStatus": 1
 }'
 
@@ -52,7 +52,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaa",
   "email": "aaaaaaaaaaa@aaaaaaaaaaa.ca",
   "password": "aaaaaaaaaa",
-  "phone": 5146042906,
+  "phone": 5149876544,
   "userStatus": 1
 }'
 
@@ -72,7 +72,7 @@ curl -X 'POST' \
   "lastName": "aa",
   "email": "aa@aa.ca",
   "password": "aa",
-  "phone": 5146042906,
+  "phone": 5144563579,
   "userStatus": 0
 }'
 
@@ -92,7 +92,7 @@ curl -X 'POST' \
   "lastName": "aaa",
   "email": "aaa@aaa.ca",
   "password": "aaa",
-  "phone": 5146042906,
+  "phone": 5141597537,
   "userStatus": 1
 }'
 
@@ -112,7 +112,7 @@ curl -X 'POST' \
   "lastName": "aaaa",
   "email": "aaaa@aaaa.ca",
   "password": "aaaa",
-  "phone": 5146042906,
+  "phone": "514-604-2906",
   "userStatus": 1
 }'
 
@@ -132,7 +132,7 @@ curl -X 'POST' \
   "lastName": "aaaaa",
   "email": "aaaaa@aaaaa.ca",
   "password": "aaaaa",
-  "phone": 5146042906,
+  "phone": "514 604 2906",
   "userStatus": 1
 }'
 
@@ -152,7 +152,7 @@ curl -X 'POST' \
   "lastName": "aaaaaa",
   "email": "aaaaaa@aaaaaa.ca",
   "password": "aaaaaa",
-  "phone": 5146042906,
+  "phone": "+1 514 604 2906,
   "userStatus": 1
 }'
 
@@ -172,7 +172,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaa",
   "email": "aaaaaaa@aaaaaaa.ca",
   "password": "aaaaaaa",
-  "phone": 5146042906,
+  "phone": "514 6042906",
   "userStatus": 1
 }'
 
@@ -192,7 +192,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaa",
   "email": "aaaaaaaa@aaaaaaaa.ca",
   "password": "aaaaaaaa",
-  "phone": 5146042906,
+  "phone": 4386042906,
   "userStatus": 1
 }'
 
@@ -212,7 +212,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaa",
   "email": "aaaaaaaaa@aaaaaaaaa.ca",
   "password": "aaaaaaaaa",
-  "phone": 5146042906,
+  "phone": 8886042906,
   "userStatus": 1
 }'
 
@@ -232,7 +232,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaa",
   "email": "aaaaaaaaaa@aaaaaaaaaa.ca",
   "password": "aaaaaaaaaa",
-  "phone": 5146042906,
+  "phone": 9116042906,
   "userStatus": 1
 }'
 
@@ -252,7 +252,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaa",
   "email": "aaaaaaaaaaa@aaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaa",
-  "phone": 5146042906,
+  "phone": "5146042906",
   "userStatus": 1
 }'
 
@@ -272,7 +272,7 @@ curl -X 'POST' \
   "lastName": "aaaaaaaaaaaa",
   "email": "aaaaaaaaaaaa@aaaaaaaaaaaa.ca",
   "password": "aaaaaaaaaaaa",
-  "phone": 5146042906,
+  "phone": "514 604 29 06",
   "userStatus": 1
 }'
 
