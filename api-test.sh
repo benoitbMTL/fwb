@@ -12,7 +12,7 @@ curl -X 'POST' \
   "lastName": "a",
   "email": "a@a.ca",
   "password": "a",
-  "phone": 5146042906,
+  "phone": "5146042906",
   "userStatus": 1
 }'
 
@@ -32,7 +32,7 @@ curl -X 'POST' \
   "lastName": "a",
   "email": "a@a.ca",
   "password": "a",
-  "phone": 5141324564,
+  "phone": "5141324564",
   "userStatus": 1
 }'
 
