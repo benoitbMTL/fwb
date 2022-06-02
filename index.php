@@ -11,6 +11,7 @@
     <p><b>Address: </b><?php echo $_SERVER['SERVER_ADDR']; ?></p>
     <p><b>Path: </b>
       ----> <?php echo $_SERVER['REMOTE_ADDR']; ?> ----> <?php echo gethostname(); ?>
+      
     </p>
     <p><b>PHPSESSID: </b><?php echo $_COOKIE["PHPSESSID"]; ?></p>
     <p><b>Security: </b><?php echo $_COOKIE["security"]; ?></p>
