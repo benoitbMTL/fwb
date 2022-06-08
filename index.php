@@ -7,6 +7,16 @@ echo "HOST:           " . $_SERVER['SERVER_ADDR'] . "\r\n";
 echo "PORT:           " . $_SERVER['SERVER_PORT'] . "\r\n";
 echo "URL:            " . $_SERVER['REQUEST_URI'] . "\r\n";
 echo "HTTPS:          " . $_SERVER['HTTPS']       . "\r\n";
+echo "\r\n";
+
+$domain = $_SERVER['SERVER_NAME'];
+$ip = gethostbyname($domain);
+
+if($_SERVER['HTTP_X_FORWARDED_FOR'] != "") {
+echo "----> " . $_SERVER['HTTP_X_FORWARDED_FOR'] . " ----> " . $ip . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+} else {
+echo "Client ----> " . $ip . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+}
 
 echo "\r\n";
 echo "--------------------------------------------------\r\n";
