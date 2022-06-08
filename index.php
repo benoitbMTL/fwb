@@ -1,73 +1,44 @@
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title><?php echo "".gethostname(); ?></title>
-  </head>
-  <body>
-    <?php print "<h1>You are on ". $_SERVER['SERVER_NAME'] . "</h1>" ?>
+<?php
+header('Content-type: text/plain');
 
-    <p>--------------------------------------------------</p>
-    <p><b>Hostname: </b><?php echo gethostname(); ?></p>
-    <p><b>Address: </b><?php echo $_SERVER['SERVER_ADDR']; ?></p>
-    <p><b>Path: </b>
-      
-----> <?php echo $_SERVER['REMOTE_ADDR']; ?> ----> <?php echo gethostname(); ?>
-      
-      
-      
-      
-      
-      
-      
-    </p>
-    <p><b>PHPSESSID: </b><?php echo $_COOKIE["PHPSESSID"]; ?></p>
-    <p><b>Security: </b><?php echo $_COOKIE["security"]; ?></p>
-    <p>--------------------------------------------------</p>
+echo "You are connected on:\r\n\r\n";
+echo "HOSTNAME:       " . gethostname() . "\r\n";
+echo "HOST:           " . $_SERVER['SERVER_ADDR'] . "\r\n";
+echo "PORT:           " . $_SERVER['SERVER_PORT'] . "\r\n";
+echo "URL:            " . $_SERVER['REQUEST_URI'] . "\r\n";
+echo "HTTPS:          " . $_SERVER['HTTPS']       . "\r\n";
 
-    <ul>
-    <li><a href="/dvwa">dvwa</a></li>
-    <li><a href="/badsite.html">badsite</a></li>
-    <li><a href="/wso.php">webshell</a></li>
-    <li><a href="/dvwa/hackable/uploads/">uploads</a></li>
-    <li><a href="/pci.html">pci</a></li>
-    </ul>
+echo "\r\n";
+echo "--------------------------------------------------\r\n";
+echo "\r\n";
 
-    <p>--------------------------------------------------</p>
-    <?php print "REMOTE_ADDR : <b style=\"color:red;\">" . $_SERVER['REMOTE_ADDR'] . "</b>" ?>
-    <p></p>
-    <?php print "REMOTE_PORT : <b style=\"color:red;\">" . $_SERVER['REMOTE_PORT'] . "</b>" ?>
-    <p></p>
-    <?php print "REMOTE_HOST : <b style=\"color:red;\">" . $_SERVER['REMOTE_HOST'] . "</b>" ?>
-    <p></p>
-    <?php print "REMOTE_USER : <b style=\"color:red;\">" . $_SERVER['REMOTE_USER'] . "</b>" ?>
-    <p>--------------------------------------------------</p>
+echo "REMOTE_ADDR:         " . $_SERVER['REMOTE_ADDR'] . "\r\n";
+echo "REMOTE_PORT:         " . $_SERVER['REMOTE_PORT'] . "\r\n";
+echo "REMOTE_HOST:         " . $_SERVER['REMOTE_HOST'] . "\r\n";
+echo "REMOTE_USER:         " . $_SERVER['REMOTE_USER'] . "\r\n";
 
-    <?php print "SERVER_ADDR : <b style=\"color:red;\">" . $_SERVER['SERVER_ADDR'] . "</b>" ?>
-    <p></p>
-    <?php print "SERVER_NAME : <b style=\"color:red;\">" . $_SERVER['SERVER_NAME'] . "</b>" ?>
-    <p></p>
-    <?php print "SERVER_SOFTWARE : <b style=\"color:red;\">" . $_SERVER['SERVER_SOFTWARE'] . "</b>" ?>
-    <p>--------------------------------------------------</p>
+echo "\r\n";
+echo "--------------------------------------------------\r\n";
+echo "\r\n";
 
-    <?php print "HTTP_X_FORWARDED_FOR : <b style=\"color:red;\">" . $_SERVER['HTTP_X_FORWARDED_FOR'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_CLIENT_IP : <b style=\"color:red;\">" . $_SERVER['HTTP_CLIENT_IP'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_X_REAL_IP : <b style=\"color:red;\">" . $_SERVER['HTTP_X_REAL_IP'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_X_FORWARDED_PROTO : <b style=\"color:red;\">" . $_SERVER['HTTP_X_FORWARDED_PROTO'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_ACCEPT : <b style=\"color:red;\">" . $_SERVER['HTTP_ACCEPT'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_CONNECTION : <b style=\"color:red;\">" . $_SERVER['HTTP_CONNECTION'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_HOST : <b style=\"color:red;\">" . $_SERVER['HTTP_HOST'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_REFERER : <b style=\"color:red;\">" . $_SERVER['HTTP_REFERER'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTP_USER_AGENT : <b style=\"color:red;\">" . $_SERVER['HTTP_USER_AGENT'] . "</b>" ?>
-    <p></p>
-    <?php print "HTTPS : <b style=\"color:red;\">" . $_SERVER['HTTPS'] . "</b>" ?>
-    <p>--------------------------------------------------</p>
-  </body>
-</html>
+echo "SERVER_ADDR:         " . $_SERVER['SERVER_ADDR'] . "\r\n";
+echo "SERVER_NAME:         " . $_SERVER['SERVER_NAME'] . "\r\n";
+echo "SERVER_SOFTWARE:     " . $_SERVER['SERVER_SOFTWARE'] . "\r\n";
+
+echo "\r\n";
+echo "--------------------------------------------------\r\n";
+echo "\r\n";
+
+echo "HTTP_X_FORWARDED_FOR:    " . $_SERVER['HTTP_X_FORWARDED_FOR'] . "\r\n";
+echo "HTTP_X_FORWARDED_PROTO:  " . $_SERVER['HTTP_X_FORWARDED_PROTO'] . "\r\n";
+echo "HTTP_X_REAL_IP:          " . $_SERVER['HTTP_X_REAL_IP'] . "\r\n";
+echo "HTTP_CLIENT_IP:          " . $_SERVER['HTTP_CLIENT_IP'] . "\r\n";
+echo "HTTP_X_REAL_IP:          " . $_SERVER['HTTP_X_REAL_IP'] . "\r\n";
+echo "HTTP_CONNECTION:         " . $_SERVER['HTTP_CONNECTION'] . "\r\n";
+echo "HTTP_REFERER:            " . $_SERVER['HTTP_REFERER'] . "\r\n";
+
+echo "\r\n";
+echo "--------------------------------------------------\r\n";
+echo "\r\n";
+
+?>
