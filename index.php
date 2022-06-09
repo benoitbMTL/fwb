@@ -24,6 +24,13 @@ echo "\r\n";
 echo "-------------------------------------------------------\r\n";
 echo "\r\n";
 
+echo "PHPSESSID:            " . $_COOKIE["PHPSESSID"] . "\r\n";
+echo "security:            " . $_COOKIE["security"] . "\r\n";
+
+echo "\r\n";
+echo "-------------------------------------------------------\r\n";
+echo "\r\n";
+
 echo "REMOTE_ADDR:         " . $_SERVER['REMOTE_ADDR'] . "\r\n";
 echo "REMOTE_PORT:         " . $_SERVER['REMOTE_PORT'] . "\r\n";
 echo "REMOTE_HOST:         " . $_SERVER['REMOTE_HOST'] . "\r\n";
