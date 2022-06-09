@@ -24,7 +24,7 @@ echo "\r\n";
 echo "-------------------------------------------------------\r\n";
 echo "\r\n";
 
-echo "PHPSESSID:            " . $_COOKIE["PHPSESSID"] . "\r\n";
+echo "PHPSESSID:           " . $_COOKIE["PHPSESSID"] . "\r\n";
 echo "security:            " . $_COOKIE["security"] . "\r\n";
 
 echo "\r\n";
