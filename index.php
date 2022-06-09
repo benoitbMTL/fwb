@@ -26,7 +26,6 @@ echo "\r\n";
 
 echo "PHPSESSID:           " . $_COOKIE["PHPSESSID"] . "\r\n";
 echo "Security:            " . $_COOKIE["security"] . "\r\n";
-echo "Cookiesession1:      " . $_COOKIE["cookiesession1"] . "\r\n";
 
 echo "\r\n";
 echo "-------------------------------------------------------\r\n";
