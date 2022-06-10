@@ -1,7 +1,11 @@
 <?php
 header('Content-type: text/plain');
 
-echo "You are connected on:\r\n\r\n";
+echo "\r\n";
+echo "---------------------------------------------------------------------------\r\n";
+echo "\r\n";
+
+echo "Welcome! You are connected on:\r\n\r\n";
 echo "HOSTNAME:       " . gethostname() . "\r\n";
 echo "HOST:           " . $_SERVER['SERVER_ADDR'] . "\r\n";
 echo "PORT:           " . $_SERVER['SERVER_PORT'] . "\r\n";
@@ -9,26 +13,43 @@ echo "URL:            " . $_SERVER['REQUEST_URI'] . "\r\n";
 echo "HTTPS:          " . $_SERVER['HTTPS']       . "\r\n";
 
 echo "\r\n";
-echo "-------------------------------------------------------\r\n";
+echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
-$domain = $_SERVER['SERVER_NAME'];
-$ip = gethostbyname($domain);
-if($_SERVER['HTTP_X_FORWARDED_FOR'] != "") {
-echo "" . $_SERVER['HTTP_X_FORWARDED_FOR'] . " ----> " . $ip . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+$ip_hostname = gethostbyname($_SERVER['SERVER_NAME']);
+$ns = dns_get_record($_SERVER['SERVER_NAME']);
+$ip_ns = $ns[0];
+#echo "hostname:    " . $ip_hostname . "\r\n";
+#echo "nslookup:    " . $ip_ns['ip'] . "\r\n";
+
+
+if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "") {
+        echo "" . $_SERVER['HTTP_X_FORWARDED_FOR'] . " ----> " . $ip . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+} elseif ($ip_hostname != $ip_ns['ip']) {
+        echo "Client ----> " . $ip_hostname . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 } else {
-echo "Client ----> " . $ip . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+        echo "Client ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 }
 
+
 echo "\r\n";
-echo "-------------------------------------------------------\r\n";
+echo "---------------------------------------------------------------------------\r\n";
+echo "\r\n";
+
+echo "http://" . $_SERVER['SERVER_NAME'] . "/dvwa\r\n";
+echo "http://" . $_SERVER['SERVER_NAME'] . "/pci.html\r\n";
+echo "http://" . $_SERVER['SERVER_NAME'] . "/wso.php\r\n";
+echo "http://" . $_SERVER['SERVER_NAME'] . "/badsite.html\r\n";
+
+echo "\r\n";
+echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
 echo "PHPSESSID:           " . $_COOKIE["PHPSESSID"] . "\r\n";
 echo "Security:            " . $_COOKIE["security"] . "\r\n";
 
 echo "\r\n";
-echo "-------------------------------------------------------\r\n";
+echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
 echo "REMOTE_ADDR:         " . $_SERVER['REMOTE_ADDR'] . "\r\n";
@@ -37,7 +58,7 @@ echo "REMOTE_HOST:         " . $_SERVER['REMOTE_HOST'] . "\r\n";
 echo "REMOTE_USER:         " . $_SERVER['REMOTE_USER'] . "\r\n";
 
 echo "\r\n";
-echo "-------------------------------------------------------\r\n";
+echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
 echo "SERVER_ADDR:         " . $_SERVER['SERVER_ADDR'] . "\r\n";
@@ -45,7 +66,7 @@ echo "SERVER_NAME:         " . $_SERVER['SERVER_NAME'] . "\r\n";
 echo "SERVER_SOFTWARE:     " . $_SERVER['SERVER_SOFTWARE'] . "\r\n";
 
 echo "\r\n";
-echo "-------------------------------------------------------\r\n";
+echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
 echo "HTTP_X_FORWARDED_FOR:    " . $_SERVER['HTTP_X_FORWARDED_FOR'] . "\r\n";
@@ -57,7 +78,7 @@ echo "HTTP_CONNECTION:         " . $_SERVER['HTTP_CONNECTION'] . "\r\n";
 echo "HTTP_REFERER:            " . $_SERVER['HTTP_REFERER'] . "\r\n";
 
 echo "\r\n";
-echo "-------------------------------------------------------\r\n";
+echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
 ?>
