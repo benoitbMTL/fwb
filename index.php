@@ -7,7 +7,7 @@ echo "HOST:           " . $_SERVER['SERVER_ADDR'] . "\r\n";
 echo "PORT:           " . $_SERVER['SERVER_PORT'] . "\r\n";
 echo "URL:            " . $_SERVER['REQUEST_URI'] . "\r\n";
 echo "HTTPS:          " . $_SERVER['HTTPS']       . "\r\n";
-echo "SSL_TLS_SNI:    " . $_SERVER['SSL_TLS_SNI'] . "\r\n";
+echo "SNI:            " . $_SERVER['SSL_TLS_SNI'] . "\r\n";
 
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
