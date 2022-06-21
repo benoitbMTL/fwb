@@ -1,16 +1,13 @@
 <?php
 header('Content-type: text/plain');
 
-echo "\r\n";
-echo "---------------------------------------------------------------------------\r\n";
-echo "\r\n";
-
 echo "Welcome! You are connected on:\r\n\r\n";
 echo "HOSTNAME:       " . gethostname() . "\r\n";
 echo "HOST:           " . $_SERVER['SERVER_ADDR'] . "\r\n";
 echo "PORT:           " . $_SERVER['SERVER_PORT'] . "\r\n";
 echo "URL:            " . $_SERVER['REQUEST_URI'] . "\r\n";
 echo "HTTPS:          " . $_SERVER['HTTPS']       . "\r\n";
+echo "SSL_TLS_SNI:    " . $_SERVER['SSL_TLS_SNI'] . "\r\n";
 
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
@@ -22,7 +19,6 @@ $ip_ns = $ns[0];
 #echo "hostname:    " . $ip_hostname . "\r\n";
 #echo "nslookup:    " . $ip_ns['ip'] . "\r\n";
 
-
 if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "") {
         echo "" . $_SERVER['HTTP_X_FORWARDED_FOR'] . " ----> " . $ip_ns['ip'] . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 } elseif ($ip_hostname != $ip_ns['ip']) {
@@ -31,15 +27,14 @@ if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "") {
         echo "Client ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 }
 
-
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
 echo "\r\n";
 
-echo "http://" . $_SERVER['SERVER_NAME'] . "/dvwa\r\n";
-echo "http://" . $_SERVER['SERVER_NAME'] . "/pci.html\r\n";
-echo "http://" . $_SERVER['SERVER_NAME'] . "/wso.php\r\n";
-echo "http://" . $_SERVER['SERVER_NAME'] . "/badsite.html\r\n";
+echo "https://" . $_SERVER['SERVER_NAME'] . "/dvwa\r\n";
+echo "https://" . $_SERVER['SERVER_NAME'] . "/pci.html\r\n";
+echo "https://" . $_SERVER['SERVER_NAME'] . "/wso.php\r\n";
+echo "https://" . $_SERVER['SERVER_NAME'] . "/badsite.html\r\n";
 
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
