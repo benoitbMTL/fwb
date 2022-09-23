@@ -26,10 +26,8 @@ if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "" AND $ip_ns['ip'] != "") {
 } elseif ($ip_hostname != $ip_ns['ip']) {
         echo "Client ----> " . $ip_hostname . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 } else {
-        echo "Client ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+        echo "Client ----> " . $ip_ns['ip'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 }
-
-
 
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
