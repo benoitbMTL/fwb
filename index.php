@@ -37,6 +37,7 @@ echo "https://" . $_SERVER['SERVER_NAME'] . "/dvwa\r\n";
 echo "https://" . $_SERVER['SERVER_NAME'] . "/pci.html\r\n";
 echo "https://" . $_SERVER['SERVER_NAME'] . "/wso.php\r\n";
 echo "https://" . $_SERVER['SERVER_NAME'] . "/badsite.html\r\n";
+echo "https://" . $_SERVER['SERVER_NAME'] . "/site\r\n";
 
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
