@@ -19,15 +19,19 @@ $ip_ns = $ns[0];
 #echo "hostname:    " . $ip_hostname . "\r\n";
 #echo "nslookup:    " . $ip_ns['ip'] . "\r\n";
 
+
 if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "" AND $ip_ns['ip'] != "") {
         echo "" . $_SERVER['HTTP_X_FORWARDED_FOR'] . " ----> " . $ip_ns['ip'] . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 } elseif ($_SERVER['HTTP_X_FORWARDED_FOR'] != "" AND $ip_hostname !== "") {
         echo "" . $_SERVER['HTTP_X_FORWARDED_FOR'] . " ----> " . $ip_hostname . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
+} elseif ($ip_hostname == $_SERVER['SERVER_ADDR']) {
+        echo "" . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 } elseif ($ip_hostname != $ip_ns['ip']) {
         echo "Client ----> " . $ip_hostname . " ----> " . $_SERVER['REMOTE_ADDR'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 } else {
         echo "Client ----> " . $ip_ns['ip'] . " ----> " . $_SERVER['SERVER_ADDR'] . "\r\n";
 }
+
 
 echo "\r\n";
 echo "---------------------------------------------------------------------------\r\n";
