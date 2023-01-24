@@ -15,13 +15,13 @@ if [ $# -gt 0 ]; then
   --debug) DEBUG="enable";;
   --help) echo ""; echo "Usage: ${0} [options...]"
      echo "Options:"
-     echo "  --debug            Turn on debug to show requests"
-     echo "  --help             Show programm usage"
+     echo "  --debug		Turn on debug to show requests"
+     echo "  --help		Show programm usage"
      echo "";exit;;
   *) echo ""; echo "Usage: ${0} [options...]"
      echo "Options:"
-     echo "  --debug            Turn on debug to show requests"
-     echo "  --help             Show programm usage"
+     echo "  --debug		Turn on debug to show requests"
+     echo "  --help		Show programm usage"
      echo "";exit;;
 esac
 
@@ -125,8 +125,7 @@ firerequest-learn() {
      FORMID_LENGTH=5
      FORMIDVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $FORMID_LENGTH | head -n 1)
      SUBMITVALUE="Submit"
-     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYV
-ALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
+     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYVALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
      webrequest
      sleep 0.01
      let "COUNTER += 1"  # Increment count.
@@ -138,36 +137,26 @@ firerequest-relearn() {
    until [ $COUNTER -eq $COUNT ]
    do
      FIRSTNAME_LENGTH=`shuf -i 9-22 -n 1`
-     FIRSTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $FIRSTNAME_LENGTH | head -n 1| sed "s/${ILLEGAL
-CHARS}//g")
+     FIRSTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $FIRSTNAME_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      LASTNAME_LENGTH=`shuf -i 12-35 -n 1`
-     LASTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $LASTNAME_LENGTH | head -n 1| sed "s/${ILLEGALCH
-ARS}//g")
+     LASTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $LASTNAME_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      ADDRESS_LENGTH=`shuf -i 3-32 -n 1`
-     ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $ADDRESS_LENGTH | head -n 1| sed "s/${ILLEGALCHAR
-S}//g")
+     ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $ADDRESS_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      ADDRESSNUMBER_LENGTH=`shuf -i 4-9 -n 1`
-     ADDRESSNUMBERVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $ADDRESSNUMBER_LENGTH | head -n 1| sed "s/$
-{ILLEGALCHARS}//g")
+     ADDRESSNUMBERVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $ADDRESSNUMBER_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      CITY_LENGTH=`shuf -i 8-30 -n 1`
-     CITYVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $CITY_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g"
-)
+     CITYVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $CITY_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      STATE_LENGTH=`shuf -i 9-24 -n 1`
-     STATEVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $STATE_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//
-g")
-     POSTALNUMERIC=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $POSTALNUMERIC_LENGTH | head -n 1| sed "s/${ILLE
-GALCHARS}//g")
-     POSTALALPHA=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $POSTALALPHA_LENGTH | head -n 1| sed "s/${ILLEGALC
-HARS}//g")
+     STATEVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $STATE_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
+     POSTALNUMERIC=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $POSTALNUMERIC_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
+     POSTALALPHA=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $POSTALALPHA_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      POSTALVALUE=$POSTALNUMERIC$POSTALALPHA
      COUNTRY_LENGTH=`shuf -i 12-38 -n 1`
-     COUNTRYVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $COUNTRY_LENGTH | head -n 1| sed "s/${ILLEGALCHAR
-S}//g")
+     COUNTRYVALUE=$(head -c400 < /dev/urandom | tr -dc [:print:] | fold -w $COUNTRY_LENGTH | head -n 1| sed "s/${ILLEGALCHARS}//g")
      FORMID_LENGTH=15
      FORMIDVALUE=$(head -c400 < /dev/urandom | tr -dc 'A-Z' | fold -w $FORMID_LENGTH | head -n 1)
      SUBMITVALUE="Submit"
-     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYV
-ALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
+     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYVALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
      webrequest
      sleep 0.01
      let "COUNTER += 1"  # Increment count.
@@ -197,8 +186,7 @@ firerequest-XSS() {
      FORMID_LENGTH=5
      FORMIDVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $FORMID_LENGTH | head -n 1)
      SUBMITVALUE="Submit"
-     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYV
-ALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
+     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYVALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
      webrequest
      sleep 0.01
      let "COUNTER += 1"  # Increment count.
@@ -228,8 +216,7 @@ firerequest-Exploitcmd() {
      FORMID_LENGTH=5
      FORMIDVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $FORMID_LENGTH | head -n 1)
      SUBMITVALUE="Submit"
-     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYV
-ALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
+     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYVALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
      webrequest
      sleep 0.01
      let "COUNTER += 1"  # Increment count.
@@ -258,8 +245,7 @@ firerequest-Exploitsqli() {
      FORMID_LENGTH=5
      FORMIDVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $FORMID_LENGTH | head -n 1)
      SUBMITVALUE="Submit"
-     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYV
-ALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
+     POSTDATA="$FIRSTNAME=$FIRSTNAMEVALUE&$LASTNAME=$LASTNAMEVALUE&$ADDRESS=$ADDRESSVALUE%20$ADDRESSNUMBERVALUE&$CITY=$CITYVALUE&$STATE=$STATEVALUE&$POSTAL=$POSTALVALUE&$COUNTRY=$COUNTRYVALUE&$FORMID=$FORMIDVALUE&$SUBMIT=$SUBMITVALUE"
      webrequest
      sleep 0.01
      let "COUNTER += 1"  # Increment count.
@@ -282,8 +268,7 @@ customrequest() {
   then
     echo "ERROR: empty input detected"
     return
-  elif [ $METHOD != "GET" ] && [ $METHOD != "POST" ] && [ $METHOD != "PUT" ] && [ $METHOD != "DELETE" ] && [ $METHOD != "OPT
-IONS" ] && [ $METHOD != "HEAD" ]
+  elif [ $METHOD != "GET" ] && [ $METHOD != "POST" ] && [ $METHOD != "PUT" ] && [ $METHOD != "DELETE" ] && [ $METHOD != "OPTIONS" ] && [ $METHOD != "HEAD" ]
   then
     echo "ERROR: Invalid method given"
     return
@@ -342,8 +327,7 @@ IONS" ] && [ $METHOD != "HEAD" ]
 
     [ ${DEBUG} == "enable" ] && echo "Method="${METHOD} "URL="${URL} "Paremeter="${PARAMETER} "Value="${PARAMETERVALUE}
 
-    [ $METHOD == GET ]  && ( WEBPARAMETERVALUE=`echo $PARAMETERVALUE | sed s/\ /%20/g` ; curl -A ML-tester -s "$URL?$PARAMET
-ER=$WEBPARAMETERVALUE" -o /dev/null)
+    [ $METHOD == GET ]  && ( WEBPARAMETERVALUE=`echo $PARAMETERVALUE | sed s/\ /%20/g` ; curl -A ML-tester -s "$URL?$PARAMETER=$WEBPARAMETERVALUE" -o /dev/null)
     [ $METHOD == POST ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
     [ $METHOD == PUT ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
     [ $METHOD == DELETE ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
