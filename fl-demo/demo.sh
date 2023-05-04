@@ -1,18 +1,6 @@
+# bbuonassera May 4th, 2023
+# menu from github.com/barbw1re/bash-menu
 #!/bin/bash
-
-##################################################################################################################
-# This script is used to present a menu from which you provide different attack scenario
-# 2019070301 : Ferry Kemps : Initial release derived from ml-requester.sh FWB Advanced workshop
-# 2019070401 : Ferry Kemps : Modified for FortiDemo purposes and new form webpage
-# 2019080201 : Ferry Kemps : Changed random character generating due to not ending PIPE via SHELL access
-# 2019102201 : Ferry Kemps : Added custom request menu option
-# 2019102301 : Ferry Kemps : Date type fix, added date-short/date-long data type, reduced 5.000 request to 3.000
-# 2019102302 : Ferry Kemps : Added cmdline options support
-# 2023012501 : Benoit Buonassera : Extend Script to support various scan for Fabriclab.ca demo
-# 2023032801 : Benoit Buonassera : New Menu (source https://github.com/barbw1re/bash-menu)
-# 2023032901 : Benoit Buonassera : New Attack Scenarios
-##################################################################################################################
-
 
 ###############################################
 ## Ensure we are running under bash
