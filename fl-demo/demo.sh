@@ -619,6 +619,12 @@ API_Delete_Policy() {
     return 1
 }
 
+API_Reset_ML() {
+	. "ml-reset-domain.sh"
+    echo -n "Press enter to continue ... "
+    read response
+    return 1
+}
 
 ############################################################################
 ## Exit Program
@@ -656,6 +662,7 @@ menuItems=(
     "M. ML - Zero-Day SQL Injection"
     "N. REST API - create POLICY1 & POLICY2"
     "O. REST API - delete POLICY1 & POLICY2"
+    "P. REST API - Reset Machine Learning"
     "Q. Exit  "
 )
 
@@ -676,6 +683,7 @@ menuActions=(
     ML_Exploit_ZeroDay_SQLi
     API_Create_Policy
     API_Delete_Policy
+    API_Reset_ML
     Exit
 )
 
