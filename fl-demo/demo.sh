@@ -388,11 +388,11 @@ Cookie_Security() {
         -c cookie.txt
 
     echo -e "We have 3 cookies. Security Cookie = ${RED}low${RESTORE}.\n"
-    grep HttpOnly_dvwa.corp.fabriclab.ca cookie.txt
+    grep dvwa.corp.fabriclab.ca cookie.txt
     echo -e "\nLet's change the value to ${RED}medium${RESTORE}. Press enter to continue... "
     read response
     sed -i 's/low/medium/' cookie.txt
-    grep HttpOnly_dvwa.corp.fabriclab.ca cookie.txt
+    grep dvwa.corp.fabriclab.ca cookie.txt
     echo -e "\nNow that we've changed the security level, let's connect again to the server. Press enter to continue... "
     read response
 
