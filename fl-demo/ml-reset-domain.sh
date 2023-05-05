@@ -12,14 +12,13 @@ HOST="10.163.7.21"
 POLICY="main-policy"
 
 ### getdomaininfo and store result
-echo "Getting Domain Info with API"
+echo "Getting Domain Info with API:"
 echo ""
 
-result=$(curl --insecure --location -g --request GET "https://${HOST}/api/v2.0/machine_learning/policy.getdomaininfo?policy_name=${POLICY}" \
+result=$(curl --silent --insecure --location -g --request GET "https://${HOST}/api/v2.0/machine_learning/policy.getdomaininfo?policy_name=${POLICY}" \
 --header "Authorization: ${TOKEN}" \
 --header 'accept: application/json' | jq)
 
-echo ""
 echo "--------------------------------------------------------------"
 echo "$result"
 echo "--------------------------------------------------------------"
@@ -29,14 +28,14 @@ echo ""
 db_id=$(echo "$result" | jq '.results[0].db_id')
 domain_name=$(echo "$result" | jq '.results[0].domain_name')
 
-echo ""
-echo "--------------------------------------------------------------"
 echo "Domain ${domain_name} has db_id ${db_id}"
-echo "--------------------------------------------------------------"
 echo ""
 
 
 # Execute the command with the extracted db_id value
+
+echo "Resetting Machine Learning for Domain ${domain_name}"
+echo ""
 
 curl --insecure --location -g --request POST "https://${HOST}/api/v2.0/machine_learning/policy.refreshdomain" \
 --header "Authorization: ${TOKEN}" \
@@ -45,5 +44,7 @@ curl --insecure --location -g --request POST "https://${HOST}/api/v2.0/machine_l
 
 echo ""
 echo "--------------------------------------------------------------"
+echo ""
 echo "Machine Learning for domain ${domain_name} has been reset"
+echo ""
 echo "--------------------------------------------------------------"
