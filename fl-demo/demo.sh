@@ -621,6 +621,7 @@ API_Delete_Policy() {
 
 API_Reset_ML() {
 	. "ml-reset-domain.sh"
+    echo ""
     echo -n "Press enter to continue ... "
     read response
     return 1
