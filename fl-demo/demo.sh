@@ -661,8 +661,8 @@ menuItems=(
     "K. ML - SQL Injection"
     "L. ML - Zero-Day Command Injection"
     "M. ML - Zero-Day SQL Injection"
-    "N. REST API - create POLICY1 & POLICY2"
-    "O. REST API - delete POLICY1 & POLICY2"
+    "N. REST API - Create POLICY1 & POLICY2"
+    "O. REST API - Delete POLICY1 & POLICY2"
     "P. REST API - Reset Machine Learning"
     "Q. Exit  "
 )
@@ -691,7 +691,7 @@ menuActions=(
 ################################
 ## Menu Display
 ################################
-menuTitle=" FortiWeb Demo - Last Update 29 March 2023"
+menuTitle=" FortiWeb Demo - Last Update May the 4th, 2023"
 menuFooter="Navigate via Up/Down/Letter, Enter to Select, Double Esc to Quit"
 menuWidth=90
 menuLeft=15
