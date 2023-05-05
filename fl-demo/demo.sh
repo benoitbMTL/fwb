@@ -301,10 +301,10 @@ LIGHTGRAY='\033[00;37m'
 
 Vulnerability_Scanner() {
     echo ""
-    #rm -Rf /var/www/html/report
-    #skipfish -u -k 0:0:30 -o /var/www/html/report http://dvwa.corp.fabriclab.ca
-    rm -Rf ~/report
-    skipfish -u -k 0:0:30 -o ~/report http://dvwa.corp.fabriclab.ca
+    rm -Rf /var/www/html/report
+    skipfish -u -k 0:0:30 -o /var/www/html/report http://dvwa.corp.fabriclab.ca
+    #rm -Rf ~/report
+    #skipfish -u -k 0:0:30 -o ~/report http://dvwa.corp.fabriclab.ca
     echo -e "${RED}Scan Report available at https://flbr1kali01.fortiweb.fabriclab.ca${RESTORE}"
     echo ""
     echo -n "Check the Attack Logs. Press enter to continue... "
