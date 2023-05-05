@@ -602,7 +602,7 @@ ML_Custom_Request() {
 ## REST API
 ############################################################################
 API_Create_Policy() {
-    dos2unix -q ./api-create-policy.sh
+    dos2unix -q $(dirname "$0")/api-create-policy.sh
 	./api-create-policy.sh
     echo -n "Press enter to continue ... "
     read response
@@ -610,7 +610,7 @@ API_Create_Policy() {
 }
 
 API_Delete_Policy() {
-    dos2unix -q ./api-delete-policy.sh
+    dos2unix -q $(dirname "$0")/api-delete-policy.sh
 	./api-delete-policy.sh
     echo -n "Press enter to continue ... "
     read response
