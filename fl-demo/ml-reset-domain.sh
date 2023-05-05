@@ -19,9 +19,9 @@ result=$(curl --silent --insecure --location -g --request GET "https://${HOST}/a
 --header "Authorization: ${TOKEN}" \
 --header 'accept: application/json' | jq)
 
-echo "--------------------------------------------------------------"
+echo "---------------------------------------------------------------------------"
 echo "$result"
-echo "--------------------------------------------------------------"
+echo "---------------------------------------------------------------------------"
 echo ""
 
 # Get the db_id value
@@ -43,8 +43,9 @@ curl --insecure --location -g --request POST "https://${HOST}/api/v2.0/machine_l
 --data-raw '{"domain_id": "'${db_id}'", "policy_name": "'${POLICY}'"}'
 
 echo ""
-echo "--------------------------------------------------------------"
+echo ""
+echo "---------------------------------------------------------------------------"
 echo ""
 echo "Machine Learning for domain ${domain_name} has been reset"
 echo ""
-echo "--------------------------------------------------------------"
+echo "---------------------------------------------------------------------------"
