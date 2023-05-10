@@ -407,7 +407,7 @@ Cookie_Security() {
         --insecure \
         -b cookie.txt 
 
-    echo -en "\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
