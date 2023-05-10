@@ -145,6 +145,7 @@ firerequest-XSS() {
    do
      FIRSTNAME_LENGTH=`shuf -i 4-12 -n 1`
      FIRSTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $FIRSTNAME_LENGTH | head -n 1)
+     ####### XSS HERE #######
      LASTNAMEVALUE='<script>alert("XSS-hack-attempt")</script>'
      ADDRESS_LENGTH=`shuf -i 8-22 -n 1`
      ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $ADDRESS_LENGTH | head -n 1)
@@ -176,6 +177,7 @@ firerequest-ExploitZeroDayCMDi() {
    do
      FIRSTNAME_LENGTH=`shuf -i 4-12 -n 1`
      FIRSTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $FIRSTNAME_LENGTH | head -n 1)
+     ####### ZERO DAY HERE #######
      LASTNAMEVALUE='C;~/r.sh-%20c;~/r.sh'
      ADDRESS_LENGTH=`shuf -i 8-22 -n 1`
      ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $ADDRESS_LENGTH | head -n 1)
@@ -213,6 +215,7 @@ firerequest-ExploitZeroDaySQLi() {
      ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $ADDRESS_LENGTH | head -n 1)
      ADDRESSNUMBER_LENGTH=`shuf -i 1-5 -n 1`
      ADDRESSNUMBERVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $ADDRESSNUMBER_LENGTH | head -n 1)
+     ####### ZERO DAY HERE #######
      CITYVALUE="A%20'DIV'%20B%20-%20A%20'DIV%20B"
      STATE_LENGTH=`shuf -i 6-14 -n 1`
      STATEVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $STATE_LENGTH | head -n 1)
@@ -244,6 +247,7 @@ firerequest-ExploitSQLi() {
      ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $ADDRESS_LENGTH | head -n 1)
      ADDRESSNUMBER_LENGTH=`shuf -i 1-5 -n 1`
      ADDRESSNUMBERVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $ADDRESSNUMBER_LENGTH | head -n 1)
+     ####### SQL INJECTION HERE #######
      CITYVALUE="'OR 1=1#"
      STATE_LENGTH=`shuf -i 6-14 -n 1`
      STATEVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $STATE_LENGTH | head -n 1)
