@@ -405,7 +405,7 @@ Cookie_Security() {
         -H 'referer: https://dvwa.corp.fabriclab.ca/index.php' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
-        -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
+        -b cookie.txt 
 
     echo -en "\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
