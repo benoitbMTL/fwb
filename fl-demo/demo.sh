@@ -407,7 +407,7 @@ Cookie_Security() {
         --insecure \
         -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo -en "\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
