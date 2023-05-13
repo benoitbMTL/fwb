@@ -450,12 +450,12 @@ Cookie_Security() {
 Brute_Force_Attack() {
     echo -e "\nBrute Force Attack"
     echo ""
-    for i in {1..30}
+    for i in {1..25}
     do
     if curl -k -s -f $SPEEDTEST_URL > /dev/null; then
-        echo "Attempt $i: Connection to $SPEEDTEST_URL successful."
+        echo "Attempt $i: Connection to $SPEEDTEST_URL ${GREEN_BOLD}successful${RESTORE}."
     else
-        echo "Attempt $i: Connection to $SPEEDTEST_URL failed."
+        echo "Attempt $i: Connection to $SPEEDTEST_URL ${RED_BOLD}failed${RESTORE}."
     fi
     done
     echo ""
