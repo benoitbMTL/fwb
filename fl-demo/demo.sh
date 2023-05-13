@@ -318,9 +318,9 @@ Vulnerability_Scanner() {
     rm -Rf /var/www/html/report/report
     skipfish -u -k 0:0:30 -o /var/www/html/report/report ${DVWA_URL}
     #rm -Rf ~/report
-    echo -e "${RED}Scan Report available at ${KALI_URL}{RESTORE}"
+    echo -e "${BOLD}Scan Report available at ${KALI_URL}"
     echo ""
-    echo -n "Check the Attack Logs. Press enter to continue... "
+    echo -n "Check the Attack Logs. Press enter to continue... ${RESTORE}"
     read response
     return 1
 }
