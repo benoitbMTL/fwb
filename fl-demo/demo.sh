@@ -337,7 +337,7 @@ Command_Injection() {
     echo ""
     echo -e "Command Injection Attack"
     echo ""
-    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${WHITE_BOLD}pablo${RESTORE} password=${WHITE_BOLD}letmein${RESTORE}"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pablo${RESTORE} password=${YELLOW_BOLD}letmein${RESTORE}"
     echo ""
     curl "${DVWA_URL}/login.php" \
         -H "authority: ${DVWA_URL}" \
