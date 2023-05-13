@@ -295,10 +295,13 @@ RESTORE='\033[0m'
 RED='\033[00;31m'
 GREEN='\033[00;32m'
 YELLOW='\033[00;33m'
+YELLOW_BOLD='\033[1;33m'
 BLUE='\033[00;34m'
 PURPLE='\033[00;35m'
 CYAN='\033[00;36m'
 LIGHTGRAY='\033[00;37m'
+WHITE='\033[37m'
+WHITE_BOLD='\033[1;37m'
 
 
 ############################################################################
@@ -314,12 +317,12 @@ LIGHTGRAY='\033[00;37m'
 ############################################################################
 
 Vulnerability_Scanner() {
-    echo ""
     rm -Rf /var/www/html/report/report
     skipfish -u -k 0:0:30 -o /var/www/html/report/report ${DVWA_URL}
+    echo ""
     echo -e "${BOLD}Scan Report available at ${KALI_URL}"
     echo ""
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo -en "${YELLOW_BOLD}Check the Attack Logs. ${WHITE_BOLD}Press enter to continue... ${RESTORE}"
     read response
     return 1
 }
