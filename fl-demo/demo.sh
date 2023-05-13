@@ -453,9 +453,9 @@ Brute_Force_Attack() {
     for i in {1..25}
     do
     if curl -k -s -f $SPEEDTEST_URL > /dev/null; then
-        echo -e "Attempt $i: Connection to $SPEEDTEST_URL ${GREEN_BOLD}successful${RESTORE}."
+        echo -e "Attempt $i:\t\tConnection to $SPEEDTEST_URL ${GREEN_BOLD}successful${RESTORE}."
     else
-        echo -e "Attempt $i: Connection to $SPEEDTEST_URL ${RED_BOLD}failed${RESTORE}."
+        echo -e "Attempt $i:\t\tConnection to $SPEEDTEST_URL ${RED_BOLD}failed${RESTORE}."
     fi
     done
     echo ""
