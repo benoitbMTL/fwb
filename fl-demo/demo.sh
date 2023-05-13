@@ -473,7 +473,8 @@ ML_Learn_Parameters() {
     echo -e "\nSending 3000 requests - Learn\n"
     echo -en "${GREEN}Requests : "
     firerequest-learn
-    echo -en "\n\n${YELLOW}Check Machine Learning Status${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -484,7 +485,8 @@ ML_Relearn_Parameters() {
     echo -e "\nSending 3000 requests - Relearn\n"
     echo -en "${GREEN}Requests : "
     firerequest-relearn
-    echo -en "\n\n${YELLOW}Check Machine Learning Status${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -494,7 +496,8 @@ ML_Exploit_XSS() {
     METHOD="POST"
     echo -e "\nSending Cross-Site Scripting\n"
     firerequest-XSS
-    echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -504,7 +507,8 @@ ML_Exploit_SQLi() {
     METHOD="POST"
     echo -e "\nSending SQL Injection\n"
     firerequest-ExploitSQLi
-    echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -514,7 +518,8 @@ ML_Exploit_ZeroDay_CMDi() {
     METHOD="POST"
     echo -e "\nSending Zero-Day Command Injection\n"
     firerequest-ExploitZeroDayCMDi
-    echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -524,7 +529,8 @@ ML_Exploit_ZeroDay_SQLi() {
     METHOD="POST"
     echo -e "\nSending Zero-Day SQL Injection\n"
     firerequest-ExploitZeroDaySQLi
-    echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -670,7 +676,8 @@ API_Reset_ML() {
 BOT_Web_Crawler() {
     echo "Web Crawler Started"
     httrack ${DVWA_HOST} -O ./dvwa_dump --testlinks -%v -F "wotbox"
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -678,7 +685,8 @@ BOT_Web_Crawler() {
 BOT_Web_Scraper() {
     echo "Web Scraper Started"
     python3 scrape_products.py
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
