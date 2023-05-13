@@ -10,6 +10,7 @@ DVWA_URL="https://dvwa.corp.fabriclab.ca"
 DVWA_HOST="dvwa.corp.fabriclab.ca"
 SHOP_URL="https://shop.corp.fabriclab.ca"
 FWB_URL="https://fwb.corp.fabriclab.ca"
+SPEEDTEST_URL="https://speedtest.corp.fabriclab.ca"
 KALI_URL="https://flbr1kali01.fortiweb.fabriclab.ca"
 
 ###############################################
@@ -441,17 +442,25 @@ Cookie_Security() {
         --insecure \
         -b cookie.txt 
 
-    echo -en "${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
 
 Brute_Force_Attack() {
     echo -e "\nBrute Force Attack"
-    echo "The CSE need to build the script here ;-)"
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    for i in {1..10}
+    do
+    if curl -k -s -f $SPEEDTEST_URL > /dev/null; then
+        echo "Attempt $i: Connection to $SPEEDTEST_URL successful."
+    else
+        echo "Attempt $i: Connection to $SPEEDTEST_URL failed."
+    fi
+    done
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
-
     return 1
 }
 
