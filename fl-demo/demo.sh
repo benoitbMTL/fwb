@@ -10,7 +10,7 @@ DVWA_URL="https://dvwa.corp.fabriclab.ca"
 DVWA_HOST="dvwa.corp.fabriclab.ca"
 SHOP_URL="https://shop.corp.fabriclab.ca"
 FWB_URL="https://fwb.corp.fabriclab.ca"
-SPEEDTEST_URL="https://speedtest.corp.fabriclab.ca"
+SPEEDTEST_URL="http://speedtest.corp.fabriclab.ca"
 KALI_URL="https://flbr1kali01.fortiweb.fabriclab.ca"
 
 ###############################################
@@ -450,7 +450,7 @@ Cookie_Security() {
 Brute_Force_Attack() {
     echo -e "\nBrute Force Attack"
     echo ""
-    for i in {1..10}
+    for i in {1..30}
     do
     if curl -k -s -f $SPEEDTEST_URL > /dev/null; then
         echo "Attempt $i: Connection to $SPEEDTEST_URL successful."
