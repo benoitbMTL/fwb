@@ -345,7 +345,7 @@ Command_Injection() {
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pablo${RESTORE} password=${YELLOW_BOLD}letmein${RESTORE}"
     echo ""
     curl "${DVWA_URL}/login.php" \
-        -H "authority: ${DVWA_URL}" \
+        -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
         -H "origin: ${DVWA_URL}" \
