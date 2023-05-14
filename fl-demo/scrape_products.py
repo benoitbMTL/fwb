@@ -64,5 +64,7 @@ if output:
     # print table
     print(table)
 
-print(table)
+# Print Table in a file
+with open('output.txt', 'w') as f:
+    print(table, file=f)
 print("Scraping Done")
