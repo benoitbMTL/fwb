@@ -9,7 +9,7 @@ column_width = 80
 table_width = 250
 round = 0
 # adjust this to False if you do not want to output anything
-output = False
+output = True
 headers = {
     "Accept": "application/json",
 }
