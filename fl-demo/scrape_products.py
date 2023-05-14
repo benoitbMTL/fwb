@@ -29,11 +29,13 @@ def get_review(url, headers, id):
     return review['data']
 
 # Setup Table to format output
-table = PrettyTable(field_names=["ProductName", "Quantity", "Description", "Review", "Author"], max_table_width = table_width, max_width = column_width)
-table.align["ProductName"] = "l"
-table.align["Description"] = "l"
-table.align["Review"] = "l"
-table.set_style(DOUBLE_BORDER)
+table = PrettyTable(field_names=["ProductName", "Quantity"], max_table_width = table_width, max_width = column_width)
+#table = PrettyTable(field_names=["ProductName", "Quantity", "Description", "Review", "Author"], max_table_width = table_width, max_width = column_width)
+#table.align["ProductName"] = "l"
+#table.align["Description"] = "l"
+#table.align["Review"] = "l"
+#table.set_style(DOUBLE_BORDER)
+table.set_style(ROUNDED_BORDER)
 
 ## Main Function
 # retrieve all products
