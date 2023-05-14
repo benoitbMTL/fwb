@@ -548,7 +548,21 @@ ML_Exploit_ZeroDay_SQLi() {
 }
 
 ML_Custom_Request() {
-    COUNTER=0    
+    COUNTER=0
+
+
+    YELLOW_BOLD=$(tput bold; tput setaf 3)
+    RESTORE=$(tput sgr0)
+
+    read -p $'Amount of requests ('"$YELLOW_BOLD"'1'"$RESTORE"'): ' COUNT
+    read -p $'URL ('"$YELLOW_BOLD$FWB_URL/fwb/index.html$RESTORE"'): ' URL
+    read -p $'Method (GET, '"$YELLOW_BOLD"'POST'"$RESTORE"', PUT, DELETE, OPTIONS, HEAD): ' METHODIN
+    read -p $'Parameter name ('"$YELLOW_BOLD"'firstname'"$RESTORE"', lastname, address, city, state, postal, country): ' PARAMETER
+    read -p $'Data type (date-short, date-long, postal, email, phone, '"$YELLOW_BOLD"'random'"$RESTORE"', number-small, number-big): ' PARAMETERTYPE
+
+
+
+
     echo ""
     read -p $'Amount of requests ('"${YELLOW_BOLD}"'1'"${RESTORE}"'): ' COUNT
     read -p $'URL ('"$YELLOW_BOLD""$FWB_URL"'/fwb/index.html'"$RESTORE"'): ' URL
