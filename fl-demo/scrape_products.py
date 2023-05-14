@@ -55,7 +55,8 @@ while round <= 5:
         review = get_review(url=url, headers=headers, id=p['id'])
         for review in review:
             # Generate table or output plaintext
-            table.add_row([product['name'], quantity['quantity'], product['description'], review['message'], review['author'] ])
+            #table.add_row([product['name'], quantity['quantity'], product['description'], review['message'], review['author'] ])
+            table.add_row([product['name'], quantity['quantity'] ])
             #print(f"ProductName: {product['name']}\nDescription: {product['description']}\nAmmount: {quantity['quantity']}\nMessage: {(review['message'])}\nUsername: {review['author']}\n")
     print(f"Scraping data from Fortinet Juice-Shop...")
     round += 1
