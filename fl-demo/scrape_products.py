@@ -37,7 +37,7 @@ table.set_style(DOUBLE_BORDER)
 
 ## Main Function
 # retrieve all products
-while round <= 20:
+while round <= 5:
 
     r0 = requests.get(url + "/api/products/", headers=headers)
     products = r0.json()
@@ -55,7 +55,7 @@ while round <= 20:
             # Generate table or output plaintext
             table.add_row([product['name'], quantity['quantity'], product['description'], review['message'], review['author'] ])
             #print(f"ProductName: {product['name']}\nDescription: {product['description']}\nAmmount: {quantity['quantity']}\nMessage: {(review['message'])}\nUsername: {review['author']}\n")
-    print(f"Scraping data from Webshop...")
+    print(f"Scraping data from Fortinet Juice-Shop...")
     round += 1
 if output:
     # print table
