@@ -673,7 +673,7 @@ API_Reset_ML() {
     --header "Authorization: ${TOKEN}" \
     --header 'accept: application/json' | jq)
 
-    echo "${GREEN_BOLD}${result}${RESTORE}"
+    echo -e "${GREEN_BOLD}${result}${RESTORE}"
     echo ""
 
     # Get the db_id value
@@ -694,7 +694,7 @@ API_Reset_ML() {
 
     echo ""
     echo ""
-    echo "${YELLOW_BOLD}Machine Learning for domain ${domain_name} has been reset${RESTORE}. Press enter to continue ... "
+    echo -e "${YELLOW_BOLD}Machine Learning for domain ${domain_name} has been reset${RESTORE}. Press enter to continue ... "
     read response
     return 1
 }
