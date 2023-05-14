@@ -427,13 +427,15 @@ Cookie_Security() {
     echo ""
     grep $DVWA_HOST cookie.txt
     echo ""
-    echo -e "Let's change the value to ${RED_BOLD}medium${RESTORE}. Press enter to continue... "
+    echo -en "Let's change the value to ${RED_BOLD}medium${RESTORE}. Press enter to continue... "
     read response
+    echo ""
     sed -i 's/low/medium/' cookie.txt
     grep $DVWA_HOST cookie.txt
     echo ""
-    echo -e "Now that we've changed the security level, let's connect again to the server. Press enter to continue... "
+    echo -en "Now that we've changed the security level, let's connect again to the server. Press enter to continue... "
     read response
+    echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED}"
     curl -s '${DVWA_URL}/security.php' \
         -H 'authority: ${DVWA_HOST}' \
