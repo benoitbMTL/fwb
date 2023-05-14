@@ -4,7 +4,7 @@
 #!/bin/bash
 
 ###############################################
-## URL used in this script
+## Specific to the Lab
 ###############################################
 DVWA_URL="https://dvwa.corp.fabriclab.ca"
 DVWA_HOST="dvwa.corp.fabriclab.ca"
@@ -12,6 +12,9 @@ SHOP_URL="https://shop.corp.fabriclab.ca"
 FWB_URL="https://fwb.corp.fabriclab.ca"
 SPEEDTEST_URL="http://speedtest.corp.fabriclab.ca"
 KALI_URL="https://flbr1kali01.fortiweb.fabriclab.ca"
+TOKEN="eyJ1c2VybmFtZSI6InVzZXJhcGkiLCJwYXNzd29yZCI6ImZhY2VMT0NLeWFybjY3ISJ9Cg=="
+FWB_MGT_IP="10.163.7.21"
+POLICY="main-policy"
 
 ###############################################
 ## Ensure we are running under bash
@@ -661,9 +664,37 @@ API_Delete_Policy() {
 }
 
 API_Reset_ML() {
-	. "ml-reset-domain.sh"
+
     echo ""
-    echo -n "Press enter to continue ... "
+    echo "Getting ML Domain Info:"
+    echo ""
+
+    result=$(curl --silent --insecure --location -g --request GET "https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.getdomaininfo?policy_name=${POLICY}" \
+    --header "Authorization: ${TOKEN}" \
+    --header 'accept: application/json' | jq)
+
+    echo "${GREEN_BOLD}${result}${RESTORE}"
+    echo ""
+
+    # Get the db_id value
+    db_id=$(echo "$result" | jq '.results[0].db_id')
+    domain_name=$(echo "$result" | jq '.results[0].domain_name')
+
+    echo "Domain ${domain_name} has db_id ${db_id}"
+    echo ""
+
+    # Execute the command with the extracted db_id value
+    echo "Resetting Machine Learning for Domain ${domain_name}"
+    echo ""
+
+    curl --insecure --location -g --request POST "https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.refreshdomain" \
+    --header "Authorization: ${TOKEN}" \
+    --header 'accept: application/json' \
+    --data-raw '{"domain_id": "'${db_id}'", "policy_name": "'${POLICY}'"}'
+
+    echo ""
+    echo ""
+    echo "${YELLOW_BOLD}Machine Learning for domain ${domain_name} has been reset${RESTORE}. Press enter to continue ... "
     read response
     return 1
 }
