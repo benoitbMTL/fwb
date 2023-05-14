@@ -9,7 +9,7 @@ column_width = 80
 table_width = 250
 round = 0
 # adjust this to False if you do not want to output anything
-output = False
+output = True
 headers = {
     "Accept": "application/json",
 }
@@ -55,7 +55,7 @@ while round <= 20:
             # Generate table or output plaintext
             table.add_row([product['name'], quantity['quantity'], product['description'], review['message'], review['author'] ])
             #print(f"ProductName: {product['name']}\nDescription: {product['description']}\nAmmount: {quantity['quantity']}\nMessage: {(review['message'])}\nUsername: {review['author']}\n")
-    print(f"scraping data from Webshop... nomnomnom...")
+    print(f"Scraping data from Webshop...")
     round += 1
 if output:
     # print table
