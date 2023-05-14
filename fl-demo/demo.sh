@@ -51,7 +51,7 @@ RED_BOLD='\033[1;31m'
 GREEN='\033[00;32m'
 GREEN_BOLD='\033[1;32m'
 YELLOW='\033[00;33m'
-YELLOW_BOLD="\033[1;33m"
+YELLOW_BOLD='\033[1;33m'
 CYAN_BOLD='\033[00;34m'
 CYAN_BOLD_BOLD='\033[1;34m'
 PURPLE='\033[00;35m'
@@ -549,15 +549,13 @@ ML_Exploit_ZeroDay_SQLi() {
 
 ML_Custom_Request() {
     COUNTER=0
-    YELLOW_BOLD='\e[1;33m'
-    RESTORE='\e[0m'
 
     echo ""
-    read -p $'Amount of requests ('"$YELLOW_BOLD"'1'"$RESTORE"'): ' COUNT
-    read -p $'URL ('"$YELLOW_BOLD$FWB_URL/fwb/index.html$RESTORE"'): ' URL
-    read -p $'Method (GET, '"$YELLOW_BOLD"'POST'"$RESTORE"', PUT, DELETE, OPTIONS, HEAD): ' METHODIN
-    read -p $'Parameter name ('"$YELLOW_BOLD"'firstname'"$RESTORE"', lastname, address, city, state, postal, country): ' PARAMETER
-    read -p $'Data type (date-short, date-long, postal, email, phone, '"$YELLOW_BOLD"'random'"$RESTORE"', number-small, number-big): ' PARAMETERTYPE
+    read -p $'Amount of requests ('${YELLOW_BOLD}'1'${RESTORE}'): ' COUNT
+    read -p $'URL ('${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}'): ' URL
+    read -p $'Method (GET, '${YELLOW_BOLD}'POST'${RESTORE}', PUT, DELETE, OPTIONS, HEAD): ' METHODIN
+    read -p $'Parameter name ('${YELLOW_BOLD}'firstname'${RESTORE}', lastname, address, city, state, postal, country): ' PARAMETER
+    read -p $'Data type (date-short, date-long, postal, email, phone, '${YELLOW_BOLD}'random'${RESTORE}', number-small, number-big): ' PARAMETERTYPE
 
 
     [ -z $URL ] && URL="${FWB_URL}/fwb/index.html"
