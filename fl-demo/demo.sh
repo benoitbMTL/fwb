@@ -438,13 +438,13 @@ Cookie_Security() {
     read response
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED}"
-    curl '${DVWA_URL}/security.php' \
-        -H 'authority: ${DVWA_HOST}' \
-        -H 'cache-control: max-age=0' \
-        -H 'content-type: application/x-www-form-urlencoded' \
-        -H 'origin: ${DVWA_URL}' \
-        -H 'referer: ${DVWA_URL}/index.php' \
-        -H 'user-agent: FortiWeb Demo Script' \
+    curl "${DVWA_URL}/security.php" \
+        -H "authority: ${DVWA_HOST}" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/index.php" \
+        -H "user-agent: FortiWeb Demo Script" \
         --insecure \
         -b cookie.txt 
 
