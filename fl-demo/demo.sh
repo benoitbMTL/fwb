@@ -340,7 +340,7 @@ Vulnerability_Scanner() {
 
 Command_Injection() {
     echo ""
-    echo -e "Command Injection Attack"
+    echo -e "Command Injection Attack (Pablo)"
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pablo${RESTORE} password=${YELLOW_BOLD}letmein${RESTORE}"
     echo ""
@@ -376,7 +376,7 @@ Command_Injection() {
 
 SQL_Injection() {
     echo ""
-    echo -e "SQL Injection Attack"
+    echo -e "SQL Injection Attack (Gordon)"
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}gordonb${RESTORE} password=${YELLOW_BOLD}abc123${RESTORE}\n"
     curl "${DVWA_URL}/login.php" \
@@ -409,7 +409,7 @@ SQL_Injection() {
 
 Cookie_Security() {
     echo ""
-    echo -e "Cookie Security"
+    echo -e "Cookie Security (Smith)"
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${CYAN_BOLD}smithy${RESTORE} password=${CYAN_BOLD}password${RESTORE}"
     echo ""
