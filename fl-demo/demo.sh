@@ -550,7 +550,7 @@ ML_Exploit_ZeroDay_SQLi() {
 ML_Custom_Request() {
     COUNTER=0
     echo ""
-    printf "Amount of requests (${YELLOW_BOLD}1${RESTORE}): "
+    printf "Amount of request (${YELLOW_BOLD}1${RESTORE}): "
     read COUNT
     printf "URL (${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}): "
     read URL
@@ -560,7 +560,6 @@ ML_Custom_Request() {
     read PARAMETER
     printf "Data type (date-short, date-long, postal, email, phone, ${YELLOW_BOLD}random${RESTORE}, number-small, number-big): "
     read PARAMETERTYPE
-
 
     [ -z $URL ] && URL="${FWB_URL}/fwb/index.html"
     [ -z $COUNT ] && COUNT=1
@@ -644,17 +643,18 @@ ML_Custom_Request() {
 
         [ ${DEBUG} == "enable" ] && echo "Method="${METHOD} "URL="${URL} "Parameter="${PARAMETER} "Value="${PARAMETERVALUE}
 
-        [ $METHOD == GET ]  && ( WEBPARAMETERVALUE=`echo $PARAMETERVALUE | sed s/\ /%20/g` ; curl -A ML-tester -s "$URL?$PARAMETER=$WEBPARAMETERVALUE" -o /dev/null)
-        [ $METHOD == POST ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
-        [ $METHOD == PUT ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
-        [ $METHOD == DELETE ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
-        [ $METHOD == OPTIONS ]  && curl -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
-        [ $METHOD == HEAD ]  && curl -A ML-tester -s -X $METHOD $URL -o /dev/null
+        [ $METHOD == GET ]  && ( WEBPARAMETERVALUE=`echo $PARAMETERVALUE | sed s/\ /%20/g` ; curl -k -A ML-tester -s "$URL?$PARAMETER=$WEBPARAMETERVALUE" -o /dev/null)
+        [ $METHOD == POST ]  && curl -k -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
+        [ $METHOD == PUT ]  && curl -k -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
+        [ $METHOD == DELETE ]  && curl -k -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
+        [ $METHOD == OPTIONS ]  && curl -k -A ML-tester -s -X $METHOD $URL -d "$PARAMETER=$PARAMETERVALUE" -o /dev/null
+        [ $METHOD == HEAD ]  && curl -k -A ML-tester -s -X $METHOD $URL -o /dev/null
         sleep 0.02
         let "COUNTER += 1"  # Increment count.
         printprogress $COUNTER
     done
     
+    echo ""
     echo ""
     echo -en "${RESTORE}Press enter to continue... "
     read response
