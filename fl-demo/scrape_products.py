@@ -35,7 +35,7 @@ table = PrettyTable(field_names=["ProductName", "Quantity"], max_table_width = t
 #table.align["Description"] = "l"
 #table.align["Review"] = "l"
 #table.set_style(DOUBLE_BORDER)
-table.set_style(ROUNDED_BORDER)
+table.set_style(SINGLE_BORDER)
 
 ## Main Function
 # retrieve all products
