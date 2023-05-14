@@ -312,7 +312,7 @@ printprogress() {
 
 webrequest() {
   [ ${DEBUG} == "enable" ] && echo "URL:"${URL} "POSTDATA":${POSTDATA}
-  curl -A ${USERAGENT} -m ${REQUESTTIMEOUT} -g --retry 3 --retry-delay 1 -s -o /dev/null -X ${METHOD} -H "Content-Type: ${CONTENTTYPE}" "${URL}" -d "$POSTDATA" &
+  curl -k -A ${USERAGENT} -m ${REQUESTTIMEOUT} -g --retry 3 --retry-delay 1 -s -o /dev/null -X ${METHOD} -H "Content-Type: ${CONTENTTYPE}" "${URL}" -d "$POSTDATA" &
 }
 
 ############################################################################
@@ -344,7 +344,7 @@ Command_Injection() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pablo${RESTORE} password=${YELLOW_BOLD}letmein${RESTORE}"
     echo ""
-    curl "${DVWA_URL}/login.php" \
+    curl -k "${DVWA_URL}/login.php" \
         -H "authority: ${DVWA_URL}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
@@ -357,7 +357,7 @@ Command_Injection() {
 
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/vulnerabilities/exec/${RESTORE} submit=${RED_BOLD}\";ls\""
     echo ""
-    curl -s "${DVWA_URL}/vulnerabilities/exec/" \
+    curl -k -s "${DVWA_URL}/vulnerabilities/exec/" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
