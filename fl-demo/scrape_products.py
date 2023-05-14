@@ -9,7 +9,7 @@ column_width = 80
 table_width = 250
 round = 0
 # adjust this to False if you do not want to output anything
-output = False
+output = True
 headers = {
     "Accept": "application/json",
 }
@@ -61,10 +61,10 @@ while round <= 2:
     round += 1
 
 if output:
-    # print table
-    print(table)
+    # Print table
+    # Print(table)
+    # Print Table in a file (Workaround)
+    with open('output.txt', 'w') as f:
+        print(table, file=f)
 
-# Print Table in a file
-with open('output.txt', 'w') as f:
-    print(table, file=f)
 print("Scraping Done")
