@@ -16,6 +16,7 @@ TOKEN="eyJ1c2VybmFtZSI6InVzZXJhcGkiLCJwYXNzd29yZCI6ImZhY2VMT0NLeWFybjY3ISJ9Cg=="
 FWB_MGT_IP="10.163.7.21"
 POLICY="main-policy"
 
+
 ###############################################
 ## Ensure we are running under bash
 ###############################################
@@ -38,6 +39,29 @@ fi
 ## Debug option disabled by default
 ###############################################
   DEBUG="disable"
+
+
+############################################################################
+## Colors
+############################################################################
+BOLD='\033[1m'
+RESTORE='\033[0m'
+RED='\033[00;31m'
+RED_BOLD='\033[1;31m'
+GREEN='\033[00;32m'
+GREEN_BOLD='\033[1;32m'
+YELLOW='\033[00;33m'
+YELLOW_BOLD="\033[1;33m"
+CYAN_BOLD='\033[00;34m'
+CYAN_BOLD_BOLD='\033[1;34m'
+PURPLE='\033[00;35m'
+PURPLE_BOLD='\033[1;35m'
+CYAN='\033[00;36m'
+CYAN_BOLD='\033[1;36m'
+LIGHTGRAY='\033[00;37m'
+LIGHTGRAY_BOLD='\033[1;37m'
+WHITE='\033[37m'
+WHITE_BOLD='\033[1;37m'
 
 
 ###############################################
@@ -290,29 +314,6 @@ webrequest() {
   [ ${DEBUG} == "enable" ] && echo "URL:"${URL} "POSTDATA":${POSTDATA}
   curl -A ${USERAGENT} -m ${REQUESTTIMEOUT} -g --retry 3 --retry-delay 1 -s -o /dev/null -X ${METHOD} -H "Content-Type: ${CONTENTTYPE}" "${URL}" -d "$POSTDATA" &
 }
-
-############################################################################
-## Colors
-############################################################################
-BOLD='\033[1m'
-RESTORE='\033[0m'
-RED='\033[00;31m'
-RED_BOLD='\033[1;31m'
-GREEN='\033[00;32m'
-GREEN_BOLD='\033[1;32m'
-YELLOW='\033[00;33m'
-YELLOW_BOLD='\033[1;33m'
-CYAN_BOLD='\033[00;34m'
-CYAN_BOLD_BOLD='\033[1;34m'
-PURPLE='\033[00;35m'
-PURPLE_BOLD='\033[1;35m'
-CYAN='\033[00;36m'
-CYAN_BOLD='\033[1;36m'
-LIGHTGRAY='\033[00;37m'
-LIGHTGRAY_BOLD='\033[1;37m'
-WHITE='\033[37m'
-WHITE_BOLD='\033[1;37m'
-
 
 ############################################################################
 ## Menu Actions
