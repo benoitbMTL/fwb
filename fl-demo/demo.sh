@@ -549,7 +549,8 @@ ML_Exploit_ZeroDay_SQLi() {
 
 ML_Custom_Request() {
     COUNTER=0
-
+    YELLOW_BOLD="\033[1;33m"
+    RESTORE="\033[0m"
     echo ""
     read -p $'Amount of requests ('${YELLOW_BOLD}'1'${RESTORE}'): ' COUNT
     read -p $'URL ('${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}'): ' URL
