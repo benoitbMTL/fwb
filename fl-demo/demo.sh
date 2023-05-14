@@ -479,6 +479,7 @@ ML_Learn_Parameters() {
     echo -en "${GREEN}Requests : "
     firerequest-learn
     echo ""
+    echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
@@ -491,6 +492,7 @@ ML_Relearn_Parameters() {
     echo -en "${GREEN}Requests : "
     firerequest-relearn
     echo ""
+    echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
@@ -499,7 +501,8 @@ ML_Relearn_Parameters() {
 ML_Exploit_XSS() {
     COUNT=1
     METHOD="POST"
-    echo -e "\nSending Cross-Site Scripting\n"
+    echo ""
+    echo -e "Sending Cross-Site Scripting"
     firerequest-XSS
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
@@ -510,7 +513,8 @@ ML_Exploit_XSS() {
 ML_Exploit_SQLi() {
     COUNT=1
     METHOD="POST"
-    echo -e "\nSending SQL Injection\n"
+    echo ""
+    echo -e "Sending SQL Injection"
     firerequest-ExploitSQLi
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
@@ -521,7 +525,8 @@ ML_Exploit_SQLi() {
 ML_Exploit_ZeroDay_CMDi() {
     COUNT=1
     METHOD="POST"
-    echo -e "\nSending Zero-Day Command Injection\n"
+    echo ""
+    echo -e "Sending Zero-Day Command Injection"
     firerequest-ExploitZeroDayCMDi
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
@@ -532,7 +537,8 @@ ML_Exploit_ZeroDay_CMDi() {
 ML_Exploit_ZeroDay_SQLi() {
     COUNT=1
     METHOD="POST"
-    echo -e "\nSending Zero-Day SQL Injection\n"
+    echo ""
+    echo -e "Sending Zero-Day SQL Injection"
     firerequest-ExploitZeroDaySQLi
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
