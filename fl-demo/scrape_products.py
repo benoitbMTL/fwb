@@ -9,7 +9,7 @@ column_width = 80
 table_width = 250
 round = 0
 # adjust this to False if you do not want to output anything
-output = True
+output = False
 headers = {
     "Accept": "application/json",
 }
@@ -39,7 +39,7 @@ table.set_style(SINGLE_BORDER)
 
 ## Main Function
 # retrieve all products
-while round <= 4:
+while round <= 2:
     r0 = requests.get(url + "/api/products/", headers=headers)
     products = r0.json()
     # Loop through Products
