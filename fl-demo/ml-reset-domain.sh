@@ -65,4 +65,4 @@ curl --insecure --location -g --request POST "https://${HOST}/api/v2.0/machine_l
 
 echo ""
 echo ""
-echo "[+] Machine Learning for domain ${domain_name} has been reset"
+echo "Machine Learning for domain ${domain_name} has been reset"
