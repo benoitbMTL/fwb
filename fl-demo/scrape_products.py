@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import requests
-from prettytable import PrettyTable, DOUBLE_BORDER
+from prettytable import PrettyTable, DOUBLE_BORDER, SINGLE_BORDER
 
 # Define Global Variables; adjust as needed
 url = "http://shop.corp.fabriclab.ca"
