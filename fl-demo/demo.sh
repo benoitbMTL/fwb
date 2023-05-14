@@ -550,15 +550,15 @@ ML_Exploit_ZeroDay_SQLi() {
 ML_Custom_Request() {
     COUNTER=0
     echo ""
-    echo "Amount of requests (${YELLOW_BOLD}1${RESTORE}): "
+    printf "Amount of requests (${YELLOW_BOLD}1${RESTORE}): "
     read COUNT
-    echo "URL (${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}): "
+    printf "URL (${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}): "
     read URL
-    echo "Method (GET, ${YELLOW_BOLD}POST${RESTORE}, PUT, DELETE, OPTIONS, HEAD): "
+    printf "Method (GET, ${YELLOW_BOLD}POST${RESTORE}, PUT, DELETE, OPTIONS, HEAD): "
     read METHODIN
-    echo "Parameter name (${YELLOW_BOLD}firstname${RESTORE}, lastname, address, city, state, postal, country): "
+    printf "Parameter name (${YELLOW_BOLD}firstname${RESTORE}, lastname, address, city, state, postal, country): "
     read PARAMETER
-    echo "Data type (date-short, date-long, postal, email, phone, ${YELLOW_BOLD}random${RESTORE}, number-small, number-big): "
+    printf "Data type (date-short, date-long, postal, email, phone, ${YELLOW_BOLD}random${RESTORE}, number-small, number-big): "
     read PARAMETERTYPE
 
 
