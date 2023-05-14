@@ -732,7 +732,7 @@ BOT_Web_Crawler() {
 
 BOT_Web_Scraper() {
     echo "Web Scraper Started"
-    python3 scrape_products.py
+    python3 "$(dirname "$0")/scrape_products.py" 
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
@@ -797,8 +797,8 @@ menuActions=(
 ################################
 ## Menu Display
 ################################
-menuTitle=" FortiWeb Demo - Last Update May the 4th, 2023"
-menuFooter="Navigate via Up/Down/Letter, Enter to Select, Double Esc to Quit"
+menuTitle=" FortiWeb Demo - Last Update May 14th, 2023"
+menuFooter="Navigate via Up/Down/Letter, Enter to Select"
 menuWidth=90
 menuLeft=15
 menuHighlight=$DRAW_COL_YELLOW
