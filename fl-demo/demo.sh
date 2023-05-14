@@ -549,11 +549,11 @@ ML_Exploit_ZeroDay_SQLi() {
 ML_Custom_Request() {
     COUNTER=0    
     echo ""
-    read -p $'Amount of requests (\e[0;35m1\e[m): ' COUNT
-    read -p $'URL (\e[0;35m${FWB_URL}/fwb/index.html\e[m): ' URL
-    read -p $'Method (GET, \e[0;35mPOST\e[m, PUT, DELETE, OPTIONS, HEAD): ' METHODIN
-    read -p $'Parameter name (\e[0;35mfirstname\e[m, lastname, address, city, state, postal, country): ' PARAMETER
-    read -p $'Data type (date-short, date-long, postal, email, phone, \e[0;35mrandom\e[m, number-small, number-big): ' PARAMETERTYPE
+    read -p $'Amount of requests (\e${YELLOW_BOLD}1\e${RESTORE}): ' COUNT
+    read -p $'URL (\e${YELLOW_BOLD}\e${FWB_URL}/fwb/index.html\e${RESTORE}): ' URL
+    read -p $'Method (GET, \e${YELLOW_BOLD}POST\e${RESTORE}, PUT, DELETE, OPTIONS, HEAD): ' METHODIN
+    read -p $'Parameter name (\e${YELLOW_BOLD}firstname\e${RESTORE}, lastname, address, city, state, postal, country): ' PARAMETER
+    read -p $'Data type (date-short, date-long, postal, email, phone, \e${YELLOW_BOLD}random\e${RESTORE}, number-small, number-big): ' PARAMETERTYPE
 
     [ -z $URL ] && URL="${FWB_URL}/fwb/index.html"
     [ -z $COUNT ] && COUNT=1
@@ -580,6 +580,7 @@ ML_Custom_Request() {
         return 1
     fi
     
+    echo ""
     echo -e "${GREEN}Sending ${COUNT} custom request(s)"
     if [ $COUNT -gt 99 ]
     then
@@ -647,6 +648,7 @@ ML_Custom_Request() {
         printprogress $COUNTER
     done
     
+    echo ""
     echo -en "${RESTORE}Press enter to continue... "
     read response
     return 1
