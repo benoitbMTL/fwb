@@ -758,9 +758,9 @@ Exit() {
 ## Menu Item Text
 menuItems=(
     "A. Vulnerability Scanner"
-    "B. Command Injection"
-    "C. SQL Injection"
-    "D. Cookie Security"
+    "B. Command Injection (Pablo)"
+    "C. SQL Injection (Gordon)"
+    "D. Cookie Security (Smith)"
     "E. Brute Force Attack"
     "F. ML - 3000 POST requests - normal field input (learn)"
     "G. ML - 3000 POST requests - random field input (relearn)"
