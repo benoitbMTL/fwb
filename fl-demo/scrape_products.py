@@ -64,4 +64,5 @@ if output:
     # print table
     print(table)
 
+print(table)
 print("Scraping Done")
