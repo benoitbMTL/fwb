@@ -731,8 +731,11 @@ BOT_Web_Crawler() {
 }
 
 BOT_Web_Scraper() {
+    echo ""
     echo "Web Scraper Started"
     python3 "$(dirname "$0")/scrape_products.py" 
+    echo ""
+    more output.txt
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
