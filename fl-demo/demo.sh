@@ -427,12 +427,12 @@ Cookie_Security() {
     echo ""
     grep $DVWA_HOST cookie.txt
     echo ""
-    echo -e "Let's change the value to ${RED_BOLD}medium${RESTORE}. Press enter to continue... "
+    echo -en "Let's change the value to ${RED_BOLD}medium${RESTORE}. Press enter to continue... "
     read response
     sed -i 's/low/medium/' cookie.txt
     grep $DVWA_HOST cookie.txt
     echo ""
-    echo -e "Now that we've changed the security level, let's connect again to the server. Press enter to continue... "
+    echo -en "Now that we've changed the security level, let's connect again to the server. Press enter to continue... "
     read response
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED}"
     curl -s '${DVWA_URL}/security.php' \
@@ -557,17 +557,17 @@ ML_Custom_Request() {
 
     if [ -z $COUNT ] || [ -z $URL ] || [ -z $METHODIN ] || [ -z PARAMETER ] || [ -z $PARAMETERTYPE ]
     then
-        echo -en "${RED}ERROR: Empty input detected.\n${RESTORE}Press enter to continue ... "
+        echo -en "${RED}ERROR: Empty input detected.\n${RESTORE}Press enter to continue... "
         read response
         return 1
     elif [ $METHOD != "GET" ] && [ $METHOD != "POST" ] && [ $METHOD != "PUT" ] && [ $METHOD != "DELETE" ] && [ $METHOD != "OPTIONS" ] && [ $METHOD != "HEAD" ]
     then
-        echo -en "${RED}ERROR: Invalid method given.\n${RESTORE}Press enter to continue ... "
+        echo -en "${RED}ERROR: Invalid method given.\n${RESTORE}Press enter to continue... "
         read response
         return 1
     elif [[ $URL != *http* ]]
     then
-        echo -en "${RED}ERROR: Invalid URL given. Use http://<fqdn>/<path>/<object>.\n${RESTORE}Press enter to continue ... "
+        echo -en "${RED}ERROR: Invalid URL given. Use http://<fqdn>/<path>/<object>.\n${RESTORE}Press enter to continue... "
         read response
         return 1
     fi
@@ -621,7 +621,7 @@ ML_Custom_Request() {
         then
         PARAMETERVALUE=`shuf -i 1000-10000000 -n 1`
         else
-        echo -en "${RED}ERROR: No valid data type.\n${RESTORE}Press enter to continue ... "
+        echo -en "${RED}ERROR: No valid data type.\n${RESTORE}Press enter to continue... "
         read response
         return 1
         fi
@@ -639,7 +639,7 @@ ML_Custom_Request() {
         printprogress $COUNTER
     done
     
-    echo -en "${RESTORE}Press enter to continue ... "
+    echo -en "${RESTORE}Press enter to continue... "
     read response
     return 1
 }
@@ -650,7 +650,7 @@ ML_Custom_Request() {
 API_Create_Policy() {
     dos2unix -q api-create-policy.sh
 	. "api-create-policy.sh"
-    echo -n "Press enter to continue ... "
+    echo -n "Press enter to continue... "
     read response
     return 1
 }
@@ -658,7 +658,7 @@ API_Create_Policy() {
 API_Delete_Policy() {
     dos2unix -q api-delete-policy.sh
 	. "api-delete-policy.sh"
-    echo -n "Press enter to continue ... "
+    echo -n "Press enter to continue... "
     read response
     return 1
 }
@@ -694,7 +694,7 @@ API_Reset_ML() {
 
     echo ""
     echo ""
-    echo -e "${YELLOW_BOLD}Machine Learning for domain ${domain_name} has been reset${RESTORE}. Press enter to continue ... "
+    echo -en "${YELLOW_BOLD}Machine Learning for domain ${domain_name} has been reset${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
