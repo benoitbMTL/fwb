@@ -549,14 +549,17 @@ ML_Exploit_ZeroDay_SQLi() {
 
 ML_Custom_Request() {
     COUNTER=0
-    YELLOW_BOLD='\033[1;33m'
-    RESTORE='\033[0m'
     echo ""
-    read -p $'Amount of requests ('"$YELLOW_BOLD"'1'"$RESTORE"'): ' COUNT
-    read -p $'URL ('${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}'): ' URL
-    read -p $'Method (GET, '${YELLOW_BOLD}'POST'${RESTORE}', PUT, DELETE, OPTIONS, HEAD): ' METHODIN
-    read -p $'Parameter name ('${YELLOW_BOLD}'firstname'${RESTORE}', lastname, address, city, state, postal, country): ' PARAMETER
-    read -p $'Data type (date-short, date-long, postal, email, phone, '${YELLOW_BOLD}'random'${RESTORE}', number-small, number-big): ' PARAMETERTYPE
+    echo "Amount of requests (${YELLOW_BOLD}1${RESTORE}): "
+    read COUNT
+    echo "URL (${YELLOW_BOLD}${FWB_URL}/fwb/index.html${RESTORE}): "
+    read URL
+    echo "Method (GET, ${YELLOW_BOLD}POST${RESTORE}, PUT, DELETE, OPTIONS, HEAD): "
+    read METHODIN
+    echo "Parameter name (${YELLOW_BOLD}firstname${RESTORE}, lastname, address, city, state, postal, country): "
+    read PARAMETER
+    echo "Data type (date-short, date-long, postal, email, phone, ${YELLOW_BOLD}random${RESTORE}, number-small, number-big): "
+    read PARAMETERTYPE
 
 
     [ -z $URL ] && URL="${FWB_URL}/fwb/index.html"
