@@ -31,7 +31,7 @@ def get_review(url, headers, id):
 # Setup Table to format output
 table = PrettyTable(field_names=["ProductName", "Quantity"], max_table_width = table_width, max_width = column_width)
 #table = PrettyTable(field_names=["ProductName", "Quantity", "Description", "Review", "Author"], max_table_width = table_width, max_width = column_width)
-#table.align["ProductName"] = "l"
+table.align["ProductName"] = "l"
 #table.align["Description"] = "l"
 #table.align["Review"] = "l"
 #table.set_style(DOUBLE_BORDER)
@@ -39,8 +39,7 @@ table.set_style(SINGLE_BORDER)
 
 ## Main Function
 # retrieve all products
-while round <= 5:
-
+while round <= 4:
     r0 = requests.get(url + "/api/products/", headers=headers)
     products = r0.json()
     # Loop through Products
@@ -60,6 +59,7 @@ while round <= 5:
             #print(f"ProductName: {product['name']}\nDescription: {product['description']}\nAmmount: {quantity['quantity']}\nMessage: {(review['message'])}\nUsername: {review['author']}\n")
     print(f"Scraping data from Fortinet Juice-Shop...")
     round += 1
+
 if output:
     # print table
     print(table)
