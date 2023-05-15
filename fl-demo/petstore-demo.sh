@@ -67,13 +67,15 @@ execute_curl() {
     echo
     output=$(eval $command 2>&1)
     if [[ $? -eq 0 ]]; then
-        #echo "Connection successful!"
-        #echo
+        # Connection successful
         echo "Response:"
-        echo -e "${GREEN}$output${NC}"
+        if [[ "$output" == "Request Blocked by FortiWeb!" ]]; then
+            echo -e "${RED}$output${NC}"
+        else
+            echo -e "${GREEN}$output${NC}"
+        fi
     else
-        #echo "Connection failed!"
-        #echo
+        # Connection failed
         echo "Error message:"
         echo -e "${RED}$output${NC}"
     fi
