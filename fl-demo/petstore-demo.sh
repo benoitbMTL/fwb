@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 options=(
     "findByStatus?status=available"
     "findByStatus?status=sold"
@@ -45,9 +43,11 @@ select_option() {
     for i in "${!options[@]}"; do
         echo "$((i+1)). ${options[$i]}"
     done
+    echo ""
     read -p "Enter your choice (1-${#options[@]}): " choice
     if [[ ! "$choice" =~ ^[0-9]+$ ]] || (( choice < 1 || choice > ${#options[@]} )); then
-        echo "Invalid choice. Please try again."
+        echo ""
+        read -p "Invalid choice. Please try again. Press Enter to continue..."
         select_option
     fi
     execute_curl $((choice-1))
