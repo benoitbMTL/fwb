@@ -1,11 +1,14 @@
 #!/bin/bash
 
+RED='\033[0;31m' # Red color code
+NC='\033[0m' # No color
+
 options=(
     "findByStatus?status=available"
     "findByStatus?status=sold"
     "findByStatus?status=pending"
-    "findByStatus? (schema violation)"
-    "findByStatus?status=ABCDEFGHIJKL (URL too long)"
+    "findByStatus? \t\t\t\t(schema violation)"
+    "findByStatus?status=ABCDEFGHIJKL \t\t(URL too long)"
     "findByStatus?status=A (URL too short)"
     "findByStatus?status=;cmd.exe (Command Injection in URL)"
     "{\"status\": \"ls;;cmd.exe\"} (Command Injection in JSON)"
@@ -65,12 +68,12 @@ execute_curl() {
         #echo "Connection successful!"
         #echo
         echo "Response:"
-        echo "$output"
+        echo -e "${RED}$output${NC}"
     else
         #echo "Connection failed!"
         #echo
         echo "Error message:"
-        echo "$output"
+        echo -e "${RED}$output${NC}"
     fi
     echo
     read -p "Press Enter to continue..."
