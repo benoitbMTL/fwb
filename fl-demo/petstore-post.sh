@@ -1,5 +1,3 @@
-# curl commands to create API Protection Model
-# FWB V7.0.1 written by Ricky Voong
 #!/bin/bash
 
 NAMES=(FortiPuma FortiFish FortiSpider FortiTiger FortiLion FortiShark FortiSnake FortiMonkey FortiFox FortiRam FortiEagle FortiBee FortiCat FortiDog FortiAnt FortiWasp FortiPanter FortiGator FortiOwl FortiWildcats)
@@ -8,12 +6,12 @@ STATUS=(available pending sold available pending sold available pending sold ava
 
 ID=400
 
-echo "Sending POST API calls to https://petstore.corp.fabriclab.ca/ to populate pets entries with FortiPets"
+echo "Sending POST API calls to http://petstore.corp.fabriclab.ca/ to populate pets entries with FortiPets"
 
 for ((i=0; i<20; i++))
 do
-  curl -k -A ML-Requester -s -o /dev/null -X 'POST' \
-    'https://petstore.corp.fabriclab.ca/api/pet' \
+  curl -A ML-Requester -s -o /dev/null -X 'POST' \
+    'http://petstore.corp.fabriclab.ca/api/pet' \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
   -d "{\
