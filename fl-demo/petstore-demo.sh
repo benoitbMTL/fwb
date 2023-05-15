@@ -2,6 +2,7 @@
 
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
+CYAN='\033[00;36m' # Cyan color code
 NC='\033[0m' # No color
 
 options=(
@@ -62,7 +63,7 @@ execute_curl() {
     local command=${curl_commands[$index]}
     echo ""
     echo "Executing CURL command:"
-    echo "$command"
+    echo -e "${CYAN}$command${NC}"
     echo
     output=$(eval $command 2>&1)
     if [[ $? -eq 0 ]]; then
