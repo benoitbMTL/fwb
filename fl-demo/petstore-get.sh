@@ -5,17 +5,17 @@ echo "Sending GET API calls to http://petstore.corp.fabriclab.ca"
 for ((i=1; i<100; i++))
 do
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
-  'http://petstore.corp.fabriclab.ca/api/pet/findByStatus?status=available' \
+  'http://petstore.corp.fabriclab.ca/v2/pet/findByStatus?status=available' \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
-  'http://petstore.corp.fabriclab.ca/api/pet/findByStatus?status=pending' \
+  'http://petstore.corp.fabriclab.ca/v2/pet/findByStatus?status=pending' \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
-  'http://petstore.corp.fabriclab.ca/api/pet/findByStatus?status=sold' \
+  'http://petstore.corp.fabriclab.ca/v2/pet/findByStatus?status=sold' \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 

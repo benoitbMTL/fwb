@@ -11,7 +11,7 @@ echo "Sending POST API calls to http://petstore.corp.fabriclab.ca/ to populate p
 for ((i=0; i<20; i++))
 do
   curl -A ML-Requester -s -o /dev/null -X 'POST' \
-    'http://petstore.corp.fabriclab.ca/api/pet' \
+    'http://petstore.corp.fabriclab.ca/v2/pet' \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
   -d "{\
