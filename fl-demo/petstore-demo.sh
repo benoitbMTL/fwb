@@ -39,7 +39,9 @@ curl_commands=(
 )
 
 select_option() {
+    clear
     echo "Choose an option:"
+    echo ""
     for i in "${!options[@]}"; do
         echo "$((i+1)). ${options[$i]}"
     done
@@ -54,17 +56,18 @@ select_option() {
 execute_curl() {
     local index=$1
     local command=${curl_commands[$index]}
+    echo ""
     echo "Executing CURL command:"
     echo "$command"
     echo
     output=$(eval $command 2>&1)
     if [[ $? -eq 0 ]]; then
-        echo "Connection successful."
+        echo "Connection successful!"
         echo
         echo "Response:"
         echo "$output"
     else
-        echo "Connection failed."
+        echo "Connection failed!"
         echo
         echo "Error message:"
         echo "$output"
