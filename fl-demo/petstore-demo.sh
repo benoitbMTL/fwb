@@ -14,13 +14,13 @@ options=(
     "findByStatus?status=A                              (URL too short)"
     "findByStatus?status=;cmd.exe                       (Command Injection in URL)"
     "{\"status\": \"ls;;cmd.exe\"}                          (Command Injection in JSON)"
-    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}         (Zero-Day in JSON)"
+    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}                   (Zero-Day in JSON)"
     "{\"status\": \"<script>alert(123)</script>\"}          (XSS in JSON)"
     "findByStatus?status=sold&status=pending            (Additional URL parameter)"
     "accept: application/yaml                           (Non JSON request)"
     "{\"status\": \"ls;;cmd.exe\"}                          (Command Injection in JSON)"
     "{\"status\": \"<script>alert(123)</script>\"}          (XSS in JSON)"
-    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}         (Zero-Day in JSON)"
+    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}                   (Zero-Day in JSON)"
 )
 
 curl_commands=(
