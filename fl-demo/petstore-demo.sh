@@ -62,13 +62,13 @@ execute_curl() {
     echo
     output=$(eval $command 2>&1)
     if [[ $? -eq 0 ]]; then
-        echo "Connection successful!"
-        echo
+        #echo "Connection successful!"
+        #echo
         echo "Response:"
         echo "$output"
     else
-        echo "Connection failed!"
-        echo
+        #echo "Connection failed!"
+        #echo
         echo "Error message:"
         echo "$output"
     fi
