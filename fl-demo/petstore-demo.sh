@@ -1,6 +1,7 @@
 #!/bin/bash
 
 RED='\033[0;31m' # Red color code
+GREEN='\033[0;32m' # Green color code
 NC='\033[0m' # No color
 
 options=(
@@ -68,7 +69,7 @@ execute_curl() {
         #echo "Connection successful!"
         #echo
         echo "Response:"
-        echo -e "${RED}$output${NC}"
+        echo -e "${GREEN}$output${NC}"
     else
         #echo "Connection failed!"
         #echo
