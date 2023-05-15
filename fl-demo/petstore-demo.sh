@@ -6,21 +6,21 @@ CYAN='\033[00;36m' # Cyan color code
 NC='\033[0m' # No color
 
 options=(
-    "findByStatus?status=available"
-    "findByStatus?status=sold"
-    "findByStatus?status=pending"
-    "findByStatus? \t\t\t\t(schema violation)"
-    "findByStatus?status=ABCDEFGHIJKL \t\t(URL too long)"
-    "findByStatus?status=A (URL too short)"
-    "findByStatus?status=;cmd.exe (Command Injection in URL)"
-    "{\"status\": \"ls;;cmd.exe\"} (Command Injection in JSON)"
-    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"} (Zero-Day in JSON)"
-    "{\"status\": \"<script>alert(123)</script>\"} (XSS in JSON)"
-    "findByStatus?status=sold&status=pending (Additional URL parameter)"
-    "accept: application/yaml (Non JSON request)"
-    "{\"status\": \"ls;;cmd.exe\"} (Command Injection in JSON)"
-    "{\"status\": \"<script>alert(123)</script>\"} (XSS in JSON)"
-    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"} (Zero-Day in JSON)"
+    "findByStatus?status=available                      (Normal Request)"
+    "findByStatus?status=sold                           (Normal Request)"
+    "findByStatus?status=pending                        (Normal Request)"
+    "findByStatus?                                      (Schema violation)"
+    "findByStatus?status=ABCDEFGHIJKL                   (URL too long)"
+    "findByStatus?status=A                              (URL too short)"
+    "findByStatus?status=;cmd.exe                       (Command Injection in URL)"
+    "{\"status\": \"ls;;cmd.exe\"}                      (Command Injection in JSON)"
+    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}     (Zero-Day in JSON)"
+    "{\"status\": \"<script>alert(123)</script>\"}      (XSS in JSON)"
+    "findByStatus?status=sold&status=pending            (Additional URL parameter)"
+    "accept: application/yaml                           (Non JSON request)"
+    "{\"status\": \"ls;;cmd.exe\"}                      (Command Injection in JSON)"
+    "{\"status\": \"<script>alert(123)</script>\"}      (XSS in JSON)"
+    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}     (Zero-Day in JSON)"
 )
 
 curl_commands=(
