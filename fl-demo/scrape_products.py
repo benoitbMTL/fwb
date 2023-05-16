@@ -39,7 +39,7 @@ table.set_style(SINGLE_BORDER)
 
 ## Main Function
 # retrieve all products
-while round <= 20:
+while round <= 25:
     r0 = requests.get(url + "/api/products/", headers=headers)
     products = r0.json()
     # Loop through Products
