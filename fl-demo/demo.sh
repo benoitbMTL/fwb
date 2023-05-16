@@ -793,8 +793,8 @@ menuActions=(
     API_Create_Policy
     API_Delete_Policy
     API_Reset_ML
-    BOT_Web_Crawler
     BOT_Web_Scraper
+    BOT_Web_Crawler
 )
 
 ################################
