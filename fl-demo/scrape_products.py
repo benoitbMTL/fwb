@@ -37,8 +37,9 @@ table.align["ProductName"] = "l"
 #table.set_style(DOUBLE_BORDER)
 table.set_style(SINGLE_BORDER)
 
-## Main Function
-# retrieve all products
+# Main Function
+# Retrieve all products
+# Does 20+ rounds to be sure to trigger the ML
 while round <= 25:
     r0 = requests.get(url + "/api/products/", headers=headers)
     products = r0.json()
