@@ -329,8 +329,8 @@ webrequest() {
 
 Vulnerability_Scanner() {
     rm -Rf /var/www/html/report/report
-    skipfish -u -k 0:0:30 -o /var/www/html/report/report ${DVWA_URL}
     echo ""
+    skipfish -u -k 0:0:30 -o /var/www/html/report/report ${DVWA_URL}
     echo -e "${BOLD}Scan Report available at ${KALI_URL}"
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
