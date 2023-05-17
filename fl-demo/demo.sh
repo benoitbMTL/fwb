@@ -789,6 +789,7 @@ BOT_Web_Crawler() {
 }
 
 BOT_Web_Scraper() {
+    rm -f output.txt
     echo ""
     echo "Web Scraper Started"
     python3 "$(dirname "$0")/scrape_products.py" 
@@ -832,8 +833,8 @@ menuItems=(
     "O. REST API - Delete POLICY1 & POLICY2"
     "P. REST API - Reset Machine Learning"
     "Q. Bot - Bot Deception"
-    "R. Bot - Web Crawler"
-    "S. Bot - Web Scraper"
+    "R. Bot - Web Crawler (Known Bots Detection)"
+    "S. Bot - Web Scraper (Machine Learning)"
 )
 
 ## Menu Item Actions

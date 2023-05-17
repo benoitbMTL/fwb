@@ -40,7 +40,7 @@ table.set_style(SINGLE_BORDER)
 # Main Function
 # Retrieve all products
 # Does 20+ rounds to be sure to trigger the ML
-while round <= 25:
+while round <= 20:
     r0 = requests.get(url + "/api/products/", headers=headers)
     products = r0.json()
     # Loop through Products
