@@ -749,7 +749,7 @@ BOT_Deception() {
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php\n${YELLOW_BOLD}"
     echo ""
-    curl "${DVWA_URL}/login.php" \
+    curl -s -k "${DVWA_URL}/login.php" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
@@ -760,7 +760,7 @@ BOT_Deception() {
     echo -en "${CYAN_BOLD}There is a hidden link. Let's simulate a malicious bots like web crawler and click on the link. Press enter to continue... "
     read response
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED}"
-    curl "${DVWA_URL}/fake_url.php" \
+    curl -s -k "${DVWA_URL}/fake_url.php" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
