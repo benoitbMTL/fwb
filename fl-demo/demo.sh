@@ -457,9 +457,9 @@ Credential_Stuffing() {
     echo ""
     echo -e "Credential Stuffing Detection (pklangdon4@msn.com)"
     echo ""
-    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pklangdon4@msn.com${RESTORE} password=${YELLOW_BOLD}ppl11266${RESTORE}"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pklangdon4@msn.com${RESTORE} password=${YELLOW_BOLD}ppl11266${RED_BOLD}"
     echo ""
-    curl "${DVWA_URL}/login.php" \
+    curl -s "${DVWA_URL}/login.php" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
         -H "content-type: application/x-www-form-urlencoded" \
