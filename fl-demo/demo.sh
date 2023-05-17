@@ -453,6 +453,30 @@ Cookie_Security() {
     return 1
 }
 
+Credential_Stuffing() {
+    echo ""
+    echo -e "Credential Stuffing Detection (pklangdon4@msn.com)"
+    echo ""
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php${RESTORE} username=${YELLOW_BOLD}pklangdon4@msn.com${RESTORE} password=${YELLOW_BOLD}ppl11266${RESTORE}"
+    echo ""
+    curl "${DVWA_URL}/login.php" \
+        -H "authority: ${DVWA_HOST}" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/" \
+        -H "user-agent: FortiWeb Demo Script" \
+        --insecure \
+        --data-raw "username=pklangdon4@msn.com&password=ppl11266&Login=Login" \
+        -c cookie.txt | grep -oP '(?<=<h3>).*?(?=</h3>)'
+
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    read response
+    return 1
+}
+
+
 Brute_Force_Attack() {
     echo -e "\nBrute Force Attack"
     echo ""
@@ -761,19 +785,20 @@ menuItems=(
     "B. Command Injection (Pablo)"
     "C. SQL Injection (Gordon)"
     "D. Cookie Security (Smith)"
-    "E. Brute Force Attack"
-    "F. ML - 3000 POST requests - normal field input (learn)"
-    "G. ML - 3000 POST requests - random field input (relearn)"
-    "H. ML - Cross-site scripting"
-    "I. ML - SQL Injection"
-    "J. ML - Zero-Day Command Injection"
-    "K. ML - Zero-Day SQL Injection"
-    "L. ML - Custom Request"
-    "M. REST API - Create POLICY1 & POLICY2"
-    "N. REST API - Delete POLICY1 & POLICY2"
-    "O. REST API - Reset Machine Learning"
-    "P. Bot - Web Scraper"
-    "Q. Bot - Web Crawler"
+    "E. Credential Stuffing Defense (pklangdon4@msn.com)"
+    "F. Brute Force Attack"
+    "G. ML - 3000 POST requests - normal field input (learn)"
+    "H. ML - 3000 POST requests - random field input (relearn)"
+    "I. ML - Cross-site scripting"
+    "J. ML - SQL Injection"
+    "K. ML - Zero-Day Command Injection"
+    "L. ML - Zero-Day SQL Injection"
+    "M. ML - Custom Request"
+    "N. REST API - Create POLICY1 & POLICY2"
+    "O. REST API - Delete POLICY1 & POLICY2"
+    "P. REST API - Reset Machine Learning"
+    "Q. Bot - Web Scraper"
+    "R. Bot - Web Crawler"
 )
 
 ## Menu Item Actions
@@ -781,6 +806,7 @@ menuActions=(
     Vulnerability_Scanner
     Command_Injection
     SQL_Injection
+    Credential_Stuffing
     Cookie_Security
     Brute_Force_Attack
     ML_Learn_Parameters
