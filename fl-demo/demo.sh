@@ -757,7 +757,9 @@ BOT_Deception() {
         -H "referer: ${DVWA_URL}" \
         -H "user-agent: FortiWeb Demo Script" | grep 'display:none'
     echo ""
-    echo -en "${RESTORE}We can see a hidden link on the login page (display:none). Let's simulate a malicious bot and follow that link. Press enter to continue... "
+    echo -en "${RESTORE}We can see a hidden link on the login page (display:none)."
+    echo ""
+    echo "Let's simulate a malicious bot and follow that link. Press enter to continue... "
     read response
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED}"
