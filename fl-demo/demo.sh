@@ -759,7 +759,7 @@ BOT_Deception() {
     echo ""
     echo -e "${RESTORE}We can see a hidden link on the login page (display:none)."
     echo ""
-    echo "Let's simulate a malicious bot and follow that link. Press enter to continue... "
+    echo -en "Let's simulate a malicious bot and follow that link. Press enter to continue... "
     read response
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED}"
