@@ -476,7 +476,6 @@ Credential_Stuffing() {
     return 1
 }
 
-
 Brute_Force_Attack() {
     echo -e "\nBrute Force Attack"
     echo ""
@@ -745,8 +744,37 @@ API_Reset_ML() {
 ## Bot Actions
 ############################################################################
 
+BOT_Deception() {
+    echo "Bot Deception (Hidden Link)"
+    echo ""
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php\n${YELLOW_BOLD}"
+    echo ""
+    curl "${DVWA_URL}/login.php" \
+        -H "authority: ${DVWA_HOST}" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}" \
+        -H "user-agent: FortiWeb Demo Script" | grep 'display:none'
+    echo ""
+    echo -en "${CYAN_BOLD}There is a hidden link. Let's simulate a malicious bots like web crawler and click on the link. Press enter to continue... "
+    read response
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED}"
+    curl "${DVWA_URL}/fake_url.php" \
+        -H "authority: ${DVWA_HOST}" \
+        -H "cache-control: max-age=0" \
+        -H "content-type: application/x-www-form-urlencoded" \
+        -H "origin: ${DVWA_URL}" \
+        -H "referer: ${DVWA_URL}/index.php" \
+        -H "user-agent: FortiWeb Demo Script" | grep -oP '(?<=<h3>).*?(?=</h3>)'
+    echo ""
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
+    read response
+    return 1
+}
+
 BOT_Web_Crawler() {
-    echo "Web Crawler Started"
+    echo "Web Crawler Started (WotBox)"
     httrack ${DVWA_HOST} -O ./dvwa_dump --testlinks -%v -F "wotbox"
     echo ""
     echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
@@ -797,8 +825,9 @@ menuItems=(
     "N. REST API - Create POLICY1 & POLICY2"
     "O. REST API - Delete POLICY1 & POLICY2"
     "P. REST API - Reset Machine Learning"
-    "Q. Bot - Web Scraper"
+    "Q. Bot - Bot Deception"
     "R. Bot - Web Crawler"
+    "S. Bot - Web Scraper"
 )
 
 ## Menu Item Actions
@@ -819,8 +848,9 @@ menuActions=(
     API_Create_Policy
     API_Delete_Policy
     API_Reset_ML
-    BOT_Web_Scraper
+    BOT_Deception
     BOT_Web_Crawler
+    BOT_Web_Scraper    
 )
 
 ################################
