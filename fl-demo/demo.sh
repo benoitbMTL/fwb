@@ -806,8 +806,8 @@ menuActions=(
     Vulnerability_Scanner
     Command_Injection
     SQL_Injection
-    Credential_Stuffing
     Cookie_Security
+    Credential_Stuffing
     Brute_Force_Attack
     ML_Learn_Parameters
     ML_Relearn_Parameters
@@ -826,7 +826,7 @@ menuActions=(
 ################################
 ## Menu Display
 ################################
-menuTitle=" FortiWeb Demo - Last Update May 14th, 2023"
+menuTitle=" FortiWeb Demo - Last Update May 17th, 2023"
 menuFooter="Navigate via Up/Down/Letter, Enter to Select"
 menuWidth=90
 menuLeft=15
