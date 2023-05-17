@@ -333,7 +333,7 @@ Vulnerability_Scanner() {
     echo ""
     echo -e "${BOLD}Scan Report available at ${KALI_URL}"
     echo ""
-    echo -en "${YELLOW_BOLD}Check the Attack Logs. ${WHITE_BOLD}Press enter to continue... ${RESTORE}"
+    echo -en "${YELLOW_BOLD}Check the Attack Logs${RESTORE}. Press enter to continue... "
     read response
     return 1
 }
@@ -477,7 +477,10 @@ Credential_Stuffing() {
 }
 
 Brute_Force_Attack() {
-    echo -e "\nBrute Force Attack"
+    echo ""
+    echo "Brute Force Attack"
+    echo ""
+    echo -e "For demo purposes, the HTTP access limit is set to ${WHITE_BOLD}5 connections per second${RESTORE}."
     echo ""
     for i in {1..25}
     do
