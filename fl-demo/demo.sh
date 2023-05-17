@@ -437,7 +437,7 @@ Cookie_Security() {
     echo -en "Now that we've changed the security level, let's connect again to the server. Press enter to continue... "
     read response
     echo ""
-    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED}"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/security.php\n${RED_BOLD}"
     curl "${DVWA_URL}/security.php" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
@@ -594,17 +594,17 @@ ML_Custom_Request() {
 
     if [ -z $COUNT ] || [ -z $URL ] || [ -z $METHODIN ] || [ -z PARAMETER ] || [ -z $PARAMETERTYPE ]
     then
-        echo -en "${RED}ERROR: Empty input detected.\n${RESTORE}Press enter to continue... "
+        echo -en "${RED_BOLD}ERROR: Empty input detected.\n${RESTORE}Press enter to continue... "
         read response
         return 1
     elif [ $METHOD != "GET" ] && [ $METHOD != "POST" ] && [ $METHOD != "PUT" ] && [ $METHOD != "DELETE" ] && [ $METHOD != "OPTIONS" ] && [ $METHOD != "HEAD" ]
     then
-        echo -en "${RED}ERROR: Invalid method given.\n${RESTORE}Press enter to continue... "
+        echo -en "${RED_BOLD}ERROR: Invalid method given.\n${RESTORE}Press enter to continue... "
         read response
         return 1
     elif [[ $URL != *http* ]]
     then
-        echo -en "${RED}ERROR: Invalid URL given. Use http://<fqdn>/<path>/<object>.\n${RESTORE}Press enter to continue... "
+        echo -en "${RED_BOLD}ERROR: Invalid URL given. Use http://<fqdn>/<path>/<object>.\n${RESTORE}Press enter to continue... "
         read response
         return 1
     fi
@@ -659,7 +659,7 @@ ML_Custom_Request() {
         then
         PARAMETERVALUE=`shuf -i 1000-10000000 -n 1`
         else
-        echo -en "${RED}ERROR: No valid data type.\n${RESTORE}Press enter to continue... "
+        echo -en "${RED_BOLD}ERROR: No valid data type.\n${RESTORE}Press enter to continue... "
         read response
         return 1
         fi
@@ -762,7 +762,7 @@ BOT_Deception() {
     echo -en "Let's simulate a malicious bot and follow that link. Press enter to continue... "
     read response
     echo ""
-    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED}"
+    echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED_BOLD}"
     curl -s -k "${DVWA_URL}/fake_url.php" \
         -H "authority: ${DVWA_HOST}" \
         -H "cache-control: max-age=0" \
