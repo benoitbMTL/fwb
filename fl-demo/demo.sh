@@ -830,7 +830,16 @@ menuTitle=" FortiWeb Demo - Last Update May 17th, 2023"
 menuFooter="Navigate via Up/Down/Letter, Enter to Select"
 menuWidth=90
 menuLeft=15
-menuHighlight=$DRAW_COL_YELLOW
+menuHighlight=$DRAW_COL_DEF
+
+# DRAW_COL_DEF
+# DRAW_COL_BLACK
+# DRAW_COL_WHITE
+# DRAW_COL_RED
+# DRAW_COL_GREEN
+# DRAW_COL_YELLOW
+# DRAW_COL_BLUE
+# DRAW_COL_GRAY
 
 
 ################################
