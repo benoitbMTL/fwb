@@ -745,7 +745,8 @@ API_Reset_ML() {
 ############################################################################
 
 BOT_Deception() {
-    echo "Bot Deception (Hidden Link)"
+    echo ""
+    echo "Bot Deception"
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/login.php\n${YELLOW_BOLD}"
     curl -s -k "${DVWA_URL}/login.php" \
@@ -756,7 +757,7 @@ BOT_Deception() {
         -H "referer: ${DVWA_URL}" \
         -H "user-agent: FortiWeb Demo Script" | grep 'display:none'
     echo ""
-    echo -en "${CYAN_BOLD}We can see a hidden link on the login page (display:none). Let's simulate a malicious bot and follow the link. Press enter to continue... "
+    echo -en "${RESTORE}We can see a hidden link on the login page (display:none). Let's simulate a malicious bot and follow that link. Press enter to continue... "
     read response
     echo ""
     echo -e "Connecting to ${CYAN_BOLD}${DVWA_URL}/fake_url.php\n${RED}"
