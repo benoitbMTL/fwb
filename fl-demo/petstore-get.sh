@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Sending GET API calls to http://petstore.corp.fabriclab.ca"
+echo ""
 
 for ((i=1; i<100; i++))
 do
@@ -19,9 +20,9 @@ do
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
-  echo -n "."
-  [[ $i == *"0" ]] && echo -n $i
+  echo -ne "requests sent: $i\r"
 done
 
+echo ""
 echo ""
 echo "FortiWeb API ML trained with GET method on http://petstore.corp.fabriclab.ca/"

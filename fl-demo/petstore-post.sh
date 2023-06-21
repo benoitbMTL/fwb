@@ -40,3 +40,5 @@ do
 done
 
 echo ""
+echo "FortiWeb API ML trained with POST method on http://petstore.corp.fabriclab.ca/"
+
