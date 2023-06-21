@@ -36,7 +36,7 @@ do
 
   ID=$((ID+1))
 
-  echo -ne "requests sent: $i\r"
+  echo -ne "Requests sent (POST): $i\r"
 done
 
 echo ""

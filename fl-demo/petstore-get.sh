@@ -20,7 +20,7 @@ do
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
-  echo -ne "requests sent: $i\r"
+  echo -ne "Requests sent (GET): $i\r"
 done
 
 echo ""
