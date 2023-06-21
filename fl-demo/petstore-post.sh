@@ -7,6 +7,7 @@ STATUS=(available pending sold available pending sold available pending sold ava
 ID=400
 
 echo "Sending POST API calls to http://petstore.corp.fabriclab.ca/ to populate pets entries with FortiPets"
+echo ""
 
 for ((i=0; i<20; i++))
 do
@@ -35,10 +36,10 @@ do
 
   ID=$((ID+1))
 
-  echo -n "."
-  [[ $i == *"0" ]] && echo -n $i
+  echo -ne "requests sent: $i\r"
 done
 
+echo ""
 echo ""
 echo "FortiWeb API ML trained with POST method on http://petstore.corp.fabriclab.ca/"
 
