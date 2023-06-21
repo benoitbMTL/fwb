@@ -3,7 +3,7 @@
 echo "Sending GET API calls to http://petstore.corp.fabriclab.ca"
 echo ""
 
-for ((i=0; i<100; i++))
+for ((i=0; i<101; i++))
 do
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
   'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=available' \

@@ -9,7 +9,7 @@ ID=400
 echo "Sending POST API calls to http://petstore.corp.fabriclab.ca/ to populate pets entries with FortiPets"
 echo ""
 
-for ((i=0; i<20; i++))
+for ((i=0; i<21; i++))
 do
   curl -A ML-Requester -s -o /dev/null -X 'POST' \
     'http://petstore.corp.fabriclab.ca/api/v3/pet' \
