@@ -1,7 +1,10 @@
 #!/bin/bash
 
 PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
+#PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
+
 ID=420
+
 NAMES=(FortiPuma FortiFish FortiSpider FortiTiger FortiLion FortiShark FortiSnake FortiMonkey FortiFox FortiRam FortiEagle FortiBee FortiCat FortiDog FortiAnt FortiWasp FortiPanter FortiGator FortiOwl FortiWildcats)
 PETS=(Puma Fish Spider Tiger Lion Shark Snake Monkey Fox Ram Eagle Bee Cat Dog Ant Wasp Panter Gator Owl Wildcats)
 STATUS=(available pending sold available pending sold available pending sold available pending sold available pending sold available pending sold available pending)
