@@ -14,7 +14,7 @@ for ((i=0; i<21; i++))
 do
   curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'POST' \
     "${PETSTORE_URL}/pet" \
-    -H 'accept: application/json' \
+    -H 'accept: application/xml' \
     -H 'Content-Type: application/json' \
   -d "{\
     \"id\": $ID,\
