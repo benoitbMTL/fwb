@@ -1,22 +1,25 @@
 #!/bin/bash
 
-echo "Sending GET API calls to http://petstore.corp.fabriclab.ca"
+#PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
+PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
+
+echo "Sending GET API calls to ${PETSTORE_URL}"
 echo ""
 
 for ((i=0; i<101; i++))
 do
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
-  'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=available' \
+  "${PETSTORE_URL}/pet/findByStatus?status=available" \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
-  'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=pending' \
+  "${PETSTORE_URL}/pet/findByStatus?status=pending" \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
   curl -A ML-Requester -s -o /dev/null -X 'GET' \
-  'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=sold' \
+  "${PETSTORE_URL}/pet/findByStatus?status=sold" \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
@@ -25,4 +28,4 @@ done
 
 echo ""
 echo ""
-echo "FortiWeb API ML trained with GET method on http://petstore.corp.fabriclab.ca/"
+echo "FortiWeb API ML trained with GET method on ${PETSTORE_URL}/"

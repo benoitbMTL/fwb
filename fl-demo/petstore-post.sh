@@ -1,18 +1,19 @@
 #!/bin/bash
 
+#PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
+PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
+ID=420
 NAMES=(FortiPuma FortiFish FortiSpider FortiTiger FortiLion FortiShark FortiSnake FortiMonkey FortiFox FortiRam FortiEagle FortiBee FortiCat FortiDog FortiAnt FortiWasp FortiPanter FortiGator FortiOwl FortiWildcats)
 PETS=(Puma Fish Spider Tiger Lion Shark Snake Monkey Fox Ram Eagle Bee Cat Dog Ant Wasp Panter Gator Owl Wildcats)
 STATUS=(available pending sold available pending sold available pending sold available pending sold available pending sold available pending sold available pending)
 
-ID=400
-
-echo "Sending POST API calls to http://petstore.corp.fabriclab.ca/ to populate pets entries with FortiPets"
+echo "Sending POST API calls to ${PETSTORE_URL} to populate pets entries with FortiPets"
 echo ""
 
 for ((i=0; i<21; i++))
 do
   curl -A ML-Requester -s -o /dev/null -X 'POST' \
-    'http://petstore.corp.fabriclab.ca/api/v3/pet' \
+    "${PETSTORE_URL}/pet" \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
   -d "{\
@@ -41,5 +42,4 @@ done
 
 echo ""
 echo ""
-echo "FortiWeb API ML trained with POST method on http://petstore.corp.fabriclab.ca/"
-
+echo "FortiWeb API ML trained with POST method on ${PETSTORE_URL}/"

@@ -1,45 +1,45 @@
 #!/bin/bash
 
+#PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
+PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
+
+
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
 CYAN='\033[00;36m' # Cyan color code
 NC='\033[0m' # No color
 
 options=(
-    "findByStatus?status=available                    - Normal Request"
-    "findByStatus?status=sold                         - Normal Request"
-    "findByStatus?status=pending                      - Normal Request"
-    "findByStatus?                                    - Schema violation"
-    "findByStatus?status=ABCDEFGHIJKL                 - URL too long"
-    "findByStatus?status=A                            - URL too short"
-    "findByStatus?status=;cmd.exe                     - Command Injection in URL"
-    "{\"status\": \"ls;;cmd.exe\"}                        - Command Injection in JSON"
-    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}                 - Zero-Day in JSON"
-    "{\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
-    "findByStatus?status=sold&status=pending         - Additional URL parameter"
-    "accept: application/yaml                        - Non JSON request"
-    "{\"status\": \"ls;;cmd.exe\"}                       - Command Injection in JSON"
-    "{\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
-    "{\"status\": \"xx& var1=l var2=s;$var1$var2\"}                - Zero-Day in JSON"
+    "GET findByStatus?status=available                    - Normal Request"
+    "GET findByStatus?status=sold                         - Normal Request"
+    "GET findByStatus?status=pending                      - Normal Request"
+    "GET findByStatus?                                    - Schema violation"
+    "GET findByStatus?status=ABCDEFGHIJKL                 - URL too long"
+    "GET findByStatus?status=A                            - URL too short"
+    "GET findByStatus?status=;cmd.exe                     - Command Injection in URL"
+    "POST {\"status\": \"ls;;cmd.exe\"}                        - Command Injection in JSON"
+    "POST {\"status\": \"xx& var1=l var2=s;$var1$var2\"}                 - Zero-Day in JSON"
+    "POST {\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
+    "GET findByStatus?status=sold&status=pending         - Additional URL parameter"
+    "GET accept: application/yaml                        - Non JSON request"
 )
 
+
 curl_commands=(
-    "curl -s -X GET 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=available' -H 'accept: application/json' -H 'content-type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=sold' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=pending' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=;cmd.exe' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'POST' 'http://petstore.corp.fabriclab.ca/api/v3/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"ls;;cmd.exe\"}'"
-    "curl -s -X 'POST' 'http://petstore.corp.fabriclab.ca/api/v3/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}'"
-    "curl -s -X 'POST' 'http://petstore.corp.fabriclab.ca/api/v3/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=sold&status=pending' -H 'accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -X 'GET' 'http://petstore.corp.fabriclab.ca/api/v3/pet/findByStatus?status=sold' -H 'accept: application/yaml' -H 'Content-Type: application/json'"
-    "curl -s -X 'POST' 'http://petstore.corp.fabriclab.ca/api/v3/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"ls;;cmd.exe\"}'"
-    "curl -s -X 'POST' 'http://petstore.corp.fabriclab.ca/api/v3/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}'"
-    "curl -s -X 'POST' 'http://petstore.corp.fabriclab.ca/api/v3/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}'"
+    "curl -s -X GET '${PETSTORE_URL}/pet/findByStatus?status=available' -H 'accept: application/json' -H 'content-type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=pending' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=;cmd.exe' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"ls;;cmd.exe\"}'"
+    "curl -s -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}'"
+    "curl -s -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold&status=pending' -H 'accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'accept: application/yaml' -H 'Content-Type: application/json'"
 )
+
 
 select_option() {
     clear
