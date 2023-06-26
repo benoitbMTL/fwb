@@ -11,10 +11,10 @@ echo ""
 
 for ((i=1; i<20; i++))
 do
-  curl_cmd="curl -k -A ML-API-Demo-Tool -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/xml' -H 'Content-Type: application/json' -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${PETS[$i]}\"}, \"name\": \"${NAMES[$i]}\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [{\"id\": $ID, \"name\": \"${NAMES[$i]}\"}], \"status\": \"${STATUS[$i]}\"}'"
+  curl_cmd="curl -k -A ML-API-Demo-Tool -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/xml' -H 'Content-Type: application/json' -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${PETS[$i]}\"}, \"name\": \"${NAMES[$i]}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $ID, \"name\": \"${NAMES[$i]}\"}], \"status\": \"${STATUS[$i]}\"}'"
 
   echo "${i}: ${curl_cmd}"
-  echo ""
+  echo -n "Result: "
   eval "${curl_cmd}"
   echo ""
   echo ""
