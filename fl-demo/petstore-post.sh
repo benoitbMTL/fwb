@@ -20,21 +20,22 @@ echo ""
 
 for ((i=1; i<21; i++))
 do
-  curl_cmd="curl -k -A ML-API-Demo-Tool -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${PETS[$i]}\"}, \"name\": \"${NAMES[$i]}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $ID, \"name\": \"${NAMES[$i]}\"}], \"status\": \"${STATUS[$i]}\"}'"
+  curl_common="-k -A ML-API-Demo-Tool -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${PETS[$i]}\"}, \"name\": \"${NAMES[$i]}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $ID, \"name\": \"${NAMES[$i]}\"}], \"status\": \"${STATUS[$i]}\"}'"
 
   if $verbose; then
+    curl_cmd="curl ${curl_common}"
     echo "${i}: ${curl_cmd}"
     echo -ne "\033[32mResult:\033[0m "
     eval "${curl_cmd}"
     echo ""
     echo ""
   else
+    curl_cmd="curl -s -o /dev/null ${curl_common}"
     eval "${curl_cmd}"
+    echo -ne "Requests sent (POST): $((i))\r"
   fi
 
   ID=$((ID+1))
-
-  echo -ne "Requests sent (POST): $((i))\r"
 done
 
 echo ""
