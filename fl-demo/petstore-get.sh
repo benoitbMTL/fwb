@@ -23,6 +23,11 @@ do
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
+  curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'GET' \
+  "${PETSTORE_URL}/pet/${i}" \
+  -H 'accept: application/json' \
+  -H 'content-type: application/json'
+
   echo -ne "Requests sent (GET): $i\r"
 done
 
