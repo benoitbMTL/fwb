@@ -33,4 +33,4 @@ done
 
 echo ""
 echo ""
-echo "FortiWeb API ML trained with GET method on ${PETSTORE_URL}/"
+echo "FortiWeb API ML trained with GET method on ${PETSTORE_URL}/pet/"
