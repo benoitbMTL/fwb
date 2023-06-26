@@ -8,17 +8,17 @@ echo ""
 
 for ((i=0; i<101; i++))
 do
-  curl -A ML-Requester -s -o /dev/null -X 'GET' \
+  curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'GET' \
   "${PETSTORE_URL}/pet/findByStatus?status=available" \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
-  curl -A ML-Requester -s -o /dev/null -X 'GET' \
+  curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'GET' \
   "${PETSTORE_URL}/pet/findByStatus?status=pending" \
   -H 'accept: application/json' \
   -H 'content-type: application/json'
 
-  curl -A ML-Requester -s -o /dev/null -X 'GET' \
+  curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'GET' \
   "${PETSTORE_URL}/pet/findByStatus?status=sold" \
   -H 'accept: application/json' \
   -H 'content-type: application/json'

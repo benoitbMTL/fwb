@@ -12,7 +12,7 @@ echo ""
 
 for ((i=0; i<21; i++))
 do
-  curl -A ML-Requester -s -o /dev/null -X 'POST' \
+  curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'POST' \
     "${PETSTORE_URL}/pet" \
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
