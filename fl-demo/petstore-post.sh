@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 ID=420
 NAMES=(FortiPuma FortiFish FortiSpider FortiTiger FortiLion FortiShark FortiSnake FortiMonkey FortiFox FortiRam FortiEagle FortiBee FortiCat FortiDog FortiAnt FortiWasp FortiPanter FortiGator FortiOwl FortiWildcats)
@@ -10,34 +9,20 @@ STATUS=(available pending sold available pending sold available pending sold ava
 echo "Sending POST API calls to ${PETSTORE_URL} to populate pets entries with FortiPets"
 echo ""
 
-for ((i=0; i<21; i++))
+for ((i=1; i<20; i++))
 do
-  curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'POST' \
-    "${PETSTORE_URL}/pet" \
+  curl_cmd="curl -k -A ML-API-Demo-Tool -s -o /dev/null -X 'POST' \
+    '${PETSTORE_URL}/pet' \
     -H 'accept: application/xml' \
     -H 'Content-Type: application/json' \
-  -d "{\
-    \"id\": $ID,\
-    \"category\": {\
-      \"id\": $ID,\
-      \"name\": \"${PETS[$i]}\"\
-    },\
-    \"name\": \"${NAMES[$i]}\",\
-    \"photoUrls\": [\
-      \"Willupdatelater\"\
-    ],\
-    \"tags\": [\
-      {\
-        \"id\": $ID,\
-        \"name\": \"${NAMES[$i]}\"\
-      }\
-    ],\
-    \"status\": \"${STATUS[$i]}\"\
-    }"
+    -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${PETS[$i]}\"}, \"name\": \"${NAMES[$i]}\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [{\"id\": $ID, \"name\": \"${NAMES[$i]}\"}], \"status\": \"${STATUS[$i]}\"}'"
 
+  echo "${i}: ${curl_cmd}"
+  eval "${curl_cmd}"
+  
   ID=$((ID+1))
 
-  echo -ne "Requests sent (POST): $i\r"
+  echo -ne "Requests sent (POST): $((i))\r"
 done
 
 echo ""
