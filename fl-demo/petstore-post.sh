@@ -30,7 +30,7 @@ do
   RANDOM_STATUS=$(generate_random_value "available" "pending" "sold")
   RANDOM_IP=$(generate_random_value "192.168.1.100" "10.0.0.1" "172.16.0.1" "192.0.2.1" "198.51.100.1" "203.0.113.1" "192.168.0.1" "10.10.10.1" "172.17.0.1" "192.168.10.1" "10.20.30.1" "172.18.0.1" "192.168.20.1" "10.30.40.1" "172.19.0.1" "192.168.30.1" "10.40.50.1" "172.20.0.1" "192.168.40.1" "10.50.60.1")
 
-  curl_common="-k -A ML-API-Demo-Tool -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-FORWARDED-FOR: ${RANDOM_IP}' -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
+  curl_common="-k -A ML-API-Demo-Tool -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $ID, \"category\": {\"id\": $ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
 
   if $verbose; then
     curl_cmd="curl ${curl_common}"
