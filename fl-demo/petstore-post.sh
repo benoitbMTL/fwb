@@ -16,6 +16,7 @@ do
   echo "${i}: ${curl_cmd}"
   eval "${curl_cmd}"
   echo ""
+  echo ""
   
   ID=$((ID+1))
 
