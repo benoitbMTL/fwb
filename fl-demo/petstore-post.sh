@@ -4,7 +4,7 @@ PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 #PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 USER_AGENT="ML-API-Demo-Tool"
 
-REQUESTS=500
+REQUESTS=5
 
 verbose=false
 
@@ -60,6 +60,7 @@ do
     echo "${i}: ${curl_cmd}"
     echo -ne "\033[32mDELETE Result:\033[0m "
     eval "${curl_cmd}"
+    echo ""
     echo ""
     echo ""
   else
