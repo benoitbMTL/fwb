@@ -55,6 +55,7 @@ do
     echo -ne "\033[32mPUT Result:\033[0m "
     eval "${curl_cmd}"
     echo ""
+    echo ""
     curl_cmd="curl ${curl_delete}"
     echo "${i}: ${curl_cmd}"
     echo -ne "\033[32mDELETE Result:\033[0m "
@@ -74,5 +75,4 @@ do
   fi
 done
 
-echo ""
-echo -e "\033[32mDone!\033[0m"
+echo -e "\033[1;32mDone!\033[0m"
