@@ -38,7 +38,7 @@ do
   if $verbose; then
     curl_cmd="curl ${curl_post}"
     echo "${i}: ${curl_cmd}"
-    echo -ne "\033[32mResult:\033[0m "
+    echo -ne "\033[32mPOST Result:\033[0m "
     eval "${curl_cmd}"
     echo ""
     echo ""
@@ -53,7 +53,7 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_get}"
     eval "${curl_cmd}"
-    echo -ne "Requests sent (POST & GET): $((i))\r"
+    echo -ne "Number of POST: $i | Number of GET: $i\r"
   fi
 done
 
