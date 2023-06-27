@@ -49,11 +49,11 @@ do
     echo -ne "\033[32mNumber of entries:\033[0m "
     eval "${curl_cmd}"
     echo ""
-    echo ""
     curl_cmd="curl ${curl_put}"
     echo "${i}: ${curl_cmd}"
     echo -ne "\033[32mPOST Result:\033[0m "
     eval "${curl_cmd}"
+    echo ""
     echo ""
     echo ""
   else
@@ -68,5 +68,4 @@ do
 done
 
 echo ""
-echo ""
-echo "FortiWeb API ML trained with POST/GET/PUT methods on ${PETSTORE_URL}/"
+echo "\033[32mDone!\033[0m"
