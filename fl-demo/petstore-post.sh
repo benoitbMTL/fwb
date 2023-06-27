@@ -20,7 +20,7 @@ generate_random_value() {
   echo "${array[random_index]}"
 }
 
-echo "Sending ${REQUESTS} POST/GET/PUT API calls to ${PETSTORE_URL} to add & get pets entries"
+echo "Sending ${REQUESTS} POST/GET/PUT/DELETE API calls to ${PETSTORE_URL}"
 echo ""
 
 for ((i=1; i<=$REQUESTS; i++))
