@@ -55,7 +55,6 @@ do
     eval "${curl_cmd}"
     echo ""
     echo ""
-    echo ""
   else
     curl_cmd="curl -s -o /dev/null ${curl_post}"
     eval "${curl_cmd}"
@@ -63,7 +62,7 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_put}"
     eval "${curl_cmd}"
-    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i\r"
+    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i | Random IP: $RANDOM_IP | Random Id: $RANDOM_ID\r"
   fi
 done
 
