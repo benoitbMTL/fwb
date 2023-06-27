@@ -71,8 +71,9 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_delete}"
     eval "${curl_cmd}"
-    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i | Number of DELETE: $i | Random Id: $RANDOM_ID | Random IP: $RANDOM_IP\r"
+    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i | Number of DELETE: $i | Random Id: $RANDOM_ID | Random IP: $RANDOM_IP      \r"
   fi
 done
 
+echo ""
 echo -e "\033[1;32mDone!\033[0m"
