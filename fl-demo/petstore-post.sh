@@ -32,8 +32,8 @@ do
   RANDOM_IP=$(shuf -i 0-255 -n 4 | paste -sd '.')
   RANDOM_ID=$(shuf -i 1-999 -n 1)
   
-  curl_post="--insecure --user-agent '${USER_AGENT}' --request 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/xml' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
-  curl_get="--insecure --silent --user-agent '${USER_AGENT}' --request 'GET' '${PETSTORE_URL}/pet/findByStatus?status=${RANDOM_STATUS}' -H 'accept: application/xml' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' | jq length"
+  curl_post="--insecure --user-agent '${USER_AGENT}' --request 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
+  curl_get="--insecure --silent --user-agent '${USER_AGENT}' --request 'GET' '${PETSTORE_URL}/pet/findByStatus?status=${RANDOM_STATUS}' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' | jq length"
 
   if $verbose; then
     curl_cmd="curl ${curl_post}"
