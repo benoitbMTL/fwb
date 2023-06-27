@@ -4,7 +4,7 @@ PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 #PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 USER_AGENT="ML-API-Demo-Tool"
 
-REQUESTS=5
+REQUESTS=500
 
 verbose=false
 
