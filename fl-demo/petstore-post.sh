@@ -36,6 +36,7 @@ do
   curl_post="--insecure --user-agent '${USER_AGENT}' --request 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"http://surl.li/imgkr\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
   curl_get="--insecure --silent --user-agent '${USER_AGENT}' --request 'GET' '${PETSTORE_URL}/pet/findByStatus?status=${RANDOM_STATUS}' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' | jq length"
   curl_put="--insecure --user-agent '${USER_AGENT}' --request 'PUT' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"https://tinyurl.com/mtn5wrwu\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS_NEW}\"}'"
+  curl_delete="--insecure --silent --user-agent '${USER_AGENT}' --request 'DELETE' '${PETSTORE_URL}/pet/${RANDOM_ID}' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}'"
 
   if $verbose; then
     curl_cmd="curl ${curl_post}"
@@ -51,7 +52,12 @@ do
     echo ""
     curl_cmd="curl ${curl_put}"
     echo "${i}: ${curl_cmd}"
-    echo -ne "\033[32mPOST Result:\033[0m "
+    echo -ne "\033[32mPUT Result:\033[0m "
+    eval "${curl_cmd}"
+    echo ""
+    curl_cmd="curl ${curl_delete}"
+    echo "${i}: ${curl_cmd}"
+    echo -ne "\033[32mDELETE Result:\033[0m "
     eval "${curl_cmd}"
     echo ""
     echo ""
@@ -62,9 +68,11 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_put}"
     eval "${curl_cmd}"
-    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i | Random IP: $RANDOM_IP | Random Id: $RANDOM_ID\r"
+    curl_cmd="curl -s -o /dev/null ${curl_delete}"
+    eval "${curl_cmd}"
+    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i | Number of DELETE: $i | Random Id: $RANDOM_ID | Random IP: $RANDOM_IP\r"
   fi
 done
 
 echo ""
-echo "\033[32mDone!\033[0m"
+echo -e "\033[32mDone!\033[0m"
