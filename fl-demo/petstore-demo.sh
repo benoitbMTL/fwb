@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
-PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
+PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
+#PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 
 
 RED='\033[0;31m' # Red color code
