@@ -9,11 +9,13 @@ echo ""
 echo "Getting ML Domain Info:"
 echo ""
 
-# Retrieve ML domain information
-result=$(curl --silent --insecure --location -g --request GET "https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.getdomaininfo?policy_name=${POLICY}" \
---header "Authorization: ${TOKEN}" \
---header 'accept: application/json' | jq)
+# Command for getting ML domain information
+get_domain_info_cmd="curl --silent --insecure --location -g --request GET \"https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.getdomaininfo?policy_name=${POLICY}\" --header \"Authorization: ${TOKEN}\" --header 'accept: application/json'"
+echo "$get_domain_info_cmd"
+echo ""
 
+# Execute the command and store the result
+result=$(eval $get_domain_info_cmd | jq)
 echo "$result"
 echo ""
 
@@ -27,11 +29,13 @@ echo ""
 echo "Resetting Machine Learning for Domain ${domain_name}"
 echo ""
 
-# Execute the command with the extracted db_id value
-curl --insecure --location -g --request POST "https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.refreshdomain" \
---header "Authorization: ${TOKEN}" \
---header 'accept: application/json' \
---data-raw '{"domain_id": ${db_id}, "policy_name": "${POLICY}"}'
+# Command for resetting ML
+reset_ml_cmd="curl --insecure --location -g --request POST \"https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.refreshdomain\" --header \"Authorization: ${TOKEN}\" --header 'accept: application/json' --data-raw \"{\\\"domain_id\\\": ${db_id}, \\\"policy_name\\\": \\\"${POLICY}\\\"}\""
+echo "$reset_ml_cmd"
+echo ""
+
+# Execute the command and output the result
+eval $reset_ml_cmd
 
 echo ""
 echo "Machine Learning for domain ${domain_name} has been reset. Press enter to continue..."
