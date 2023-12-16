@@ -1,4 +1,3 @@
-# bbuonassera May 14, 2023
 # menu from github.com/barbw1re/bash-menu
 # bot from github.com/FortinetSecDevOps/FortiWeb-Advanced-Threat-Lab
 #!/bin/bash
@@ -12,7 +11,7 @@ SHOP_URL="https://shop.corp.fabriclab.ca"
 FWB_URL="https://fwb.corp.fabriclab.ca"
 SPEEDTEST_URL="http://speedtest.corp.fabriclab.ca"
 KALI_URL="https://flbr1kali01.fortiweb.fabriclab.ca"
-TOKEN="eyJ1c2VybmFtZSI6InVzZXJhcGkiLCJwYXNzd29yZCI6ImZhY2VMT0NLeWFybjY3ISJ9Cg=="
+TOKEN=$(echo '{"username":"userapi","password":"userAPI123!"}' | base64)
 FWB_MGT_IP="10.163.7.21"
 POLICY="main-policy"
 
