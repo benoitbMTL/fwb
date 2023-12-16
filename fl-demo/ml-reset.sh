@@ -5,9 +5,6 @@ TOKEN=$(echo '{"username":"userapi","password":"userAPI123!"}' | base64)
 FWB_MGT_IP="10.163.7.21"
 POLICY="main-policy"
 
-# Pause and prompt for user to continue
-read -p "Press enter to continue..."
-
 echo ""
 echo "Getting ML Domain Info:"
 echo ""
@@ -20,18 +17,12 @@ result=$(curl --silent --insecure --location -g --request GET "https://${FWB_MGT
 echo "$result"
 echo ""
 
-# Pause and prompt for user to continue
-read -p "Press enter to continue..."
-
 # Extract db_id and domain_name
 db_id=$(echo "$result" | jq '.results[0].db_id')
 domain_name=$(echo "$result" | jq '.results[0].domain_name')
 
 echo "Domain ${domain_name} has db_id ${db_id}"
 echo ""
-
-# Pause and prompt for user to continue
-read -p "Press enter to continue..."
 
 echo "Resetting Machine Learning for Domain ${domain_name}"
 echo ""
@@ -44,6 +35,3 @@ curl --insecure --location -g --request POST "https://${FWB_MGT_IP}/api/v2.0/mac
 
 echo ""
 echo "Machine Learning for domain ${domain_name} has been reset. Press enter to continue..."
-read response
-
-return 1
