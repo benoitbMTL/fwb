@@ -3,6 +3,7 @@
 # Encode username and password in base64 and assign to TOKEN
 TOKEN=$(echo '{"username":"userapi","password":"userAPI123!"}' | base64)
 FWB_MGT_IP="10.163.7.21"
+POLICY="main-policy"
 
 # Pause and prompt for user to continue
 read -p "Press enter to continue..."
