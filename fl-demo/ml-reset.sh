@@ -31,7 +31,7 @@ echo ""
 curl --insecure --location -g --request POST "https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.refreshdomain" \
 --header "Authorization: ${TOKEN}" \
 --header 'accept: application/json' \
---data-raw '{"domain_id": "'${db_id}'", "policy_name": "'${POLICY}'"}'
+--data-raw '{"domain_id": ${db_id}, "policy_name": "${POLICY}"}'
 
 echo ""
 echo "Machine Learning for domain ${domain_name} has been reset. Press enter to continue..."
