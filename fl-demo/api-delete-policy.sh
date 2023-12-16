@@ -1,5 +1,5 @@
 ### CONFIGURE TOKEN ###
-TOKEN=$(echo '{"username":"userapi","password":"userAPI123!","vdom":"root"}' | base64)
+TOKEN=$(echo '{"username":"userapi","password":"userAPI123!"}' | base64)
 echo $TOKEN
 
 ### CONFIGURE HOST - Primary FortiWeb IP ###
