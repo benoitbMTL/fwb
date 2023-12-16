@@ -2,7 +2,7 @@
 ### Last update 29 March 2023
 
 ### CONFIGURE TOKEN ###
-TOKEN="eyJ1c2VybmFtZSI6InVzZXJhcGkiLCJwYXNzd29yZCI6ImZhY2VMT0NLeWFybjY3ISJ9Cg=="
+TOKEN=$(echo '{"username":"userapi","password":"userAPI123!","vdom":"root"}' | base64)
 
 ### CONFIGURE HOST - Primary FortiWeb IP ###
 #HOST="192.168.4.2"
