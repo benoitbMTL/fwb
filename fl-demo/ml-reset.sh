@@ -30,7 +30,7 @@ echo "Resetting Machine Learning for Domain ${domain_name}"
 echo ""
 
 # Command for resetting ML
-reset_ml_cmd="curl --insecure --location -g --request POST \"https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.refreshdomain\" --header \"Authorization: ${TOKEN}\" --header \"accept: application/json\" --header \"Content-Type: application/json\" --data-raw '{\"db_id\": ${db_id}, \"policy_name\": \"${POLICY}\"}'"
+reset_ml_cmd="curl --insecure --location -g --request POST \"https://${FWB_MGT_IP}/api/v2.0/machine_learning/policy.refreshdomain\" --header \"Authorization: ${TOKEN}\" --header \"accept: application/json\" --header \"Content-Type: application/json\" --data-raw '{\"domain_id\": ${db_id}, \"policy_name\": \"${POLICY}\"}'"
 echo $reset_ml_cmd
 echo ""
 
