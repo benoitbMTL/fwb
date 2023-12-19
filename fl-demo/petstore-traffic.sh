@@ -28,14 +28,15 @@ do
   # Generate random values for NAMES, PETS, STATUS, and IPs
   RANDOM_NAME=$(generate_random_value "FortiPuma" "FortiFish" "FortiSpider" "FortiTiger" "FortiLion" "FortiShark" "FortiSnake" "FortiMonkey" "FortiFox" "FortiRam" "FortiEagle" "FortiBee" "FortiCat" "FortiDog" "FortiAnt" "FortiWasp" "FortiPanter" "FortiGator" "FortiOwl" "FortiWildcats")
   RANDOM_PET=$(generate_random_value "Puma" "Fish" "Spider" "Tiger" "Lion" "Shark" "Snake" "Monkey" "Fox" "Ram" "Eagle" "Bee" "Cat" "Dog" "Ant" "Wasp" "Panter" "Gator" "Owl" "Wildcats")
+  RANDOM_PHOTO=$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w $((RANDOM % 9 + 2)) | head -n 1).png
   RANDOM_STATUS=$(generate_random_value "available" "pending" "sold")
   RANDOM_STATUS_NEW=$(generate_random_value "available" "pending" "sold")
   RANDOM_IP=$(shuf -i 0-255 -n 4 | paste -sd '.')
   RANDOM_ID=$(shuf -i 1-999 -n 1)
   
-  curl_post="--insecure --user-agent '${USER_AGENT}' --request 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"photo.png\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
+  curl_post="--insecure --user-agent '${USER_AGENT}' --request 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"${RANDOM_PHOTO}\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
   curl_get="--insecure --silent --user-agent '${USER_AGENT}' --request 'GET' '${PETSTORE_URL}/pet/findByStatus?status=${RANDOM_STATUS}' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' | jq length"
-  curl_put="--insecure --user-agent '${USER_AGENT}' --request 'PUT' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"photo.png\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS_NEW}\"}'"
+  curl_put="--insecure --user-agent '${USER_AGENT}' --request 'PUT' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"${RANDOM_PHOTO}\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS_NEW}\"}'"
   curl_delete="--insecure --silent --user-agent '${USER_AGENT}' --request 'DELETE' '${PETSTORE_URL}/pet/${RANDOM_ID}' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}'"
 
   if $verbose; then
@@ -72,7 +73,7 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_delete}"
     eval "${curl_cmd}"
-    echo -ne "Number of POST: $i | Number of GET: $i | Number of PUT: $i | Number of DELETE: $i | Random Id: $RANDOM_ID | Random IP: $RANDOM_IP      \r"
+    echo -ne "POST: $i | GET: $i | PUT: $i | DELETE: $i | Random Id: $RANDOM_ID | Random IP: $RANDOM_IP        \r"
   fi
 done
 
