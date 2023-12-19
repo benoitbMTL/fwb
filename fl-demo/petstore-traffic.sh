@@ -73,7 +73,7 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_delete}"
     eval "${curl_cmd}"
-    echo -ne "Requests: $i | Photo: $RANDOM_PHOTO | Random ID: $RANDOM_ID | Random IP: $RANDOM_IP        \r"
+    echo -ne "Requests: $i | Random ID: $RANDOM_ID | Random IP: $RANDOM_IP        \r"
   fi
 done
 
