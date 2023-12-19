@@ -17,9 +17,11 @@ options=(
     "GET findByStatus?status=ABCDEFGHIJKL                 - URL too long"
     "GET findByStatus?status=A                            - URL too short"
     "GET findByStatus?status=;cmd.exe                     - Command Injection in URL"
+        "GET findByStatus?status=X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*                     - Malware in URL"
     "POST {\"status\": \"ls;;cmd.exe\"}                        - Command Injection in JSON"
     "POST {\"status\": \"xx& var1=l var2=s;$var1$var2\"}                 - Zero-Day in JSON"
     "POST {\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
+    "POST {\"status\": \"X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*\"}       - Malware in JSON"
     "GET findByStatus?status=sold&status=pending         - Additional URL parameter"
     "GET accept: application/yaml                        - Non JSON request"
 )
