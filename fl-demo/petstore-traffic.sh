@@ -73,7 +73,8 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_delete}"
     eval "${curl_cmd}"
-    printf "Requests: %03d\t| Random ID: $RANDOM_ID\t| Random IP: $RANDOM_IP\t\t\r" $i
+    RANDOM_ID=$(printf "%03d" $RANDOM_ID)
+    printf "Requests: %03d | Random ID: $RANDOM_ID | Random IP: $RANDOM_IP              \r" $i
   fi
 done
 
