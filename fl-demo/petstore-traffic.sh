@@ -4,7 +4,7 @@ PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 #PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 USER_AGENT="ML-API-Demo-Tool"
 
-REQUESTS=500
+REQUESTS=800
 
 verbose=false
 
@@ -73,9 +73,10 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_delete}"
     eval "${curl_cmd}"
-    echo -ne "POST: $i | GET: $i | PUT: $i | DELETE: $i | Random Id: $RANDOM_ID | Random IP: $RANDOM_IP        \r"
+    echo -ne "Requests: $i | Photo: $RANDOM_PHOTO | Random ID: $RANDOM_ID | Random IP: $RANDOM_IP        \r"
   fi
 done
 
+echo ""
 echo ""
 echo -e "\033[1;31mDone!\033[0m"
