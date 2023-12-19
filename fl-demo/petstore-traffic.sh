@@ -4,7 +4,7 @@ PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 #PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 USER_AGENT="ML-API-Demo-Tool"
 
-REQUESTS=800
+REQUESTS=1500
 
 verbose=false
 
@@ -32,7 +32,7 @@ do
   RANDOM_STATUS=$(generate_random_value "available" "pending" "sold")
   RANDOM_STATUS_NEW=$(generate_random_value "available" "pending" "sold")
   RANDOM_IP=$(shuf -i 1-254 -n 4 | paste -sd '.')
-  RANDOM_ID=$(shuf -i 1-999 -n 1)
+  RANDOM_ID=$(shuf -i 1000-1999 -n 1)
   
   curl_post="--insecure --user-agent '${USER_AGENT}' --request 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' -d '{\"id\": $RANDOM_ID, \"category\": {\"id\": $RANDOM_ID, \"name\": \"${RANDOM_PET}\"}, \"name\": \"${RANDOM_NAME}\", \"photoUrls\": [\"${RANDOM_PHOTO}\"], \"tags\": [{\"id\": $RANDOM_ID, \"name\": \"${RANDOM_NAME}\"}], \"status\": \"${RANDOM_STATUS}\"}'"
   curl_get="--insecure --silent --user-agent '${USER_AGENT}' --request 'GET' '${PETSTORE_URL}/pet/findByStatus?status=${RANDOM_STATUS}' -H 'accept: application/json' -H 'Content-Type: application/json' -H 'X-Forwarded-For: ${RANDOM_IP}' | jq length"
@@ -73,8 +73,7 @@ do
     eval "${curl_cmd}"
     curl_cmd="curl -s -o /dev/null ${curl_delete}"
     eval "${curl_cmd}"
-    RANDOM_ID=$(printf "%03d" $RANDOM_ID)
-    printf "Requests: %03d | Random ID: $RANDOM_ID | Random IP: $RANDOM_IP              \r" $i
+    printf "Requests: %03d | Random ID: $RANDOM_ID | Random IP: $RANDOM_IP\t\t\r" $i
   fi
 done
 
