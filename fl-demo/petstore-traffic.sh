@@ -28,7 +28,7 @@ do
   # Generate random values for NAMES, PETS, STATUS, and IPs
   RANDOM_NAME=$(generate_random_value "FortiPuma" "FortiFish" "FortiSpider" "FortiTiger" "FortiLion" "FortiShark" "FortiSnake" "FortiMonkey" "FortiFox" "FortiRam" "FortiEagle" "FortiBee" "FortiCat" "FortiDog" "FortiAnt" "FortiWasp" "FortiPanter" "FortiGator" "FortiOwl" "FortiWildcats")
   RANDOM_PET=$(generate_random_value "Puma" "Fish" "Spider" "Tiger" "Lion" "Shark" "Snake" "Monkey" "Fox" "Ram" "Eagle" "Bee" "Cat" "Dog" "Ant" "Wasp" "Panter" "Gator" "Owl" "Wildcats")
-  RANDOM_PHOTO=$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w $((RANDOM % 9 + 2)) | head -n 1).png
+  RANDOM_PHOTO=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9-_@{}[]()' | fold -w $((RANDOM % 9 + 2)) | head -n 1).png
   RANDOM_STATUS=$(generate_random_value "available" "pending" "sold")
   RANDOM_STATUS_NEW=$(generate_random_value "available" "pending" "sold")
   RANDOM_IP=$(shuf -i 0-255 -n 4 | paste -sd '.')
