@@ -10,19 +10,19 @@ CYAN='\033[00;36m' # Cyan color code
 NC='\033[0m' # No color
 
 options=(
-    "GET findByStatus?status=available                    - Normal Request"
-    "GET findByStatus?status=sold                         - Normal Request"
-    "GET findByStatus?status=pending                      - Normal Request"
-    "GET findByStatus?                                    - Schema violation"
-    "GET findByStatus?status=ABCDEFGHIJKL                 - URL too long"
-    "GET findByStatus?status=A                            - URL too short"
-    "GET findByStatus?status=;cmd.exe                     - Command Injection in URL"
+    "GET findByStatus?status=available                     - Normal Request"
+    "GET findByStatus?status=sold                          - Normal Request"
+    "GET findByStatus?status=pending                       - Normal Request"
+    "GET findByStatus?                                     - Schema violation"
+    "GET findByStatus?status=ABCDEFGHIJKL                  - URL too long"
+    "GET findByStatus?status=A                             - URL too short"
+    "GET findByStatus?status=;cmd.exe                      - Command Injection in URL"
     "POST {\"status\": \"ls;;cmd.exe\"}                        - Command Injection in JSON"
     "POST {\"status\": \"xx& var1=l var2=s;$var1$var2\"}                 - Zero-Day in JSON"
     "POST {\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
-    "POST {\"status\": \"*malware*\"}       - Malware in JSON"
-    "GET findByStatus?status=sold&status=pending         - Additional URL parameter"
-    "GET accept: application/yaml                        - Non JSON request"
+    "POST {\"status\": \"*malware*\"}                         - Malware in JSON"
+    "GET findByStatus?status=sold&status=pending          - Additional URL parameter"
+    "GET accept: application/yaml                         - Non JSON request"
 )
 
 
