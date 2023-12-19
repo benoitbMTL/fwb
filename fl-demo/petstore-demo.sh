@@ -30,6 +30,8 @@ echo EICAR_B64
 echo ""
 echo ""
 
+read -p "Press Enter to continue"
+
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
 CYAN='\033[00;36m' # Cyan color code
