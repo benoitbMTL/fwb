@@ -17,7 +17,6 @@ options=(
     "GET findByStatus?status=ABCDEFGHIJKL                 - URL too long"
     "GET findByStatus?status=A                            - URL too short"
     "GET findByStatus?status=;cmd.exe                     - Command Injection in URL"
-        "GET findByStatus?status=*malware*                     - Malware in URL"
     "POST {\"status\": \"ls;;cmd.exe\"}                        - Command Injection in JSON"
     "POST {\"status\": \"xx& var1=l var2=s;$var1$var2\"}                 - Zero-Day in JSON"
     "POST {\"status\": \"<script>alert(123)</script>\"}       - XSS in JSON"
@@ -28,18 +27,17 @@ options=(
 
 
 curl_commands=(
-    "curl -s -k -X GET '${PETSTORE_URL}/pet/findByStatus?status=available' -H 'accept: application/json' -H 'content-type: application/json'"
+    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=available' -H 'accept: application/json' -H 'content-type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=pending' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=;cmd.exe' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=X5O%21P%25%40AP%5B4%5CPZX54%28P%5E%297CC%297%7D%24EICAR-STANDARD-ANTIVIRUS-TEST-FILE%21%24H%2BH%2A' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"ls;;cmd.exe\"}'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}'"
-    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}'"
-    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*\"}'"
+    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}'"
+    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -F 'file=@wso.php' -F 'data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"Willupdatelater\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold&status=pending' -H 'accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'accept: application/yaml' -H 'Content-Type: application/json'"
 )
