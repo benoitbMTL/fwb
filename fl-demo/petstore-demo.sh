@@ -68,6 +68,7 @@ function execute_curl() {
 }
 
 function select_option() {
+    clear
     echo "Choose an option:"
     for i in "${!options[@]}"; do
         echo "$((i+1)). ${options[$i]}"
@@ -76,12 +77,25 @@ function select_option() {
     read -p "Enter your choice (1-${#options[@]}): " choice
     if ! [[ "$choice" =~ ^[0-9]+$ ]] || (( choice < 1 || choice > ${#options[@]} )); then
         echo -e "${RED}Invalid choice. Please try again.${NC}"
+        read -p "Press Enter to continue..."
         select_option
         return
     fi
 
+    clear
     echo -e "${CYAN}Executing CURL command:${NC}"
-    execute_curl $((choice-1))
+    local command_index=$((choice-1))
+    echo -e "${CYAN}${curl_commands[$command_index]}${NC}"
+    echo
+    local output=$(eval ${curl_commands[$command_index]} 2>&1)
+    if [[ "$output" == "Request Blocked by FortiWeb!" ]]; then
+        echo -e "${RED}$output${NC}"
+    else
+        echo -e "${GREEN}$output${NC}"
+    fi
+    echo
+    read -p "Press Enter to continue..."
+    select_option
 }
 
 select_option
