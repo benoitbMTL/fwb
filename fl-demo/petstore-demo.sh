@@ -1,7 +1,6 @@
 #!/bin/bash
 
 PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
-#PETSTORE_URL='https://petstore.buonassera.fr/api/v3'
 
 # wso.php is a backdoor/webshell and considered as a malware
 wso_file="wso.php"
@@ -10,20 +9,21 @@ if [ ! -f "$wso_file" ]; then
     curl -sO $wso_url
 fi
 
-# eicar.txt is a Anti-Virus Test File
+# eicar.txt is an Anti-Virus Test File
 eicar_file="eicar.com.txt"
 eicar_url="https://secure.eicar.org/eicar.com.txt"
 if [ ! -f "$eicar_file" ]; then
     curl -sO $eicar_url
 fi
 
-WSO_CONTENT=$(jq -Rs . < $wso_file)
+# Encode content
+WSO_CONTENT_JQ=$(jq -Rs . < $wso_file)
 EICAR_CONTENT=$(< $eicar_file)
 
-RED='\033[0;31m' # Red color code
-GREEN='\033[0;32m' # Green color code
-CYAN='\033[00;36m' # Cyan color code
-NC='\033[0m' # No color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[00;36m'
+NC='\033[0m'
 
 # Define the options for the menu
 options=(
@@ -45,78 +45,43 @@ options=(
     'GET accept: application/yaml                          - Non JSON request'
 )
 
-curl_commands=(
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=available" -H "accept: application/json" -H "content-type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=sold" -H "Accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=pending" -H "Accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?" -H "Accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=ABCDEFGHIJKL" -H "Accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=A" -H "Accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=;cmd.exe" -H "Accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"/bin/ls\"}"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -F "file=@wso.php;type=application/x-php" -F "data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -F "file=@eicar.com.txt;type=text/plain" -F "data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": $WSO_CONTENT}"'
-    'curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"${EICAR_CONTENT}\"}"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=sold&status=pending" -H "accept: application/json" -H "Content-Type: application/json"'
-    'curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=sold" -H "accept: application/yaml" -H "Content-Type: application/json"'
-)
+function execute_curl() {
+    local command_index=$1
+    case $command_index in
+        0) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=available" -H "accept: application/json" -H "content-type: application/json" ;;
+        1) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=sold" -H "Accept: application/json" -H "Content-Type: application/json" ;;
+        2) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=pending" -H "Accept: application/json" -H "Content-Type: application/json" ;;
+        3) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?" -H "Accept: application/json" -H "Content-Type: application/json" ;;
+        4) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=ABCDEFGHIJKL" -H "Accept: application/json" -H "Content-Type: application/json" ;;
+        5) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=A" -H "Accept: application/json" -H "Content-Type: application/json" ;;
+        6) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=;cmd.exe" -H "Accept: application/json" -H "Content-Type: application/json" ;;
+        7) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"/bin/ls\"}" ;;
+        8) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}" ;;
+        9) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}" ;;
+        10) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -F "file=@wso.php;type=application/x-php" -F "data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json" ;;
+        11) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -F "file=@eicar.com.txt;type=text/plain" -F "data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json" ;;
+        12) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": $WSO_CONTENT}" ;;
+        13) curl -s -k -X "POST" "${PETSTORE_URL}/pet" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"${EICAR_CONTENT}\"}" ;;
+        14) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=sold&status=pending" -H "accept: application/json" -H "Content-Type: application/json" ;;
+        15) curl -s -k -X "GET"  "${PETSTORE_URL}/pet/findByStatus?status=sold" -H "accept: application/yaml" -H "Content-Type: application/json" ;;
+    esac
+}
 
-# # Send WSO file content in base64 to Petstore API
-# curl -X POST "${PETSTORE_URL}/pet" \
-#      -H 'accept: application/json' -H 'Content-Type: application/json' \
-#      -d "{\"filename\": \"wso.php\", \"content\": ${WSO_CONTENT}}"
-# echo ""
-# echo ""
-
-# # Send EICAR file content in base64 to Petstore API
-# curl -X POST "${PETSTORE_URL}/pet" \
-#      -H 'accept: application/json' -H 'Content-Type: application/json' \
-#      -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_CONTENT}\"}"
-
-select_option() {
-    clear
+function select_option() {
     echo "Choose an option:"
-    echo ""
     for i in "${!options[@]}"; do
         echo "$((i+1)). ${options[$i]}"
     done
-    echo ""
-    read -p "Enter your choice (1-${#options[@]}): " choice
-    if [[ ! "$choice" =~ ^[0-9]+$ ]] || (( choice < 1 || choice > ${#options[@]} )); then
-        echo ""
-        read -p "Invalid choice. Please try again. Press Enter to continue..."
-        select_option
-    fi
-    execute_curl $((choice-1))
-}
 
-execute_curl() {
-    local index=$1
-    local command=${curl_commands[$index]}
-    echo ""
-    echo "Executing CURL command:"
-    echo -e "${CYAN}$command${NC}"
-    echo
-    output=$(eval $command 2>&1)
-    if [[ $? -eq 0 ]]; then
-        # Connection successful
-        echo "Response:"
-        if [[ "$output" == "Request Blocked by FortiWeb!" ]]; then
-            echo -e "${RED}$output${NC}"
-        else
-            echo -e "${GREEN}$output${NC}"
-        fi
-    else
-        # Connection failed
-        echo "Error message:"
-        echo -e "${RED}$output${NC}"
+    read -p "Enter your choice (1-${#options[@]}): " choice
+    if ! [[ "$choice" =~ ^[0-9]+$ ]] || (( choice < 1 || choice > ${#options[@]} )); then
+        echo -e "${RED}Invalid choice. Please try again.${NC}"
+        select_option
+        return
     fi
-    echo
-    read -p "Press Enter to continue..."
-    select_option
+
+    echo -e "${CYAN}Executing CURL command:${NC}"
+    execute_curl $((choice-1))
 }
 
 select_option
