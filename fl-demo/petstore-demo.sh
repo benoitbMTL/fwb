@@ -17,19 +17,27 @@ if [ ! -f "$eicar_file" ]; then
     curl -sO $eicar_url
 fi
 
-# Encode base64
-WSO_B64=$(base64 -w 0 "$wso_file")
-EICAR_B64=$(base64 -w 0 "$eicar_file")
+WSO_CONTENT=$(<$wso_file)
+EICAR_CONTENT=$(<$eicar_file)
+
+echo ""
+echo ""
+echo $EICAR_CONTENT
+echo ""
+echo ""
 
 # Send WSO file content in base64 to Petstore API
 curl -X POST "${PETSTORE_URL}/pet" \
      -H 'accept: application/json' -H 'Content-Type: application/json' \
-     -d "{\"filename\": \"wso.php\", \"content\": \"${WSO_B64}\"}"
+     -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${WSO_CONTENT}\"}"
+echo ""
+echo ""
 
 # Send EICAR file content in base64 to Petstore API
 curl -X POST "${PETSTORE_URL}/pet" \
      -H 'accept: application/json' -H 'Content-Type: application/json' \
-     -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_B64}\"}"
+     -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_CONTENT}\"}"
+
 
 read -p "Press Enter to continue"
 exit 0
