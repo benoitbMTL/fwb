@@ -21,16 +21,18 @@ fi
 WSO_B64=$(base64 -w 0 "$wso_file")
 EICAR_B64=$(base64 -w 0 "$eicar_file")
 
-echo ""
-echo ""
-echo $WSO_B64
-echo ""
-echo ""
-echo $EICAR_B64
-echo ""
-echo ""
+# Send WSO file content in base64 to Petstore API
+curl -X POST "${PETSTORE_URL}/pet" \
+     -H "Content-Type: application/json" \
+     -d "{\"filename\": \"wso.php\", \"content\": \"${WSO_B64}\"}"
+
+# Send EICAR file content in base64 to Petstore API
+curl -X POST "${PETSTORE_URL}/pet" \
+     -H "Content-Type: application/json" \
+     -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_B64}\"}"
 
 read -p "Press Enter to continue"
+exit 0
 
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
