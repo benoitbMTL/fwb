@@ -23,10 +23,10 @@ EICAR_B64=$(base64 -w 0 "$eicar_file")
 
 echo ""
 echo ""
-echo WSO_B64
+echo $WSO_B64
 echo ""
 echo ""
-echo EICAR_B64
+echo $EICAR_B64
 echo ""
 echo ""
 
