@@ -69,11 +69,14 @@ function execute_curl() {
 
 function select_option() {
     clear
+    echo
     echo "Choose an option:"
+    echo
     for i in "${!options[@]}"; do
         echo "$((i+1)). ${options[$i]}"
     done
 
+    echo
     read -p "Enter your choice (1-${#options[@]}): " choice
     if ! [[ "$choice" =~ ^[0-9]+$ ]] || (( choice < 1 || choice > ${#options[@]} )); then
         echo -e "${RED}Invalid choice. Please try again.${NC}"
