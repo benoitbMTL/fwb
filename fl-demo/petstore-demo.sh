@@ -30,7 +30,7 @@ echo ""
 # Send WSO file content in base64 to Petstore API
 curl -X POST "${PETSTORE_URL}/pet" \
      -H 'accept: application/json' -H 'Content-Type: application/json' \
-     -d "{\"filename\": \"wso.php\", \"content\": \"${WSO_CONTENT}\"}"
+     -d "{\"filename\": \"wso.php\", \"content\": ${WSO_CONTENT}}"
 echo ""
 echo ""
 
