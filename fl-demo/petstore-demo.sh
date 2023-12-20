@@ -28,7 +28,7 @@ options=(
     'GET findByStatus?status=;cmd.exe                      - Command Injection in URL'
     'POST {"status": "/bin/ls"}                            - Command Injection in JSON'
     'POST {"status": "xx& var1=l var2=s;\$var1\$var2"}     - Zero-Day in JSON'
-    'POST {"status": "<script>alert(123)</script>"}        - XSS in JSON'
+    'POST {"status": "<script>alert(123)</script>"}       - XSS in JSON'
     'POST file=@eicar.com.txt                             - Upload Eicar test file'
     'POST {"status": "*eicar.com.txt*"}                   - Eicar in JSON'
     'GET findByStatus?status=sold&status=pending          - Additional URL parameter'
