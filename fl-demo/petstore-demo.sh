@@ -23,12 +23,12 @@ EICAR_B64=$(base64 -w 0 "$eicar_file")
 
 # Send WSO file content in base64 to Petstore API
 curl -X POST "${PETSTORE_URL}/pet" \
-     -H "Content-Type: application/json" \
+     -H 'accept: application/json' -H 'Content-Type: application/json' \
      -d "{\"filename\": \"wso.php\", \"content\": \"${WSO_B64}\"}"
 
 # Send EICAR file content in base64 to Petstore API
 curl -X POST "${PETSTORE_URL}/pet" \
-     -H "Content-Type: application/json" \
+     -H 'accept: application/json' -H 'Content-Type: application/json' \
      -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_B64}\"}"
 
 read -p "Press Enter to continue"
