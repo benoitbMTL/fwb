@@ -18,8 +18,8 @@ if [ ! -f "$eicar_file" ]; then
 fi
 
 # Encode base64
-WSO_B64=$(base64 -w 0 wso_file)
-EICAR_B64=$(base64 -w 0 eicar_file)
+WSO_B64=$(base64 -w 0 "$wso_file")
+EICAR_B64=$(base64 -w 0 "$eicar_file")
 
 echo ""
 echo ""
