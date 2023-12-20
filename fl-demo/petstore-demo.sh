@@ -20,30 +20,17 @@ fi
 WSO_CONTENT=$(jq -Rs . < $wso_file)
 EICAR_CONTENT=$(< $eicar_file)
 
-echo ""
-echo ""
-echo $EICAR_CONTENT
-echo $WSO_CONTENT
-echo ""
-echo ""
+# # Send WSO file content in base64 to Petstore API
+# curl -X POST "${PETSTORE_URL}/pet" \
+#      -H 'accept: application/json' -H 'Content-Type: application/json' \
+#      -d "{\"filename\": \"wso.php\", \"content\": ${WSO_CONTENT}}"
+# echo ""
+# echo ""
 
-# Send WSO file content in base64 to Petstore API
-curl -X POST "${PETSTORE_URL}/pet" \
-     -H 'accept: application/json' -H 'Content-Type: application/json' \
-     -d "{\"filename\": \"wso.php\", \"content\": ${WSO_CONTENT}}"
-echo ""
-echo ""
-
-# Send EICAR file content in base64 to Petstore API
-curl -X POST "${PETSTORE_URL}/pet" \
-     -H 'accept: application/json' -H 'Content-Type: application/json' \
-     -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_CONTENT}\"}"
-
-
-echo ""
-echo ""
-read -p "Press Enter to continue"
-exit 0
+# # Send EICAR file content in base64 to Petstore API
+# curl -X POST "${PETSTORE_URL}/pet" \
+#      -H 'accept: application/json' -H 'Content-Type: application/json' \
+#      -d "{\"filename\": \"eicar.com.txt\", \"content\": \"${EICAR_CONTENT}\"}"
 
 RED='\033[0;31m' # Red color code
 GREEN='\033[0;32m' # Green color code
@@ -71,22 +58,22 @@ options=(
 
 
 curl_commands=(
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=available' -H 'accept: application/json' -H 'content-type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=pending' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=;cmd.exe' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=available' -H 'accept: application/json' -H 'content-type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=pending' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=;cmd.exe' -H 'Accept: application/json' -H 'Content-Type: application/json'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 110, \"name\": \"FortiCamel\"}], \"status\": \"/bin/ls\"}'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 111, \"name\": \"FortiCamel\"}], \"status\": \"xx& var1=l var2=s;$var1$var2\"}'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"<script>alert(123)</script>\"}'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -F 'file=@wso.php;type=application/x-php' -F 'data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json'"
     "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -F 'file=@eicar.com.txt;type=text/plain' -F 'data={\"id\": 110, \"category\": {\"id\": 110, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 113, \"name\": \"FortiCamel\"}], \"status\": \"sold\"};type=application/json'"
-    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"${WSO_B64}\"}'"
-    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": \"${EICAR_B64}\"}'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold&status=pending' -H 'accept: application/json' -H 'Content-Type: application/json'"
-    "curl -s -k -X 'GET' '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'accept: application/yaml' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": $WSO_CONTENT}'"
+    "curl -s -k -X 'POST' '${PETSTORE_URL}/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{\"id\": 111, \"category\": {\"id\": 111, \"name\": \"Camel\"}, \"name\": \"FortiCamel\", \"photoUrls\": [\"photo.png\"], \"tags\": [ {\"id\": 112, \"name\": \"FortiCamel\"}], \"status\": $EICAR_CONTENT}'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=sold&status=pending' -H 'accept: application/json' -H 'Content-Type: application/json'"
+    "curl -s -k -X 'GET'  '${PETSTORE_URL}/pet/findByStatus?status=sold' -H 'accept: application/yaml' -H 'Content-Type: application/json'"
 )
 
 select_option() {
