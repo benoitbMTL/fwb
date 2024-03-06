@@ -2,7 +2,7 @@
 
 # Encode username and password in base64 and assign to TOKEN
 TOKEN=$(echo '{"username":"userapi","password":"userAPI123!"}' | base64)
-FWB_MGT_IP="10.163.7.21"
+FWB_MGT_IP="192.168.4.2"
 POLICY="main-policy"
 
 echo ""
