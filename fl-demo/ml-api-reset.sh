@@ -14,7 +14,7 @@ echo "Base URL defined as $BASE_URL"
 
 # Perform GET request to fetch policy rules
 echo "Performing GET request to fetch policy rules..."
-RESPONSE=$(curl --insecure \
+RESPONSE=$(curl -s --insecure \
   --header "Authorization: $TOKEN" \
   --header "Accept: application/json" \
   "$BASE_URL/api/v2.0/machine_learning/api_learning_policy.get_policy_rule")
@@ -33,7 +33,7 @@ echo "Rule IDs extracted: $RULE_IDS"
 echo "Starting POST requests to refresh domains..."
 for ID in $RULE_IDS; do
     echo "Performing POST request for rule ID: $ID"
-    curl --insecure \
+    curl -s --insecure \
          --header "Authorization: $TOKEN" \
          --header "Content-Type: application/json" \
          --request POST \
