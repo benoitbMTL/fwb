@@ -2,7 +2,12 @@ import time
 import requests
 import ssl
 import socket
+import warnings
 from urllib.parse import urlparse
+from urllib3.exceptions import InsecureRequestWarning
+
+# Désactiver les avertissements InsecureRequestWarning
+warnings.simplefilter("ignore", InsecureRequestWarning)
 
 def get_ssl_session_id(url):
     # Parse the URL to extract the hostname and port
