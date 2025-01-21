@@ -10,8 +10,10 @@ def get_ssl_session_id(url):
     hostname = parsed_url.hostname
     port = parsed_url.port or 443  # Default to HTTPS port
 
-    # Create an SSL context
+    # Create an SSL context and disable certificate verification
     context = ssl.create_default_context()
+    context.check_hostname = False
+    context.verify_mode = ssl.CERT_NONE
 
     # Connect to the server using SSL
     with socket.create_connection((hostname, port)) as sock:
