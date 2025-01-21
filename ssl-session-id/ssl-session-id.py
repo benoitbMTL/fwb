@@ -31,28 +31,14 @@ def login_to_dvwa(base_url, username, password):
     login_url = f"{base_url}/login.php"
     session = requests.Session()
 
-    # Get the login page to retrieve the CSRF token
-    response = session.get(login_url, verify=False)
-    if response.status_code != 200:
-        raise Exception(f"Failed to load login page. Status code: {response.status_code}")
-    
-    # Extract CSRF token
-    csrf_token = None
-    for line in response.text.splitlines():
-        if "name='user_token'" in line:
-            csrf_token = line.split("value='")[1].split("'")[0]
-            break
-    if not csrf_token:
-        raise Exception("Failed to extract CSRF token from login page.")
-
     # Perform login
     login_data = {
         "username": username,
         "password": password,
-        "user_token": csrf_token,
         "Login": "Login"
     }
     login_response = session.post(login_url, data=login_data, verify=False)
+    
     if "PHPSESSID" not in login_response.cookies:
         raise Exception("Login failed. No PHPSESSID received.")
     
