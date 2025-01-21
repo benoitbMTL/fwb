@@ -38,10 +38,15 @@ def login_to_dvwa(base_url, username, password):
         "Login": "Login"
     }
     login_response = session.post(login_url, data=login_data, verify=False)
-    
+
+    # Debugging: Print response details if login fails
     if "PHPSESSID" not in login_response.cookies:
+        print("Login response content:")
+        print(login_response.text)  # Print the response for debugging
+        print("Headers:")
+        print(login_response.headers)
         raise Exception("Login failed. No PHPSESSID received.")
-    
+
     print("Login successful!")
     return session
 
