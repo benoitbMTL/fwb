@@ -1,85 +1,78 @@
-import time
 import requests
-import ssl
-import socket
-import warnings
-from urllib.parse import urlparse
-from urllib3.exceptions import InsecureRequestWarning
 import sys
+import time
+from bs4 import BeautifulSoup
 
-# Disable warnings for unverified HTTPS requests
+# Disable SSL warnings
+import warnings
+from urllib3.exceptions import InsecureRequestWarning
 warnings.simplefilter("ignore", InsecureRequestWarning)
 
-def get_ssl_session_id(url):
-    """Get the SSL Session ID for a given URL."""
-    parsed_url = urlparse(url)
-    hostname = parsed_url.hostname
-    port = parsed_url.port or 443  # Default HTTPS port
-
-    # Create an SSL context and disable certificate verification
-    context = ssl.create_default_context()
-    context.check_hostname = False
-    context.verify_mode = ssl.CERT_NONE
-
-    with socket.create_connection((hostname, port)) as sock:
-        with context.wrap_socket(sock, server_hostname=hostname) as ssock:
-            session_id = ssock.session.id.hex()
-            return session_id
-
 def login_to_dvwa(base_url, username, password):
-    """Authenticate to the DVWA and return a session object."""
+    """Log in to the DVWA and return an authenticated session."""
     login_url = f"{base_url}/login.php"
     session = requests.Session()
 
-    # Perform login
+    # Get the login page to retrieve the CSRF token
+    response = session.get(login_url, verify=False)
+    if response.status_code != 200:
+        raise Exception(f"Failed to load login page. Status code: {response.status_code}")
+
+    # Extract the CSRF token using BeautifulSoup
+    soup = BeautifulSoup(response.text, "html.parser")
+    csrf_token = soup.find("input", {"name": "user_token"})["value"]
+
+    # Prepare login data
     login_data = {
         "username": username,
         "password": password,
-        "Login": "Login"
+        "Login": "Login",
+        "user_token": csrf_token,
     }
-    login_response = session.post(login_url, data=login_data, verify=False)
 
-    # Debugging: Print response details if login fails
+    # Custom headers to mimic the browser's request
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Referer": login_url,
+        "Origin": base_url,
+    }
+
+    # Perform the login
+    login_response = session.post(login_url, data=login_data, headers=headers, verify=False)
     if "PHPSESSID" not in login_response.cookies:
-        print("Login response content:")
-        print(login_response.text)  # Print the response for debugging
-        print("Headers:")
-        print(login_response.headers)
         raise Exception("Login failed. No PHPSESSID received.")
-
+    
     print("Login successful!")
     return session
 
-def simulate_requests(base_url, session, endpoint, count):
-    """Simulate multiple HTTPS requests to the given endpoint."""
+def make_requests(base_url, session, endpoint, count):
+    """Make multiple requests to the specified endpoint."""
     target_url = f"{base_url}{endpoint}"
+
     for i in range(count):
         try:
-            session_id = get_ssl_session_id(base_url)
-
-            # Make the request to the target endpoint
+            # Perform a GET request to the target endpoint
             response = session.get(target_url, verify=False)
             phpsessid = session.cookies.get("PHPSESSID", "Not Set")
 
-            # Print the formatted output
             print(f"Request {i + 1}:")
             print(f"  - GET {target_url}")
             print(f"  - HTTP Status Code: {response.status_code}")
-            print(f"  - PHPSESSID: {phpsessid}")
-            print(f"  - SSL Session ID: {session_id}\n")
+            print(f"  - PHPSESSID: {phpsessid}\n")
         except Exception as e:
             print(f"Error during request {i + 1}: {e}")
         time.sleep(2)  # Wait 2 seconds between requests
 
 def main():
-    # Default configurations
-    base_url = "https://dvwa.fortiweb.fabriclab.ca"
+    # Base configuration
+    base_url = "https://dvwa.corp.fabriclab.ca"
     endpoint = "/vulnerabilities/exec/"
     username = "admin"
     password = "password"
     default_request_count = 10
 
-    # Parse arguments for request count
+    # Parse command-line arguments for request count
     if len(sys.argv) > 1:
         try:
             request_count = int(sys.argv[1])
@@ -91,10 +84,10 @@ def main():
 
     print(f"Starting simulation with {request_count} requests to {endpoint}...")
 
-    # Login and simulate requests
+    # Login and perform requests
     try:
         session = login_to_dvwa(base_url, username, password)
-        simulate_requests(base_url, session, endpoint, request_count)
+        make_requests(base_url, session, endpoint, request_count)
     except Exception as e:
         print(f"An error occurred: {e}")
 
