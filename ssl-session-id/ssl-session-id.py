@@ -35,10 +35,20 @@ def simulate_https_requests(url, interval, count):
             
             # Make an actual HTTP request to ensure server interaction
             response = requests.get(url, verify=False)  # Disable SSL verification for testing
-            
+
+            # Extract the PHPSESSID cookie if it exists
+            phpsessid = None
+            for cookie in response.cookies:
+                if cookie.name == "PHPSESSID":
+                    phpsessid = cookie.value
+                    break
+
+            # Format the output
             print(f"Request {i + 1}:")
-            print(f"  - SSL Session ID: {session_id}")
-            print(f"  - HTTP Status Code: {response.status_code}\n")
+            print(f"  - GET {url}")
+            print(f"  - HTTP Status Code: {response.status_code}")
+            print(f"  - PHPSESSID: {phpsessid if phpsessid else 'Not Set'}")
+            print(f"  - SSL Session ID: {session_id}\n")
         except Exception as e:
             print(f"Error during request {i + 1}: {e}")
         
