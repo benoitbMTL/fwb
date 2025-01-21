@@ -81,13 +81,17 @@ def make_requests(base_url, session, endpoint, count):
 
             # Perform a GET request to the target endpoint
             response = session.get(target_url, verify=False)
+
+            # Extract specific cookies
             phpsessid = session.cookies.get("PHPSESSID", "Not Set")
+            security = session.cookies.get("security", "Not Set")
+            cookiesession1 = session.cookies.get("cookiesession1", "Not Set")
 
             # Print the formatted output
             print(f"Request {i + 1}:")
             print(f"  - GET {target_url}")
             print(f"  - HTTP Status Code: {response.status_code}")
-            print(f"  - PHPSESSID: {phpsessid}")
+            print(f"  - Cookies: PHPSESSID={phpsessid}; security={security}; cookiesession1={cookiesession1}")
             print(f"  - SSL Session ID: {ssl_session_id}\n")
         except Exception as e:
             print(f"Error during request {i + 1}: {e}")
