@@ -57,10 +57,11 @@ def login_to_dvwa(base_url, username, password):
     print(f"[DEBUG] Login POST response status code: {login_response.status_code}")
     print(f"[DEBUG] Login POST response cookies: {login_response.cookies}")
 
-    if "PHPSESSID" not in login_response.cookies:
+    # Check the response content for login confirmation
+    if "You have logged in as 'admin'" not in login_response.text:
         print("[DEBUG] Login failed. Server response:")
         print(login_response.text)
-        raise Exception("Login failed. No PHPSESSID received.")
+        raise Exception("Login failed. The server did not confirm the login.")
 
     print("[DEBUG] Login successful!")
     return session
